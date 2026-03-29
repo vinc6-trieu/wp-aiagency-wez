@@ -166,7 +166,7 @@ function aiagency_wez_enqueue_google_translate() {
 
 	$init = sprintf(
 		'function aiagencyWezGoogleTranslateInit(){if(typeof google===\'undefined\'||!google.translate){return;}' .
-		'new google.translate.TranslateElement({pageLanguage:\'%s\',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:true},\'google_translate_element\');}',
+		'new google.translate.TranslateElement({pageLanguage:\'%s\',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},\'google_translate_element\');}',
 		esc_js( $page_lang )
 	);
 	wp_add_inline_script( 'aiagency-wez-gtranslate-init', $init, 'after' );

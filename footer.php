@@ -65,6 +65,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</div>
 
 				<div class="site-footer__meta">
+					<div
+						class="site-footer__translate"
+						role="navigation"
+						aria-label="<?php esc_attr_e( 'Choose site language (Google Translate)', 'aiagency-wez' ); ?>"
+					>
+						<span class="site-footer__translate-icon" aria-hidden="true">
+							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" focusable="false">
+								<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+								<path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+							</svg>
+						</span>
+						<div
+							id="google_translate_element"
+							class="site-footer__translate-mount"
+						></div>
+					</div>
+
 					<div class="site-footer__socials">
 						<?php if ( $footer_linkedin_url ) : ?>
 							<a class="site-footer__social-link" href="<?php echo esc_url( $footer_linkedin_url ); ?>" aria-label="<?php esc_attr_e( 'LinkedIn', 'aiagency-wez' ); ?>">

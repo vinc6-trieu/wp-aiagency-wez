@@ -60,12 +60,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 						?>
 					</nav>
 
-					<div
-						class="site-header__translate"
-						id="google_translate_element"
-						aria-label="<?php esc_attr_e( 'Translate this page with Google', 'aiagency-wez' ); ?>"
-					></div>
-
 					<?php if ( $header_cta_text && $header_cta_url ) : ?>
 						<a class="site-header__cta" href="<?php echo esc_url( $header_cta_url ); ?>">
 							<?php echo esc_html( $header_cta_text ); ?>

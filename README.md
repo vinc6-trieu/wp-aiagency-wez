@@ -158,7 +158,7 @@ The competencies section CTA (`home_v1_competencies_cta_text` / `home_v1_compete
 
 **In-page navigation:** `assets/js/home-v1-smooth-nav.js` intercepts same-page links (`#section-id` or current URL + hash), smooth-scrolls with a sticky-header offset, and updates the URL via `history.pushState` so the browser does not perform a full navigation/reload.
 
-**Translation:** The Home V1 header mounts Google’s Website Translator (`translate.google.com`) with `autoDisplay` enabled so visitors get Google’s translation prompt/banner as well as the language dropdown in the header (third-party; content may be sent to Google). Source language is taken from the WordPress locale (`get_locale()`). To disable the automatic banner and show only the dropdown, set `autoDisplay` to `false` in `aiagency_wez_enqueue_google_translate()` in `functions.php`.
+**Translation:** On Home V1, Google’s Website Translator mounts in the **footer** (`#google_translate_element` inside `.site-footer__translate`), beside a **globe icon** pill— not in the header. `autoDisplay` is **off** so Google’s top-of-page banner does not compete with the sticky header. Source language comes from `get_locale()`. To show Google’s auto banner again, set `autoDisplay` to `true` in `aiagency_wez_enqueue_google_translate()` in `functions.php`.
 
 ### Landing Page
 
