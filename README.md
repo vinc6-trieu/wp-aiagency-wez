@@ -9,7 +9,8 @@ aiagency-wez/
 ├── assets/
 │   ├── home-page-background.png  (Home template full-page backdrop)
 │   ├── js/
-│   │   └── home-v1-reveal.js     (Home V1 section scroll animations)
+│   │   ├── home-v1-reveal.js     (Home V1 section scroll animations)
+│   │   └── home-v1-smooth-nav.js (same-page #anchors, no full reload)
 │   └── logo.png                   (Default site logo; replace or use Customizer)
 ├── footer.php
 ├── functions.php
@@ -154,6 +155,10 @@ If an icon field is empty, the theme shows a built-in SVG (thin circle with chec
 The competencies section CTA (`home_v1_competencies_cta_text` / `home_v1_competencies_cta_url`) includes a leading **chat bubbles** icon (inherits button text color).
 
 **Motion:** On this template, each `.home-v1-section` scroll-reveals with a longer ease-out, slight scale, and brightness lift; inner blocks (hero lines, headings, competency rows, project/team cards, contact columns, etc.) use staggered delays. Logic lives in `assets/js/home-v1-reveal.js` and `style.css` under `home-v1-reveal-js`. Users who prefer reduced motion are not opted into the hidden-then-reveal behavior.
+
+**In-page navigation:** `assets/js/home-v1-smooth-nav.js` intercepts same-page links (`#section-id` or current URL + hash), smooth-scrolls with a sticky-header offset, and updates the URL via `history.pushState` so the browser does not perform a full navigation/reload.
+
+**Translation:** The Home V1 header mounts Google’s Website Translator (`translate.google.com`) with `autoDisplay` enabled so visitors get Google’s translation prompt/banner as well as the language dropdown in the header (third-party; content may be sent to Google). Source language is taken from the WordPress locale (`get_locale()`). To disable the automatic banner and show only the dropdown, set `autoDisplay` to `false` in `aiagency_wez_enqueue_google_translate()` in `functions.php`.
 
 ### Landing Page
 

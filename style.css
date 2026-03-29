@@ -1220,6 +1220,38 @@ body.aiagency-wez-home-v1-template,
   transform: translateY(-1px);
 }
 
+/* Google Website Translator (Home V1 header). */
+.site-header__translate {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+.site-header__translate .goog-te-gadget {
+  font-family:
+    "Poppins",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif !important;
+  color: var(--aiagency-wez-home-v1-body) !important;
+  font-size: 0 !important;
+}
+
+.site-header__translate .goog-te-gadget .goog-te-combo {
+  margin: 0 !important;
+  padding: 0.4rem 1.75rem 0.4rem 0.65rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(10, 91, 140, 0.22) !important;
+  font-family: inherit !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  background-color: #ffffff !important;
+  color: var(--aiagency-wez-home-v1-body) !important;
+  cursor: pointer;
+}
+
 .home-v1-page {
   overflow: clip;
 }

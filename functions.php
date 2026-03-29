@@ -118,8 +118,68 @@ function aiagency_wez_enqueue_home_v1_reveal() {
 		true
 	);
 	wp_script_add_data( 'aiagency-wez-home-v1-reveal', 'strategy', 'defer' );
+
+	$nav_path = get_template_directory() . '/assets/js/home-v1-smooth-nav.js';
+	if ( is_readable( $nav_path ) ) {
+		wp_enqueue_script(
+			'aiagency-wez-home-v1-smooth-nav',
+			get_template_directory_uri() . '/assets/js/home-v1-smooth-nav.js',
+			array(),
+			(string) filemtime( $nav_path ),
+			true
+		);
+		wp_script_add_data( 'aiagency-wez-home-v1-smooth-nav', 'strategy', 'defer' );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'aiagency_wez_enqueue_home_v1_reveal', 20 );
+
+/**
+ * ISO 639-1 source language code for Google Translate (from site locale).
+ *
+ * @return string
+ */
+function aiagency_wez_get_page_language_code() {
+	$locale = get_locale();
+	if ( ! is_string( $locale ) || $locale === '' ) {
+		return 'en';
+	}
+	$base = strstr( $locale, '_', true );
+	if ( false === $base ) {
+		$base = $locale;
+	}
+	$code = strtolower( substr( $base, 0, 2 ) );
+	return preg_match( '/^[a-z]{2}$/', $code ) ? $code : 'en';
+}
+
+/**
+ * Loads Google Website Translator on Home V1 (user picks language; no full page reload).
+ */
+function aiagency_wez_enqueue_google_translate() {
+	if ( is_admin() || ! aiagency_wez_is_home_v1_template() ) {
+		return;
+	}
+
+	$page_lang = aiagency_wez_get_page_language_code();
+
+	wp_register_script( 'aiagency-wez-gtranslate-init', false, array(), null, true );
+	wp_enqueue_script( 'aiagency-wez-gtranslate-init' );
+
+	$init = sprintf(
+		'function aiagencyWezGoogleTranslateInit(){if(typeof google===\'undefined\'||!google.translate){return;}' .
+		'new google.translate.TranslateElement({pageLanguage:\'%s\',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:true},\'google_translate_element\');}',
+		esc_js( $page_lang )
+	);
+	wp_add_inline_script( 'aiagency-wez-gtranslate-init', $init, 'after' );
+
+	wp_enqueue_script(
+		'google-translate-element',
+		'https://translate.google.com/translate_a/element.js?cb=aiagencyWezGoogleTranslateInit',
+		array( 'aiagency-wez-gtranslate-init' ),
+		null,
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'aiagency_wez_enqueue_google_translate', 25 );
 
 /**
  * Adds a stable body class for the custom home page template.
