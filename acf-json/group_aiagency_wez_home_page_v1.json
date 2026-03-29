@@ -1,0 +1,971 @@
+{
+    "key": "group_aiagency_wez_home_page_v1",
+    "title": "Home Page - Version 1",
+    "fields": [
+        {
+            "key": "field_aiagency_wez_home_v1_tab_header_footer",
+            "label": "Header & Footer",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_header_cta_text",
+            "label": "Header CTA Text",
+            "name": "home_v1_header_cta_text",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Book a demo"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_header_cta_url",
+            "label": "Header CTA URL",
+            "name": "home_v1_header_cta_url",
+            "type": "url",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "#contact-us"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_footer_copy",
+            "label": "Footer Copy",
+            "name": "home_v1_footer_copy",
+            "type": "textarea",
+            "rows": 4,
+            "placeholder": "AI-powered ecosystems that connect knowledge, operations, and customer experience into one intelligent business layer."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_footer_nav_primary_heading",
+            "label": "Footer Primary Nav Heading",
+            "name": "home_v1_footer_nav_primary_heading",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Navigation"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_footer_nav_secondary_heading",
+            "label": "Footer Secondary Nav Heading",
+            "name": "home_v1_footer_nav_secondary_heading",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Sections"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_footer_social_linkedin_url",
+            "label": "LinkedIn URL",
+            "name": "home_v1_footer_social_linkedin_url",
+            "type": "url",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "https://linkedin.com/company/example"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_footer_social_instagram_url",
+            "label": "Instagram URL",
+            "name": "home_v1_footer_social_instagram_url",
+            "type": "url",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "https://instagram.com/example"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_hero_eyebrow",
+            "label": "Hero Eyebrow",
+            "name": "home_v1_hero_eyebrow",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "AI BUSINESS AGENT"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_hero_title",
+            "label": "Hero Title",
+            "name": "home_v1_hero_title",
+            "type": "textarea",
+            "wrapper": {
+                "width": "50"
+            },
+            "rows": 4,
+            "placeholder": "Meet Lina,\nOur AI Business Agent"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_hero_description",
+            "label": "Hero Description",
+            "name": "home_v1_hero_description",
+            "type": "textarea",
+            "rows": 4,
+            "placeholder": "Your intelligent interface for strategy, operations, and customer experience."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_hero_primary_text",
+            "label": "Hero Primary Button Text",
+            "name": "home_v1_hero_primary_text",
+            "type": "text",
+            "wrapper": {
+                "width": "25"
+            },
+            "placeholder": "Learn more"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_hero_primary_url",
+            "label": "Hero Primary Button URL",
+            "name": "home_v1_hero_primary_url",
+            "type": "url",
+            "wrapper": {
+                "width": "25"
+            },
+            "placeholder": "#core-competencies"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_hero_secondary_text",
+            "label": "Hero Secondary Button Text",
+            "name": "home_v1_hero_secondary_text",
+            "type": "text",
+            "wrapper": {
+                "width": "25"
+            },
+            "placeholder": "Contact"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_hero_secondary_url",
+            "label": "Hero Secondary Button URL",
+            "name": "home_v1_hero_secondary_url",
+            "type": "url",
+            "wrapper": {
+                "width": "25"
+            },
+            "placeholder": "#contact-us"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_hero_image",
+            "label": "Hero Image",
+            "name": "home_v1_hero_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_hero_background_image",
+            "label": "Hero Background Image",
+            "name": "home_v1_hero_background_image",
+            "type": "image",
+            "instructions": "Optional full-width banner background shown behind the hero gradient overlays.",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_hero_stat_label",
+            "label": "Hero Stat Label",
+            "name": "home_v1_hero_stat_label",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "AI AGENTS DEPLOYED"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_hero_stat_value",
+            "label": "Hero Stat Value",
+            "name": "home_v1_hero_stat_value",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "1,200+ intelligent workflows"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_tab_competencies",
+            "label": "Competencies",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competencies_eyebrow",
+            "label": "Section Eyebrow",
+            "name": "home_v1_competencies_eyebrow",
+            "type": "text",
+            "wrapper": {
+                "width": "30"
+            },
+            "placeholder": "SERVICES"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competencies_title",
+            "label": "Section Title",
+            "name": "home_v1_competencies_title",
+            "type": "text",
+            "wrapper": {
+                "width": "70"
+            },
+            "placeholder": "Our Core Competencies"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competencies_intro",
+            "label": "Intro Text",
+            "name": "home_v1_competencies_intro",
+            "type": "textarea",
+            "rows": 4,
+            "placeholder": "We build AI systems that elevate strategic decision-making, streamline operations, and shape memorable customer experiences."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competency_1_title",
+            "label": "Competency 1 Title",
+            "name": "home_v1_competency_1_title",
+            "type": "text",
+            "wrapper": {
+                "width": "35"
+            },
+            "placeholder": "Management Intelligence"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competency_1_icon",
+            "label": "Competency 1 Icon",
+            "name": "home_v1_competency_1_icon",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "instructions": "Optional. Square PNG/SVG recommended. If empty, a default icon is shown."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competency_1_description",
+            "label": "Competency 1 Description",
+            "name": "home_v1_competency_1_description",
+            "type": "textarea",
+            "wrapper": {
+                "width": "65"
+            },
+            "rows": 3,
+            "placeholder": "Executive dashboards, scenario planning, and AI-assisted strategic analysis."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competency_2_title",
+            "label": "Competency 2 Title",
+            "name": "home_v1_competency_2_title",
+            "type": "text",
+            "wrapper": {
+                "width": "35"
+            },
+            "placeholder": "Operational Intelligence"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competency_2_icon",
+            "label": "Competency 2 Icon",
+            "name": "home_v1_competency_2_icon",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "instructions": "Optional. Square PNG/SVG recommended. If empty, a default icon is shown."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competency_2_description",
+            "label": "Competency 2 Description",
+            "name": "home_v1_competency_2_description",
+            "type": "textarea",
+            "wrapper": {
+                "width": "65"
+            },
+            "rows": 3,
+            "placeholder": "Workflow automation, knowledge retrieval, and real-time business assistance."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competency_3_title",
+            "label": "Competency 3 Title",
+            "name": "home_v1_competency_3_title",
+            "type": "text",
+            "wrapper": {
+                "width": "35"
+            },
+            "placeholder": "Customer Intelligence & Experience"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competency_3_icon",
+            "label": "Competency 3 Icon",
+            "name": "home_v1_competency_3_icon",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "instructions": "Optional. Square PNG/SVG recommended. If empty, a default icon is shown."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competency_3_description",
+            "label": "Competency 3 Description",
+            "name": "home_v1_competency_3_description",
+            "type": "textarea",
+            "wrapper": {
+                "width": "65"
+            },
+            "rows": 3,
+            "placeholder": "Conversational interfaces and AI-led journeys that strengthen brand experience."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competencies_cta_text",
+            "label": "CTA Text",
+            "name": "home_v1_competencies_cta_text",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "To Services"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competencies_cta_url",
+            "label": "CTA URL",
+            "name": "home_v1_competencies_cta_url",
+            "type": "url",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "#our-projects"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_competencies_disclaimer",
+            "label": "Disclaimer Text",
+            "name": "home_v1_competencies_disclaimer",
+            "type": "textarea",
+            "rows": 3,
+            "placeholder": "Every solution is tailored to your business model, data maturity, and growth objectives."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_tab_projects",
+            "label": "Projects",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_projects_title",
+            "label": "Projects Title",
+            "name": "home_v1_projects_title",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Our Projects"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_projects_intro",
+            "label": "Projects Intro",
+            "name": "home_v1_projects_intro",
+            "type": "textarea",
+            "rows": 4,
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "A sample of AI-led products, agents, and platforms built for complex businesses."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_projects_all_link_text",
+            "label": "All Projects Link Text",
+            "name": "home_v1_projects_all_link_text",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "View all projects"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_projects_all_link_url",
+            "label": "All Projects Link URL",
+            "name": "home_v1_projects_all_link_url",
+            "type": "url",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "#contact-us"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_1_category",
+            "label": "Project 1 Category",
+            "name": "home_v1_project_1_category",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "Fintech"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_1_title",
+            "label": "Project 1 Title",
+            "name": "home_v1_project_1_title",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "Dina"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_1_link_text",
+            "label": "Project 1 Link Text",
+            "name": "home_v1_project_1_link_text",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "View Case Study"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_1_link_url",
+            "label": "Project 1 Link URL",
+            "name": "home_v1_project_1_link_url",
+            "type": "url",
+            "wrapper": {
+                "width": "40"
+            },
+            "placeholder": "https://example.com"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_1_image",
+            "label": "Project 1 Image",
+            "name": "home_v1_project_1_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_2_category",
+            "label": "Project 2 Category",
+            "name": "home_v1_project_2_category",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "Logistics"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_2_title",
+            "label": "Project 2 Title",
+            "name": "home_v1_project_2_title",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "HEMA"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_2_link_text",
+            "label": "Project 2 Link Text",
+            "name": "home_v1_project_2_link_text",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "View Case Study"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_2_link_url",
+            "label": "Project 2 Link URL",
+            "name": "home_v1_project_2_link_url",
+            "type": "url",
+            "wrapper": {
+                "width": "40"
+            },
+            "placeholder": "https://example.com"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_2_image",
+            "label": "Project 2 Image",
+            "name": "home_v1_project_2_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_3_category",
+            "label": "Project 3 Category",
+            "name": "home_v1_project_3_category",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "Workspace"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_3_title",
+            "label": "Project 3 Title",
+            "name": "home_v1_project_3_title",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "Lumi"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_3_link_text",
+            "label": "Project 3 Link Text",
+            "name": "home_v1_project_3_link_text",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "View Case Study"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_3_link_url",
+            "label": "Project 3 Link URL",
+            "name": "home_v1_project_3_link_url",
+            "type": "url",
+            "wrapper": {
+                "width": "40"
+            },
+            "placeholder": "https://example.com"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_3_image",
+            "label": "Project 3 Image",
+            "name": "home_v1_project_3_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_4_category",
+            "label": "Project 4 Category",
+            "name": "home_v1_project_4_category",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "Real Estate"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_4_title",
+            "label": "Project 4 Title",
+            "name": "home_v1_project_4_title",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "Avenue"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_4_link_text",
+            "label": "Project 4 Link Text",
+            "name": "home_v1_project_4_link_text",
+            "type": "text",
+            "wrapper": {
+                "width": "20"
+            },
+            "placeholder": "View Case Study"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_4_link_url",
+            "label": "Project 4 Link URL",
+            "name": "home_v1_project_4_link_url",
+            "type": "url",
+            "wrapper": {
+                "width": "40"
+            },
+            "placeholder": "https://example.com"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_project_4_image",
+            "label": "Project 4 Image",
+            "name": "home_v1_project_4_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_tab_who",
+            "label": "Who We Are",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_who_title",
+            "label": "Section Title",
+            "name": "home_v1_who_title",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Who We Are"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_who_image",
+            "label": "Who We Are Image",
+            "name": "home_v1_who_image",
+            "type": "image",
+            "wrapper": {
+                "width": "50"
+            },
+            "instructions": "Optional section image. If left empty, the default network graphic will be shown.",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_who_visual_caption",
+            "label": "Visual Caption",
+            "name": "home_v1_who_visual_caption",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Connected Intelligence Layer"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_who_paragraph_one",
+            "label": "Paragraph One",
+            "name": "home_v1_who_paragraph_one",
+            "type": "textarea",
+            "rows": 5,
+            "placeholder": "Lanova Technology builds AI-powered solutions with business intelligence that transform how organizations access knowledge, interact with stakeholders, and make strategic decisions."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_who_paragraph_two",
+            "label": "Paragraph Two",
+            "name": "home_v1_who_paragraph_two",
+            "type": "textarea",
+            "rows": 5,
+            "placeholder": "Our approach goes beyond tools. We create tailored AI agents that act as analysts, operational assistants, and customer-facing interfaces."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_who_highlight",
+            "label": "Highlight Paragraph",
+            "name": "home_v1_who_highlight",
+            "type": "textarea",
+            "rows": 4,
+            "placeholder": "We partner with forward-thinking companies to turn their data into a living system that continuously learns, evolves, and drives measurable impact."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_tab_team",
+            "label": "Team",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_title",
+            "label": "Team Title",
+            "name": "home_v1_team_title",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "The Team"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_intro",
+            "label": "Team Intro",
+            "name": "home_v1_team_intro",
+            "type": "textarea",
+            "rows": 4,
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "A multidisciplinary team designing AI agents, business systems, and seamless digital experiences."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_1_image",
+            "label": "Team Member 1 Image",
+            "name": "home_v1_team_member_1_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_1_name",
+            "label": "Team Member 1 Name",
+            "name": "home_v1_team_member_1_name",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Sarah Chen"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_1_role",
+            "label": "Team Member 1 Role",
+            "name": "home_v1_team_member_1_role",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "AI Strategy Lead"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_2_image",
+            "label": "Team Member 2 Image",
+            "name": "home_v1_team_member_2_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_2_name",
+            "label": "Team Member 2 Name",
+            "name": "home_v1_team_member_2_name",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Marcus Thorne"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_2_role",
+            "label": "Team Member 2 Role",
+            "name": "home_v1_team_member_2_role",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Systems Architect"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_3_image",
+            "label": "Team Member 3 Image",
+            "name": "home_v1_team_member_3_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_3_name",
+            "label": "Team Member 3 Name",
+            "name": "home_v1_team_member_3_name",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Elena Rodriguez"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_3_role",
+            "label": "Team Member 3 Role",
+            "name": "home_v1_team_member_3_role",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Experience Designer"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_4_image",
+            "label": "Team Member 4 Image",
+            "name": "home_v1_team_member_4_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_4_name",
+            "label": "Team Member 4 Name",
+            "name": "home_v1_team_member_4_name",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "David Park"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_4_role",
+            "label": "Team Member 4 Role",
+            "name": "home_v1_team_member_4_role",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Client Success Director"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_5_image",
+            "label": "Team Member 5 Image",
+            "name": "home_v1_team_member_5_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_5_name",
+            "label": "Team Member 5 Name",
+            "name": "home_v1_team_member_5_name",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Avery Brooks"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_team_member_5_role",
+            "label": "Team Member 5 Role",
+            "name": "home_v1_team_member_5_role",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Data & Insights Lead"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_tab_contact",
+            "label": "Contact",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_contact_title",
+            "label": "Contact Title",
+            "name": "home_v1_contact_title",
+            "type": "textarea",
+            "rows": 3,
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Let's build the future together"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_contact_description",
+            "label": "Contact Description",
+            "name": "home_v1_contact_description",
+            "type": "textarea",
+            "rows": 4,
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Share your challenge and we will map the AI system, workflows, and experience layer that fits."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_contact_phone_label",
+            "label": "Phone Label",
+            "name": "home_v1_contact_phone_label",
+            "type": "text",
+            "wrapper": {
+                "width": "25"
+            },
+            "placeholder": "Call us"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_contact_phone_value",
+            "label": "Phone Value",
+            "name": "home_v1_contact_phone_value",
+            "type": "text",
+            "wrapper": {
+                "width": "25"
+            },
+            "placeholder": "+1 (555) 123-4567"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_contact_email_label",
+            "label": "Email Label",
+            "name": "home_v1_contact_email_label",
+            "type": "text",
+            "wrapper": {
+                "width": "25"
+            },
+            "placeholder": "Email us"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_contact_email_value",
+            "label": "Email Value",
+            "name": "home_v1_contact_email_value",
+            "type": "email",
+            "wrapper": {
+                "width": "25"
+            },
+            "placeholder": "hello@example.com"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_contact_form_shortcode",
+            "label": "Contact Form Shortcode",
+            "name": "home_v1_contact_form_shortcode",
+            "type": "textarea",
+            "rows": 3,
+            "instructions": "Paste a Contact Form 7, WPForms, Gravity Forms, or similar shortcode."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_tab_final_cta",
+            "label": "Final CTA",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_final_cta_title",
+            "label": "Final CTA Title",
+            "name": "home_v1_final_cta_title",
+            "type": "textarea",
+            "rows": 3,
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Ready to evolve your business performance?"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_final_cta_description",
+            "label": "Final CTA Description",
+            "name": "home_v1_final_cta_description",
+            "type": "textarea",
+            "rows": 4,
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Bring strategy, operations, and customer intelligence into one adaptive AI system."
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_final_cta_button_text",
+            "label": "Final CTA Button Text",
+            "name": "home_v1_final_cta_button_text",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "Start the Conversation"
+        },
+        {
+            "key": "field_aiagency_wez_home_v1_final_cta_button_url",
+            "label": "Final CTA Button URL",
+            "name": "home_v1_final_cta_button_url",
+            "type": "url",
+            "wrapper": {
+                "width": "50"
+            },
+            "placeholder": "#contact-us"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/template-home-v1.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Fields for the Home Page - Version 1 template.",
+    "show_in_rest": 0,
+    "modified": 1774915200
+}

@@ -16,6 +16,15 @@ if ( ! function_exists( 'aiagency_wez_setup' ) ) {
 	function aiagency_wez_setup() {
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
+		add_theme_support(
+			'custom-logo',
+			array(
+				'height'      => 800,
+				'width'       => 800,
+				'flex-height' => true,
+				'flex-width'  => true,
+			)
+		);
 
 		register_nav_menus(
 			array(
@@ -27,17 +36,90 @@ if ( ! function_exists( 'aiagency_wez_setup' ) ) {
 add_action( 'after_setup_theme', 'aiagency_wez_setup' );
 
 /**
+ * Returns safe HTML for the site logo image (Customizer logo or theme default).
+ *
+ * @return string
+ */
+function aiagency_wez_get_site_logo_img_html() {
+	$custom_logo_id = (int) get_theme_mod( 'custom_logo' );
+
+	if ( $custom_logo_id ) {
+		$html = wp_get_attachment_image(
+			$custom_logo_id,
+			'full',
+			false,
+			array(
+				'class' => 'site-branding__logo',
+			)
+		);
+
+		return is_string( $html ) ? $html : '';
+	}
+
+	$src = get_template_directory_uri() . '/assets/logo.png';
+
+	return sprintf(
+		'<img src="%1$s" alt="%2$s" class="site-branding__logo" width="800" height="800" decoding="async" loading="eager">',
+		esc_url( $src ),
+		esc_attr( get_bloginfo( 'name' ) )
+	);
+}
+
+/**
  * Enqueues theme assets.
  */
 function aiagency_wez_enqueue_assets() {
+	$style_path    = get_stylesheet_directory() . '/style.css';
+	$style_version = file_exists( $style_path ) ? (string) filemtime( $style_path ) : wp_get_theme()->get( 'Version' );
+
+	wp_enqueue_style(
+		'aiagency-wez-fonts',
+		'https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap',
+		array(),
+		null
+	);
+
 	wp_enqueue_style(
 		'aiagency-wez-style',
 		get_stylesheet_uri(),
-		array(),
-		wp_get_theme()->get( 'Version' )
+		array( 'aiagency-wez-fonts' ),
+		$style_version
 	);
 }
 add_action( 'wp_enqueue_scripts', 'aiagency_wez_enqueue_assets' );
+
+/**
+ * Checks whether the current request uses the Home Page - Version 1 template.
+ *
+ * @return bool
+ */
+function aiagency_wez_is_home_v1_template() {
+	return is_page_template( 'page-templates/template-home-v1.php' );
+}
+
+/**
+ * Enqueues Home V1 scroll-reveal script when that template is active.
+ */
+function aiagency_wez_enqueue_home_v1_reveal() {
+	if ( ! aiagency_wez_is_home_v1_template() ) {
+		return;
+	}
+
+	$reveal_path = get_template_directory() . '/assets/js/home-v1-reveal.js';
+	if ( ! is_readable( $reveal_path ) ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'aiagency-wez-home-v1-reveal',
+		get_template_directory_uri() . '/assets/js/home-v1-reveal.js',
+		array(),
+		(string) filemtime( $reveal_path ),
+		true
+	);
+	wp_script_add_data( 'aiagency-wez-home-v1-reveal', 'strategy', 'defer' );
+}
+add_action( 'wp_enqueue_scripts', 'aiagency_wez_enqueue_home_v1_reveal', 20 );
 
 /**
  * Adds a stable body class for the custom home page template.
@@ -48,6 +130,10 @@ add_action( 'wp_enqueue_scripts', 'aiagency_wez_enqueue_assets' );
 function aiagency_wez_body_classes( $classes ) {
 	if ( is_page_template( 'page-templates/template-home.php' ) ) {
 		$classes[] = 'aiagency-wez-home-template';
+	}
+
+	if ( aiagency_wez_is_home_v1_template() ) {
+		$classes[] = 'aiagency-wez-home-v1-template';
 	}
 
 	return $classes;
@@ -135,4 +221,13 @@ function aiagency_wez_get_image_data( $image ) {
 	}
 
 	return $image_data;
+}
+
+/**
+ * Inline SVG for Home V1 competency rows when no icon image is set (circle + checkmark).
+ *
+ * @return string
+ */
+function aiagency_wez_home_v1_competency_default_icon_svg() {
+	return '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.25" fill="none" stroke="currentColor" stroke-width="1.3"/><path stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" d="M7.6 12.2 10.4 15l6-6.2"/></svg>';
 }

@@ -6,6 +6,11 @@ Classic WordPress starter theme for Local on macOS. This theme uses standard PHP
 
 ```text
 aiagency-wez/
+├── assets/
+│   ├── home-page-background.png  (Home template full-page backdrop)
+│   ├── js/
+│   │   └── home-v1-reveal.js     (Home V1 section scroll animations)
+│   └── logo.png                   (Default site logo; replace or use Customizer)
 ├── footer.php
 ├── functions.php
 ├── header.php
@@ -17,7 +22,8 @@ aiagency-wez/
 │   ├── template-about.php
 │   ├── template-contact.php
 │   ├── template-home.php
-│   └── template-landing.php
+│   ├── template-landing.php
+│   └── template-home-v1.php
 └── template-parts/
     └── sections/
         ├── cta.php
@@ -30,6 +36,11 @@ aiagency-wez/
             ├── what-we-do.php
             └── who-we-are.php
 ```
+
+## Logo
+
+- The header shows **`assets/logo.png`** by default (linked to the homepage, with the site name as `alt` text). On the **Home** template, logo height is **`--aiagency-wez-home-nav-pill-height` × `--aiagency-wez-home-logo-canvas-scale`** (defaults `5`, or `3.75` under 768px) so the visible lockup isn’t tiny inside the square PNG’s margins. On **Home V1**, the header row uses **`--home-v1-header-logo-max-height`** (`4.5rem`, `3.5rem` under 560px) with matching **`min-height`** on `.site-header__inner--home-v1` so the logo can span the bar. Other templates use the general `.site-branding__logo` max sizes.
+- To use a different image without replacing that file, go to **Appearance → Customize → Site Identity** and set **Logo** (theme supports `custom-logo`).
 
 ## Installation
 
@@ -128,6 +139,22 @@ Use these fields for Pages assigned to the `Home Page` template in [`page-templa
 | `home_contact_link_url` | URL | Contact button URL or `mailto:` link |
 | `home_contact_visual_image` | Image | Contact section visual |
 
+### Home Page — Version 1
+
+Use [`page-templates/template-home-v1.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-home-v1.php) with ACF group [`acf-json/group_aiagency_wez_home_page_v1.json`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/acf-json/group_aiagency_wez_home_page_v1.json) (sync in **Custom Fields**). Competency rows support optional icon images:
+
+| Field Name | Type | Notes |
+| --- | --- | --- |
+| `home_v1_competency_1_icon` | Image | Replaces default SVG for competency 1 |
+| `home_v1_competency_2_icon` | Image | Replaces default SVG for competency 2 |
+| `home_v1_competency_3_icon` | Image | Replaces default SVG for competency 3 |
+
+If an icon field is empty, the theme shows a built-in SVG (thin circle with checkmark) so the section is never blank.
+
+The competencies section CTA (`home_v1_competencies_cta_text` / `home_v1_competencies_cta_url`) includes a leading **chat bubbles** icon (inherits button text color).
+
+**Motion:** On this template, each `.home-v1-section` scroll-reveals with a longer ease-out, slight scale, and brightness lift; inner blocks (hero lines, headings, competency rows, project/team cards, contact columns, etc.) use staggered delays. Logic lives in `assets/js/home-v1-reveal.js` and `style.css` under `home-v1-reveal-js`. Users who prefer reduced motion are not opted into the hidden-then-reveal behavior.
+
 ### Landing Page
 
 Use these fields for Pages assigned to the `Landing Page` template in [`page-templates/template-landing.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-landing.php).
@@ -218,6 +245,8 @@ Use these files when you want to change the frontend HTML or layout:
 
 ## Notes
 
+- On the **Home Page** template (`body.aiagency-wez-home-template`), the header uses `position: sticky` so the primary nav stays at the top while scrolling. Page backdrop uses **`--aiagency-wez-home-page-bg`** (default `#d4ebf5`). The **hero** block uses a warmer gradient (`--aiagency-wez-home-hero-bg-top` / `--aiagency-wez-home-hero-bg-mid`) that blends into that blue, plus a **`.home-hero-section::after`** blurred overlay for a soft fade into the following sections.
+- Home primary nav links use a **transparent** pill by default; the **current page** does not get an extra background—only **hover** (fine pointer) or **keyboard focus** (`:focus-visible`) show the solid white pill.
 - `page.php` is the fallback template for normal Pages that do not use a custom Page Template.
 - `index.php` is the final fallback template.
 - This theme does not require a page builder or block theme setup.
