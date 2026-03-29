@@ -40,6 +40,21 @@ function aiagency_wez_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'aiagency_wez_enqueue_assets' );
 
 /**
+ * Adds a stable body class for the custom home page template.
+ *
+ * @param array<int, string> $classes Existing body classes.
+ * @return array<int, string>
+ */
+function aiagency_wez_body_classes( $classes ) {
+	if ( is_page_template( 'page-templates/template-home.php' ) ) {
+		$classes[] = 'aiagency-wez-home-template';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'aiagency_wez_body_classes' );
+
+/**
  * Turns a textarea value into a clean array of lines.
  *
  * @param mixed $value Raw textarea content.
