@@ -34,6 +34,14 @@ while ( have_posts() ) :
 		}
 	}
 
+	$problem_lines = array();
+	for ( $index = 1; $index <= 6; $index++ ) {
+		$line = function_exists( 'get_field' ) ? get_field( 'home_v1_problem_' . $index . '_text', $page_id ) : '';
+		if ( is_string( $line ) && $line !== '' ) {
+			$problem_lines[] = $line;
+		}
+	}
+
 	$projects = array();
 	for ( $index = 1; $index <= 4; $index++ ) {
 		$category  = function_exists( 'get_field' ) ? get_field( 'home_v1_project_' . $index . '_category', $page_id ) : '';
@@ -53,18 +61,12 @@ while ( have_posts() ) :
 		}
 	}
 
-	$team_members = array();
-	for ( $index = 1; $index <= 5; $index++ ) {
-		$image = aiagency_wez_get_image_data( function_exists( 'get_field' ) ? get_field( 'home_v1_team_member_' . $index . '_image', $page_id ) : '' );
-		$name  = function_exists( 'get_field' ) ? get_field( 'home_v1_team_member_' . $index . '_name', $page_id ) : '';
-		$role  = function_exists( 'get_field' ) ? get_field( 'home_v1_team_member_' . $index . '_role', $page_id ) : '';
-
-		if ( $name || $role || $image['url'] ) {
-			$team_members[] = array(
-				'image' => $image,
-				'name'  => $name,
-				'role'  => $role,
-			);
+	$team_featured_image = aiagency_wez_get_image_data( function_exists( 'get_field' ) ? get_field( 'home_v1_team_featured_image', $page_id ) : '' );
+	$team_expertise      = array();
+	for ( $index = 1; $index <= 6; $index++ ) {
+		$line = function_exists( 'get_field' ) ? get_field( 'home_v1_team_expertise_' . $index . '_text', $page_id ) : '';
+		if ( is_string( $line ) && $line !== '' ) {
+			$team_expertise[] = $line;
 		}
 	}
 	?>
@@ -113,6 +115,26 @@ while ( have_posts() ) :
 			)
 		);
 
+		$problems_title = function_exists( 'get_field' ) ? get_field( 'home_v1_problems_title', $page_id ) : '';
+		$problems_quote = function_exists( 'get_field' ) ? get_field( 'home_v1_problems_quote', $page_id ) : '';
+		if ( ! is_string( $problems_title ) ) {
+			$problems_title = '';
+		}
+		if ( ! is_string( $problems_quote ) ) {
+			$problems_quote = '';
+		}
+		if ( $problems_title || $problem_lines || $problems_quote ) {
+			get_template_part(
+				'template-parts/sections/home-v1/problems-we-solve',
+				null,
+				array(
+					'title' => $problems_title,
+					'items' => $problem_lines,
+					'quote' => $problems_quote,
+				)
+			);
+		}
+
 		get_template_part(
 			'template-parts/sections/home-v1/projects',
 			null,
@@ -138,26 +160,43 @@ while ( have_posts() ) :
 			)
 		);
 
-		get_template_part(
-			'template-parts/sections/home-v1/team',
-			null,
-			array(
-				'title'   => function_exists( 'get_field' ) ? get_field( 'home_v1_team_title', $page_id ) : '',
-				'intro'   => function_exists( 'get_field' ) ? get_field( 'home_v1_team_intro', $page_id ) : '',
-				'members' => $team_members,
-			)
-		);
+		$team_title              = function_exists( 'get_field' ) ? get_field( 'home_v1_team_title', $page_id ) : '';
+		$team_intro              = function_exists( 'get_field' ) ? get_field( 'home_v1_team_intro', $page_id ) : '';
+		$team_expertise_heading  = function_exists( 'get_field' ) ? get_field( 'home_v1_team_expertise_heading', $page_id ) : '';
+		if ( ! is_string( $team_title ) ) {
+			$team_title = '';
+		}
+		if ( ! is_string( $team_intro ) ) {
+			$team_intro = '';
+		}
+		if ( ! is_string( $team_expertise_heading ) ) {
+			$team_expertise_heading = '';
+		}
+		if ( $team_title || $team_intro || $team_featured_image['url'] || $team_expertise ) {
+			get_template_part(
+				'template-parts/sections/home-v1/team',
+				null,
+				array(
+					'title'             => $team_title,
+					'intro'             => $team_intro,
+					'featured_image'    => $team_featured_image,
+					'expertise_heading' => $team_expertise_heading,
+					'expertise_items'   => $team_expertise,
+				)
+			);
+		}
 
 		get_template_part(
 			'template-parts/sections/home-v1/contact',
 			null,
 			array(
+				'eyebrow'        => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_eyebrow', $page_id ) : '',
+				'visual_image'   => aiagency_wez_get_image_data( function_exists( 'get_field' ) ? get_field( 'home_v1_contact_visual_image', $page_id ) : '' ),
+				'status_kicker'  => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_status_kicker', $page_id ) : '',
+				'status_line'    => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_status_line', $page_id ) : '',
+				'status_badge'   => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_status_badge', $page_id ) : '',
 				'title'          => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_title', $page_id ) : '',
 				'description'    => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_description', $page_id ) : '',
-				'phone_label'    => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_phone_label', $page_id ) : '',
-				'phone_value'    => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_phone_value', $page_id ) : '',
-				'email_label'    => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_email_label', $page_id ) : '',
-				'email_value'    => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_email_value', $page_id ) : '',
 				'form_shortcode' => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_form_shortcode', $page_id ) : '',
 			)
 		);
@@ -168,6 +207,7 @@ while ( have_posts() ) :
 			array(
 				'title'       => function_exists( 'get_field' ) ? get_field( 'home_v1_final_cta_title', $page_id ) : '',
 				'description' => function_exists( 'get_field' ) ? get_field( 'home_v1_final_cta_description', $page_id ) : '',
+				'email'       => function_exists( 'get_field' ) ? get_field( 'home_v1_final_cta_email', $page_id ) : '',
 				'button_text' => function_exists( 'get_field' ) ? get_field( 'home_v1_final_cta_button_text', $page_id ) : '',
 				'button_url'  => function_exists( 'get_field' ) ? get_field( 'home_v1_final_cta_button_url', $page_id ) : '',
 			)

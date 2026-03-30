@@ -14,30 +14,50 @@ $args = wp_parse_args(
 	array(
 		'title'       => '',
 		'description' => '',
+		'email'       => '',
 		'button_text' => '',
 		'button_url'  => '',
 	)
 );
 
-if ( ! $args['title'] && ! $args['description'] && ! $args['button_text'] ) {
+$email_raw = is_string( $args['email'] ) ? trim( $args['email'] ) : '';
+$email     = $email_raw ? sanitize_email( $email_raw ) : '';
+
+$has_copy     = (bool) ( $args['title'] || $args['description'] || ( $email_raw && $email ) );
+$has_button   = (bool) ( $args['button_text'] && $args['button_url'] );
+$show_section = $has_copy || $has_button;
+
+if ( ! $show_section ) {
 	return;
 }
 ?>
 
-<section class="home-v1-section home-v1-section--final-cta">
-	<div class="home-v1-shell">
+<section id="final-cta" class="home-v1-section home-v1-section--final-cta">
+	<div class="home-v1-shell home-v1-shell--final-cta">
 		<div class="home-v1-final-cta">
 			<div class="home-v1-final-cta__content">
-				<?php if ( $args['title'] ) : ?>
-					<h2><?php echo esc_html( $args['title'] ); ?></h2>
+				<?php if ( $has_copy ) : ?>
+					<div class="home-v1-final-cta__copy">
+						<?php if ( ! empty( $args['title'] ) ) : ?>
+							<h2 class="home-v1-final-cta__title"><?php echo esc_html( $args['title'] ); ?></h2>
+						<?php endif; ?>
+						<?php if ( ! empty( $args['description'] ) ) : ?>
+							<p class="home-v1-final-cta__lede"><?php echo esc_html( $args['description'] ); ?></p>
+						<?php endif; ?>
+						<?php if ( $email ) : ?>
+							<p class="home-v1-final-cta__email">
+								<a href="<?php echo esc_url( 'mailto:' . $email ); ?>"><?php echo esc_html( $email ); ?></a>
+							</p>
+						<?php endif; ?>
+					</div>
 				<?php endif; ?>
-				<?php if ( $args['description'] ) : ?>
-					<p><?php echo esc_html( $args['description'] ); ?></p>
-				<?php endif; ?>
-				<?php if ( $args['button_text'] && $args['button_url'] ) : ?>
-					<a class="home-v1-button home-v1-button--inverse" href="<?php echo esc_url( $args['button_url'] ); ?>">
-						<?php echo esc_html( $args['button_text'] ); ?>
-					</a>
+
+				<?php if ( $has_button ) : ?>
+					<div class="home-v1-final-cta__action">
+						<a class="home-v1-final-cta__button" href="<?php echo esc_url( $args['button_url'] ); ?>">
+							<?php echo esc_html( $args['button_text'] ); ?>
+						</a>
+					</div>
 				<?php endif; ?>
 			</div>
 		</div>
