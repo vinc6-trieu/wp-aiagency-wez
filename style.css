@@ -179,6 +179,116 @@ a:focus {
   font-size: calc(1rem + 2px);
 }
 
+.site-header__menu-toggle {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-left: auto;
+  padding: 0;
+  border: 1px solid var(--aiagency-wez-border);
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--aiagency-wez-text);
+  cursor: pointer;
+}
+
+.site-header--home-v1 .site-header__menu-toggle {
+  border-color: rgba(10, 91, 140, 0.22);
+  background: var(--aiagency-wez-home-v1-surface);
+  color: var(--aiagency-wez-home-v1-body);
+}
+
+.site-header__menu-toggle:focus-visible {
+  outline: 2px solid var(--aiagency-wez-accent);
+  outline-offset: 2px;
+}
+
+.site-header--home-v1 .site-header__menu-toggle:focus-visible {
+  outline-color: var(--aiagency-wez-home-v1-accent);
+}
+
+.site-header__menu-toggle-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 1.25rem;
+}
+
+.site-header__menu-toggle-bar {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.site-header--nav-open .site-header__menu-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.site-header--nav-open .site-header__menu-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header--nav-open .site-header__menu-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 899px) {
+  .site-header__inner {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .site-header__menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-header__menu-panel .main-navigation ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .site-header__menu-panel {
+    display: none;
+    flex-basis: 100%;
+    width: 100%;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(213, 207, 195, 0.65);
+  }
+
+  .site-header--home-v1 .site-header__menu-panel {
+    border-top-color: rgba(10, 91, 140, 0.12);
+  }
+
+  .site-header--nav-open .site-header__menu-panel {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) {
+  .site-header__menu-panel {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header__menu-toggle-bar {
+    transition: none;
+  }
+}
+
 .site-main {
   padding: 3rem 0 4rem;
 }
@@ -1044,7 +1154,6 @@ a:focus {
     --aiagency-wez-home-logo-canvas-scale: 4.9;
   }
 
-  .aiagency-wez-home-template .site-header__inner,
   .aiagency-wez-home-template .main-navigation ul {
     flex-direction: column;
     align-items: flex-start;
@@ -1098,7 +1207,6 @@ a:focus {
 }
 
 @media (max-width: 799px) {
-  .site-header__inner,
   .site-footer__inner,
   .cta-banner {
     flex-direction: column;
@@ -1841,6 +1949,10 @@ body.aiagency-wez-home-v1-template,
     transform: none !important;
     transition: none !important;
   }
+
+  .home-v1-projects-grid {
+    scroll-behavior: auto;
+  }
 }
 
 .home-v1-shell {
@@ -2097,7 +2209,7 @@ body.aiagency-wez-home-v1-template,
   align-items: center;
   gap: 3.25rem;
   /* Portrait scales down on short viewports so the hero fits above the fold. */
-  --home-v1-hero-portrait-max-height: min(52vh, 24rem);
+  --home-v1-hero-portrait-max-height: min(62vh, 32rem);
 }
 
 .home-v1-hero__content {
@@ -2161,7 +2273,7 @@ body.aiagency-wez-home-v1-template,
 
 .home-v1-hero__visual-frame {
   position: relative;
-  width: min(100%, 30rem);
+  width: min(100%, 36rem);
   padding: 0.25rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 3rem;
@@ -2215,7 +2327,7 @@ body.aiagency-wez-home-v1-template,
 .home-v1-hero__portrait img,
 .home-v1-hero__image-placeholder {
   width: auto;
-  max-width: min(100%, 28rem);
+  max-width: min(100%, 34rem);
   max-height: var(--home-v1-hero-portrait-max-height);
   border-radius: 2rem;
   object-fit: contain;
@@ -2489,12 +2601,20 @@ body.aiagency-wez-home-v1-template,
     box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.home-v1-project-card:hover,
 .home-v1-project-card:focus-within {
   transform: translateY(-0.45rem);
   box-shadow:
     0 22px 38px -12px rgba(10, 91, 140, 0.45),
     0 14px 20px -10px rgba(0, 0, 0, 0.18);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-v1-project-card:hover {
+    transform: translateY(-0.45rem);
+    box-shadow:
+      0 22px 38px -12px rgba(10, 91, 140, 0.45),
+      0 14px 20px -10px rgba(0, 0, 0, 0.18);
+  }
 }
 
 .home-v1-project-card__media,
@@ -2509,9 +2629,14 @@ body.aiagency-wez-home-v1-template,
   transform-origin: center center;
 }
 
-.home-v1-project-card:hover .home-v1-project-card__media,
 .home-v1-project-card:focus-within .home-v1-project-card__media {
   transform: scale(1.07);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-v1-project-card:hover .home-v1-project-card__media {
+    transform: scale(1.07);
+  }
 }
 
 .home-v1-project-card__media img {
@@ -2544,7 +2669,6 @@ body.aiagency-wez-home-v1-template,
   transition: background 0.45s ease;
 }
 
-.home-v1-project-card:hover .home-v1-project-card__overlay,
 .home-v1-project-card:focus-within .home-v1-project-card__overlay {
   background: linear-gradient(
     180deg,
@@ -2552,6 +2676,28 @@ body.aiagency-wez-home-v1-template,
     rgba(10, 91, 140, 0.55) 40%,
     rgba(0, 63, 110, 0.98) 100%
   );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-v1-project-card:hover .home-v1-project-card__overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(10, 91, 140, 0.06) 0%,
+      rgba(10, 91, 140, 0.55) 40%,
+      rgba(0, 63, 110, 0.98) 100%
+    );
+  }
+}
+
+@media (max-width: 860px) {
+  .home-v1-project-card__overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(10, 91, 140, 0.06) 0%,
+      rgba(10, 91, 140, 0.55) 40%,
+      rgba(0, 63, 110, 0.98) 100%
+    );
+  }
 }
 
 .home-v1-project-card__category {
@@ -2569,9 +2715,14 @@ body.aiagency-wez-home-v1-template,
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.home-v1-project-card:hover .home-v1-project-card__overlay h3,
 .home-v1-project-card:focus-within .home-v1-project-card__overlay h3 {
   transform: translateY(-0.2rem);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-v1-project-card:hover .home-v1-project-card__overlay h3 {
+    transform: translateY(-0.2rem);
+  }
 }
 
 .home-v1-project-card__link {
@@ -3561,7 +3712,7 @@ body.aiagency-wez-home-v1-template,
 @media (min-width: 1121px) and (max-width: 1680px),
   (min-width: 1121px) and (max-height: 900px) {
   .home-v1-hero {
-    --home-v1-hero-portrait-max-height: min(34vh, 17rem);
+    --home-v1-hero-portrait-max-height: min(46vh, 24rem);
     gap: 2.25rem;
   }
 
@@ -3570,7 +3721,7 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-hero__visual-frame {
-    width: min(100%, 25rem);
+    width: min(100%, 30rem);
   }
 
   .home-v1-hero__portrait {
@@ -3579,7 +3730,7 @@ body.aiagency-wez-home-v1-template,
 
   .home-v1-hero__portrait img,
   .home-v1-hero__image-placeholder {
-    max-width: min(100%, 24rem);
+    max-width: min(100%, 28rem);
   }
 }
 
@@ -3653,14 +3804,16 @@ body.aiagency-wez-home-v1-template,
 }
 
 @media (max-width: 860px) {
-  .site-header__inner--home-v1,
   .site-header__nav-group {
     flex-direction: column;
     align-items: flex-start;
   }
 
   .main-navigation--home-v1 ul {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
   }
 
   .home-v1-section--hero,
@@ -3683,10 +3836,33 @@ body.aiagency-wez-home-v1-template,
     flex-wrap: wrap;
   }
 
-  .home-v1-projects-grid,
   .home-v1-team-layout,
   .home-v1-form-placeholder__row {
     grid-template-columns: 1fr;
+  }
+
+  .home-v1-projects-scroll {
+    margin-inline: -1.25rem;
+    padding-inline: 1.25rem;
+  }
+
+  .home-v1-projects-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-inline-end: 1rem;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .home-v1-projects-grid .home-v1-project-card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: min(22rem, 88vw);
   }
 
   .home-v1-hero__title {
@@ -3694,7 +3870,7 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-hero {
-    --home-v1-hero-portrait-max-height: min(46vh, 21rem);
+    --home-v1-hero-portrait-max-height: min(52vh, 28rem);
   }
 
   .home-v1-competency {
@@ -3737,6 +3913,11 @@ body.aiagency-wez-home-v1-template,
     padding-inline: 0.5rem;
   }
 
+  .home-v1-projects-scroll {
+    margin-inline: -0.5rem;
+    padding-inline: 0.5rem;
+  }
+
   .site-header__inner--home-v1,
   .site-footer__inner--home-v1 {
     width: min(calc(100% - 1rem), 1280px);
@@ -3755,7 +3936,7 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-hero {
-    --home-v1-hero-portrait-max-height: min(40vh, 17.5rem);
+    --home-v1-hero-portrait-max-height: min(48vh, 22rem);
   }
 
   .home-v1-hero__visual-frame {

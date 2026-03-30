@@ -43,34 +43,43 @@ if ( empty( $args['projects'] ) ) {
 			<?php endif; ?>
 		</div>
 
-		<div class="home-v1-projects-grid">
-			<?php foreach ( $args['projects'] as $project ) : ?>
-				<article class="home-v1-project-card">
-					<div class="home-v1-project-card__media">
-						<?php if ( ! empty( $project['image']['url'] ) ) : ?>
-							<img src="<?php echo esc_url( $project['image']['url'] ); ?>" alt="<?php echo esc_attr( $project['image']['alt'] ); ?>">
-						<?php else : ?>
-							<div class="home-v1-project-card__placeholder" aria-hidden="true"></div>
-						<?php endif; ?>
-					</div>
+		<p class="screen-reader-text" id="home-v1-projects-scroll-hint">
+			<?php esc_html_e( 'Scroll horizontally to see more projects.', 'aiagency-wez' ); ?>
+		</p>
+		<div
+			class="home-v1-projects-scroll"
+			role="region"
+			aria-labelledby="home-v1-projects-scroll-hint"
+		>
+			<div class="home-v1-projects-grid">
+				<?php foreach ( $args['projects'] as $project ) : ?>
+					<article class="home-v1-project-card">
+						<div class="home-v1-project-card__media">
+							<?php if ( ! empty( $project['image']['url'] ) ) : ?>
+								<img src="<?php echo esc_url( $project['image']['url'] ); ?>" alt="<?php echo esc_attr( $project['image']['alt'] ); ?>">
+							<?php else : ?>
+								<div class="home-v1-project-card__placeholder" aria-hidden="true"></div>
+							<?php endif; ?>
+						</div>
 
-					<div class="home-v1-project-card__overlay">
-						<?php if ( ! empty( $project['category'] ) ) : ?>
-							<p class="home-v1-project-card__category"><?php echo esc_html( $project['category'] ); ?></p>
-						<?php endif; ?>
+						<div class="home-v1-project-card__overlay">
+							<?php if ( ! empty( $project['category'] ) ) : ?>
+								<p class="home-v1-project-card__category"><?php echo esc_html( $project['category'] ); ?></p>
+							<?php endif; ?>
 
-						<?php if ( ! empty( $project['title'] ) ) : ?>
-							<h3><?php echo esc_html( $project['title'] ); ?></h3>
-						<?php endif; ?>
+							<?php if ( ! empty( $project['title'] ) ) : ?>
+								<h3><?php echo esc_html( $project['title'] ); ?></h3>
+							<?php endif; ?>
 
-						<?php if ( ! empty( $project['link_text'] ) && ! empty( $project['link_url'] ) ) : ?>
-							<a class="home-v1-project-card__link" href="<?php echo esc_url( $project['link_url'] ); ?>">
-								<?php echo esc_html( $project['link_text'] ); ?>
-							</a>
-						<?php endif; ?>
-					</div>
-				</article>
-			<?php endforeach; ?>
+							<?php if ( ! empty( $project['link_text'] ) && ! empty( $project['link_url'] ) ) : ?>
+								<a class="home-v1-project-card__link" href="<?php echo esc_url( $project['link_url'] ); ?>">
+									<?php echo esc_html( $project['link_text'] ); ?>
+								</a>
+							<?php endif; ?>
+						</div>
+					</article>
+				<?php endforeach; ?>
+			</div>
 		</div>
 	</div>
 </section>

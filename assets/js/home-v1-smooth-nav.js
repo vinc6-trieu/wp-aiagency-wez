@@ -6,6 +6,18 @@
 (function () {
 	'use strict';
 
+	var aliases = ( window.aiagencyWezSmoothNav && window.aiagencyWezSmoothNav.p ) || [];
+
+	function pathsAreSameDocument( pathLink, pathHere ) {
+		if ( pathLink === pathHere ) {
+			return true;
+		}
+		if ( ! aliases.length ) {
+			return false;
+		}
+		return aliases.indexOf( pathLink ) !== -1 && aliases.indexOf( pathHere ) !== -1;
+	}
+
 	function getHeaderOffset() {
 		var header =
 			document.querySelector( '.site-header--home-v1' ) ||
@@ -35,8 +47,25 @@
 	document.addEventListener(
 		'click',
 		function ( ev ) {
+			if ( ev.defaultPrevented ) {
+				return;
+			}
+			if ( ev.button !== 0 ) {
+				return;
+			}
+			if ( ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.altKey ) {
+				return;
+			}
+
 			var anchor = ev.target.closest( 'a[href*="#"]' );
 			if ( ! anchor ) {
+				return;
+			}
+			if ( anchor.getAttribute( 'download' ) ) {
+				return;
+			}
+			var targetAttr = anchor.getAttribute( 'target' );
+			if ( targetAttr && targetAttr.toLowerCase() === '_blank' ) {
 				return;
 			}
 
@@ -47,7 +76,7 @@
 				}
 				var pathHere = window.location.pathname.replace( /\/$/, '' ) || '/';
 				var pathLink = url.pathname.replace( /\/$/, '' ) || '/';
-				if ( pathLink !== pathHere ) {
+				if ( ! pathsAreSameDocument( pathLink, pathHere ) ) {
 					return;
 				}
 				var hash = url.hash;

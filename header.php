@@ -47,24 +47,40 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php endif; ?>
 				</div>
 
-				<div class="site-header__nav-group">
-					<nav class="main-navigation main-navigation--home-v1" aria-label="<?php esc_attr_e( 'Primary Menu', 'aiagency-wez' ); ?>">
-						<?php
-						wp_nav_menu(
-							array(
-								'theme_location' => 'primary',
-								'container'      => false,
-								'fallback_cb'    => 'wp_page_menu',
-							)
-						);
-						?>
-					</nav>
+				<button
+					type="button"
+					class="site-header__menu-toggle"
+					aria-expanded="false"
+					aria-controls="site-header-primary-menu"
+				>
+					<span class="site-header__menu-toggle-box" aria-hidden="true">
+						<span class="site-header__menu-toggle-bar"></span>
+						<span class="site-header__menu-toggle-bar"></span>
+						<span class="site-header__menu-toggle-bar"></span>
+					</span>
+					<span class="screen-reader-text"><?php esc_html_e( 'Menu', 'aiagency-wez' ); ?></span>
+				</button>
 
-					<?php if ( $header_cta_text && $header_cta_url ) : ?>
-						<a class="site-header__cta" href="<?php echo esc_url( $header_cta_url ); ?>">
-							<?php echo esc_html( $header_cta_text ); ?>
-						</a>
-					<?php endif; ?>
+				<div id="site-header-primary-menu" class="site-header__menu-panel">
+					<div class="site-header__nav-group">
+						<nav class="main-navigation main-navigation--home-v1" aria-label="<?php esc_attr_e( 'Primary Menu', 'aiagency-wez' ); ?>">
+							<?php
+							wp_nav_menu(
+								array(
+									'theme_location' => 'primary',
+									'container'      => false,
+									'fallback_cb'    => 'wp_page_menu',
+								)
+							);
+							?>
+						</nav>
+
+						<?php if ( $header_cta_text && $header_cta_url ) : ?>
+							<a class="site-header__cta" href="<?php echo esc_url( $header_cta_url ); ?>">
+								<?php echo esc_html( $header_cta_text ); ?>
+							</a>
+						<?php endif; ?>
+					</div>
 				</div>
 			</div>
 		</header>
@@ -92,17 +108,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php endif; ?>
 				</div>
 
-				<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'aiagency-wez' ); ?>">
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'primary',
-							'container'      => false,
-							'fallback_cb'    => 'wp_page_menu',
-						)
-					);
-					?>
-				</nav>
+				<button
+					type="button"
+					class="site-header__menu-toggle"
+					aria-expanded="false"
+					aria-controls="site-header-primary-menu"
+				>
+					<span class="site-header__menu-toggle-box" aria-hidden="true">
+						<span class="site-header__menu-toggle-bar"></span>
+						<span class="site-header__menu-toggle-bar"></span>
+						<span class="site-header__menu-toggle-bar"></span>
+					</span>
+					<span class="screen-reader-text"><?php esc_html_e( 'Menu', 'aiagency-wez' ); ?></span>
+				</button>
+
+				<div id="site-header-primary-menu" class="site-header__menu-panel">
+					<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'aiagency-wez' ); ?>">
+						<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'primary',
+								'container'      => false,
+								'fallback_cb'    => 'wp_page_menu',
+							)
+						);
+						?>
+					</nav>
+				</div>
 			</div>
 		</header>
 	<?php endif; ?>

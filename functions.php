@@ -85,6 +85,18 @@ function aiagency_wez_enqueue_assets() {
 		array( 'aiagency-wez-fonts' ),
 		$style_version
 	);
+
+	$menu_path = get_template_directory() . '/assets/js/site-header-menu.js';
+	if ( is_readable( $menu_path ) ) {
+		wp_enqueue_script(
+			'aiagency-wez-site-header-menu',
+			get_template_directory_uri() . '/assets/js/site-header-menu.js',
+			array(),
+			(string) filemtime( $menu_path ),
+			true
+		);
+		wp_script_add_data( 'aiagency-wez-site-header-menu', 'strategy', 'defer' );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'aiagency_wez_enqueue_assets' );
 
@@ -95,6 +107,61 @@ add_action( 'wp_enqueue_scripts', 'aiagency_wez_enqueue_assets' );
  */
 function aiagency_wez_is_home_v1_template() {
 	return is_page_template( 'page-templates/template-home-v1.php' );
+}
+
+/**
+ * Normalizes a URL path to match assets/js/home-v1-smooth-nav.js (trailing slash stripped; root is "/").
+ *
+ * @param string $path Path from wp_parse_url( ..., PHP_URL_PATH ).
+ * @return string
+ */
+function aiagency_wez_normalize_smooth_nav_path( $path ) {
+	if ( ! is_string( $path ) || '' === $path ) {
+		return '/';
+	}
+	$path   = '/' . ltrim( $path, '/' );
+	$trimmed = untrailingslashit( $path );
+
+	return '' === $trimmed ? '/' : $trimmed;
+}
+
+/**
+ * Pathnames that refer to the current Home V1 page (permalink + front URL when this page is the static front page).
+ *
+ * Used so primary-menu links like /page-slug/#section still smooth-scroll when the visitor is already on /.
+ *
+ * @return string[]
+ */
+function aiagency_wez_home_v1_anchor_path_aliases() {
+	$page_id = get_queried_object_id();
+	if ( $page_id < 1 ) {
+		return array();
+	}
+
+	$candidates = array();
+	$permalink  = get_permalink( $page_id );
+	if ( is_string( $permalink ) && '' !== $permalink ) {
+		$p = wp_parse_url( $permalink, PHP_URL_PATH );
+		if ( is_string( $p ) ) {
+			$candidates[] = $p;
+		}
+	}
+
+	$is_front = (int) get_option( 'page_on_front' ) === (int) $page_id;
+	if ( $is_front ) {
+		$home_p = wp_parse_url( home_url( '/' ), PHP_URL_PATH );
+		if ( is_string( $home_p ) ) {
+			$candidates[] = $home_p;
+		}
+		$candidates[] = '/';
+	}
+
+	$normalized = array();
+	foreach ( $candidates as $c ) {
+		$normalized[] = aiagency_wez_normalize_smooth_nav_path( $c );
+	}
+
+	return array_values( array_unique( $normalized ) );
 }
 
 /**
@@ -129,6 +196,13 @@ function aiagency_wez_enqueue_home_v1_reveal() {
 			true
 		);
 		wp_script_add_data( 'aiagency-wez-home-v1-smooth-nav', 'strategy', 'defer' );
+		wp_localize_script(
+			'aiagency-wez-home-v1-smooth-nav',
+			'aiagencyWezSmoothNav',
+			array(
+				'p' => aiagency_wez_home_v1_anchor_path_aliases(),
+			)
+		);
 	}
 }
 add_action( 'wp_enqueue_scripts', 'aiagency_wez_enqueue_home_v1_reveal', 20 );

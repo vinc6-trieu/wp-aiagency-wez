@@ -14,7 +14,8 @@ aiagency-wez/
 │   ├── home-page-background.png  (Home template full-page backdrop)
 │   ├── js/
 │   │   ├── home-v1-reveal.js     (Home V1 section scroll animations)
-│   │   └── home-v1-smooth-nav.js (same-page #anchors, no full reload)
+│   │   ├── home-v1-smooth-nav.js (same-page #anchors, no full reload; path aliases from PHP when the home page is reachable at more than one pathname)
+│   │   └── site-header-menu.js   (primary nav toggle ≤899px; enqueued on all front-end pages)
 │   └── logo.png                   (Default site logo; replace or use Customizer)
 ├── footer.php
 ├── functions.php
@@ -46,12 +47,13 @@ aiagency-wez/
 
 - The header shows **`assets/logo.png`** by default (linked to the homepage, with the site name as `alt` text). On the **Home** template, logo height is **`--aiagency-wez-home-nav-pill-height` × `--aiagency-wez-home-logo-canvas-scale`** (defaults **`6.5`**, or **`4.9`** under 768px); pill height includes menu text at **`calc(var(--aiagency-wez-home-nav-link-font-size) + 2px)`**. The Home header strip uses **`0.3rem`** vertical padding on **`.site-header__inner`**. On **Home V1**, **`--home-v1-header-logo-max-height`** is **`5rem`** (**`4.125rem`** under 560px) with **`--home-v1-header-inner-pad-y`** **`0.25rem`** and matching **`min-height`**. Other templates use **`.site-branding__logo`** **`clamp(3.375rem, 10vw, 5.125rem)`** on a **`0.25rem`**-padded **`.site-header__inner`**.
 - Primary menu link sizes: default **`.main-navigation a`** uses **`calc(1rem + 2px)`**; **Home** pill links **`calc(0.9rem + 2px)`**; **Home V1** **`.main-navigation--home-v1 a`** uses **`calc(0.875rem + 2px)`**.
+- **Mobile menu (≤899px):** **`[header.php](header.php)`** outputs a **`.site-header__menu-toggle`** button and wraps the primary **`nav`** (and Home V1 CTA) in **`#site-header-primary-menu.site-header__menu-panel`**. **`[assets/js/site-header-menu.js](assets/js/site-header-menu.js)`** toggles **`site-header--nav-open`** on **`.site-header`**, updates **`aria-expanded`**, closes on **Escape**, viewport widen, or navigating via a link inside the panel. At **`min-width: 900px`** the panel is a **`flex: 1`** row aligned to the end of the header so branding stays left and navigation stays right.
 - To use a different image without replacing that file, go to **Appearance → Customize → Site Identity** and set **Logo** (theme supports `custom-logo`).
 
 ## Home V1 hero portrait
 
 - The **hero banner** (`.home-v1-section--hero`) uses **`min-height: 43.75rem` (700px)** with vertical centering so the block reads as a fixed-height strip; content can grow taller if needed.
-- The hero figure (portrait image in `.home-v1-hero__visual-frame`) is limited by **`--home-v1-hero-portrait-max-height`** on `.home-v1-hero`: default **`min(52vh, 24rem)`** on large displays; **laptop / ~14" MacBook** (two-column hero): **`min(34vh, 17rem)`** when **`(min-width: 1121px) and (max-width: 1680px)`** or **`(min-width: 1121px) and (max-height: 900px)`**, with hero section padding **`3.25rem`** and frame width **`25rem`** so the portrait fits at **100% zoom** with browser chrome; **`min(46vh, 21rem)`** at ≤860px; **`min(40vh, 17.5rem)`** at ≤560px.
+- The hero figure (portrait image in `.home-v1-hero__visual-frame`) is limited by **`--home-v1-hero-portrait-max-height`** on `.home-v1-hero`: default **`min(62vh, 32rem)`** on large displays; **laptop / ~14" MacBook** (two-column hero): **`min(46vh, 24rem)`** when **`(min-width: 1121px) and (max-width: 1680px)`** or **`(min-width: 1121px) and (max-height: 900px)`**, with hero section padding **`3.25rem`** and frame width **`30rem`** so the portrait fits at **100% zoom** with browser chrome; **`min(52vh, 28rem)`** at ≤860px; **`min(48vh, 22rem)`** at ≤560px.
 
 ## Installation
 
@@ -164,6 +166,8 @@ If an icon field is empty, the theme shows a built-in SVG (thin circle with chec
 
 The **Problems we solve** block renders between competencies and projects when any of `home_v1_problems_title`, `home_v1_problem_1_text`–`home_v1_problem_6_text`, or `home_v1_problems_quote` is set. Markup lives in [`template-parts/sections/home-v1/problems-we-solve.php`](template-parts/sections/home-v1/problems-we-solve.php) (`#problems-we-solve`). Empty problem lines are skipped so you can use fewer than six bullets.
 
+The **Projects** block (`#our-projects`, [`template-parts/sections/home-v1/projects.php`](template-parts/sections/home-v1/projects.php)) uses a four-column grid on large screens, two columns up to **1120px**, and a **horizontal scroll-snap** row at **860px width and below** (CSS only; swipe or trackpad scroll). The track is wrapped in `.home-v1-projects-scroll` with edge-aligned padding; a `.screen-reader-text` hint names the region for assistive tech. Card overlays use a stronger default gradient on those small viewports so copy stays readable without hover.
+
 | Field Name | Type | Notes |
 | ---------- | ---- | ----- |
 | `home_v1_problems_title` | Text | Section heading (uses `.home-v1-section-heading__title` styles) |
@@ -206,7 +210,7 @@ The **Final CTA** block renders after `#contact-us` as `#final-cta` ([`template-
 | `home_v1_final_cta_email` | Email | Public mailto link; omitted if invalid/empty |
 | `home_v1_final_cta_button_text` / `home_v1_final_cta_button_url` | Text / URL | White button on the gradient card |
 
-**Motion:** On this template, each `.home-v1-section` scroll-reveals with a longer ease-out, slight scale, and brightness lift; inner blocks (hero lines, headings, competency rows, project cards, team column blocks, contact visual/intro/form shell, final CTA copy/button, etc.) use staggered delays. Logic lives in `assets/js/home-v1-reveal.js` and `style.css` under `home-v1-reveal-js`. Users who prefer reduced motion are not opted into the hidden-then-reveal behavior.
+**Motion:** On this template, each `.home-v1-section` scroll-reveals with a longer ease-out, slight scale, and brightness lift; inner blocks (hero lines, headings, competency rows, project cards, team column blocks, contact visual/intro/form shell, final CTA copy/button, etc.) use staggered delays. Logic lives in `assets/js/home-v1-reveal.js` and `style.css` under `home-v1-reveal-js`. Users who prefer reduced motion are not opted into the hidden-then-reveal behavior; `prefers-reduced-motion: reduce` also sets `scroll-behavior: auto` on `.home-v1-projects-grid` so the mobile projects strip does not use smooth scrolling.
 
 **In-page navigation:** `assets/js/home-v1-smooth-nav.js` intercepts same-page links (`#section-id` or current URL + hash), smooth-scrolls with a sticky-header offset, and updates the URL via `history.pushState` so the browser does not perform a full navigation/reload.
 
