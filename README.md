@@ -17,27 +17,17 @@ aiagency-wez/
 │   ├── template-about.php
 │   ├── template-contact.php
 │   ├── template-home.php
-│   ├── template-home-v1.php
 │   └── template-landing.php
 └── template-parts/
     └── sections/
         ├── cta.php
         ├── features.php
         ├── hero.php
-        ├── home/
-        │   ├── contact.php
-        │   ├── hero.php
-        │   ├── projects.php
-        │   ├── what-we-do.php
-        │   └── who-we-are.php
-        └── home-v1/
-            ├── competencies.php
+        └── home/
             ├── contact.php
-            ├── final-cta.php
             ├── hero.php
-            ├── problems-we-solve.php
             ├── projects.php
-            ├── team.php
+            ├── what-we-do.php
             └── who-we-are.php
 ```
 
@@ -80,100 +70,100 @@ Your layout and styling live in the theme files. The WordPress admin only suppli
 
 Use these fields for Pages assigned to the `Home Page` template in [`page-templates/template-home.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-home.php).
 
-| Field Name | Recommended Type | Notes |
-| --- | --- | --- |
-| `home_hero_eyebrow` | Text | Small text above the main title |
-| `home_hero_title` | Textarea | Large hero headline |
-| `home_hero_image` | Image | Main character/agent image |
-| `home_hero_primary_text` | Text | Primary hero button label |
-| `home_hero_primary_link` | URL | Primary hero button link |
-| `home_hero_secondary_text` | Text | Secondary hero button label |
-| `home_hero_secondary_link` | URL | Secondary hero button link |
-| `home_services_title` | Text | Section heading |
-| `home_services_intro_image` | Image | Intro image for What We Do |
-| `home_services_intro_text` | Textarea | Introductory paragraph |
-| `home_services_cta_text` | Text | What We Do button label |
-| `home_services_cta_link` | URL | What We Do button link |
-| `service_1_image` | Image | Service card 1 image |
-| `service_1_title` | Text | Service card 1 title |
-| `service_1_text` | Textarea | Service card 1 text |
-| `service_2_image` | Image | Service card 2 image |
-| `service_2_title` | Text | Service card 2 title |
-| `service_2_text` | Textarea | Service card 2 text |
-| `service_3_image` | Image | Service card 3 image |
-| `service_3_title` | Text | Service card 3 title |
-| `service_3_text` | Textarea | Service card 3 text |
-| `home_services_banner_text` | Textarea | Wide message banner text |
-| `home_projects_title` | Text | Projects section title |
-| `project_1_image` | Image | Project image 1 |
-| `project_1_title` | Text | Optional overlay label |
-| `project_2_image` | Image | Project image 2 |
-| `project_2_title` | Text | Optional overlay label |
-| `project_3_image` | Image | Project image 3 |
-| `project_3_title` | Text | Optional overlay label |
-| `project_4_image` | Image | Project image 4 |
-| `project_4_title` | Text | Optional overlay label |
-| `project_5_image` | Image | Project image 5 |
-| `project_5_title` | Text | Optional overlay label |
-| `home_about_title` | Text | Who We Are heading |
-| `home_about_image` | Image | About section image |
-| `home_about_intro` | Textarea | About section lead copy |
-| `home_about_points` | Textarea | One bullet point per line |
-| `home_team_title` | Text | Team grid heading |
-| `team_member_1_image` | Image | Member 1 image |
-| `team_member_1_name` | Text | Member 1 name |
-| `team_member_1_role` | Text | Member 1 role |
-| `team_member_2_image` | Image | Member 2 image |
-| `team_member_2_name` | Text | Member 2 name |
-| `team_member_2_role` | Text | Member 2 role |
-| `team_member_3_image` | Image | Member 3 image |
-| `team_member_3_name` | Text | Member 3 name |
-| `team_member_3_role` | Text | Member 3 role |
-| `team_member_4_image` | Image | Member 4 image |
-| `team_member_4_name` | Text | Member 4 name |
-| `team_member_4_role` | Text | Member 4 role |
-| `home_contact_title` | Textarea | Large contact CTA title |
-| `home_contact_label` | Text | Small contact label |
-| `home_contact_link_text` | Text | Contact button text |
-| `home_contact_link_url` | URL | Contact button URL or `mailto:` link |
-| `home_contact_visual_image` | Image | Contact section visual |
+| Field Name                  | Recommended Type | Notes                                |
+| --------------------------- | ---------------- | ------------------------------------ |
+| `home_hero_eyebrow`         | Text             | Small text above the main title      |
+| `home_hero_title`           | Textarea         | Large hero headline                  |
+| `home_hero_image`           | Image            | Main character/agent image           |
+| `home_hero_primary_text`    | Text             | Primary hero button label            |
+| `home_hero_primary_link`    | URL              | Primary hero button link             |
+| `home_hero_secondary_text`  | Text             | Secondary hero button label          |
+| `home_hero_secondary_link`  | URL              | Secondary hero button link           |
+| `home_services_title`       | Text             | Section heading                      |
+| `home_services_intro_image` | Image            | Intro image for What We Do           |
+| `home_services_intro_text`  | Textarea         | Introductory paragraph               |
+| `home_services_cta_text`    | Text             | What We Do button label              |
+| `home_services_cta_link`    | URL              | What We Do button link               |
+| `service_1_image`           | Image            | Service card 1 image                 |
+| `service_1_title`           | Text             | Service card 1 title                 |
+| `service_1_text`            | Textarea         | Service card 1 text                  |
+| `service_2_image`           | Image            | Service card 2 image                 |
+| `service_2_title`           | Text             | Service card 2 title                 |
+| `service_2_text`            | Textarea         | Service card 2 text                  |
+| `service_3_image`           | Image            | Service card 3 image                 |
+| `service_3_title`           | Text             | Service card 3 title                 |
+| `service_3_text`            | Textarea         | Service card 3 text                  |
+| `home_services_banner_text` | Textarea         | Wide message banner text             |
+| `home_projects_title`       | Text             | Projects section title               |
+| `project_1_image`           | Image            | Project image 1                      |
+| `project_1_title`           | Text             | Optional overlay label               |
+| `project_2_image`           | Image            | Project image 2                      |
+| `project_2_title`           | Text             | Optional overlay label               |
+| `project_3_image`           | Image            | Project image 3                      |
+| `project_3_title`           | Text             | Optional overlay label               |
+| `project_4_image`           | Image            | Project image 4                      |
+| `project_4_title`           | Text             | Optional overlay label               |
+| `project_5_image`           | Image            | Project image 5                      |
+| `project_5_title`           | Text             | Optional overlay label               |
+| `home_about_title`          | Text             | Who We Are heading                   |
+| `home_about_image`          | Image            | About section image                  |
+| `home_about_intro`          | Textarea         | About section lead copy              |
+| `home_about_points`         | Textarea         | One bullet point per line            |
+| `home_team_title`           | Text             | Team grid heading                    |
+| `team_member_1_image`       | Image            | Member 1 image                       |
+| `team_member_1_name`        | Text             | Member 1 name                        |
+| `team_member_1_role`        | Text             | Member 1 role                        |
+| `team_member_2_image`       | Image            | Member 2 image                       |
+| `team_member_2_name`        | Text             | Member 2 name                        |
+| `team_member_2_role`        | Text             | Member 2 role                        |
+| `team_member_3_image`       | Image            | Member 3 image                       |
+| `team_member_3_name`        | Text             | Member 3 name                        |
+| `team_member_3_role`        | Text             | Member 3 role                        |
+| `team_member_4_image`       | Image            | Member 4 image                       |
+| `team_member_4_name`        | Text             | Member 4 name                        |
+| `team_member_4_role`        | Text             | Member 4 role                        |
+| `home_contact_title`        | Textarea         | Large contact CTA title              |
+| `home_contact_label`        | Text             | Small contact label                  |
+| `home_contact_link_text`    | Text             | Contact button text                  |
+| `home_contact_link_url`     | URL              | Contact button URL or `mailto:` link |
+| `home_contact_visual_image` | Image            | Contact section visual               |
 
 ### Landing Page
 
 Use these fields for Pages assigned to the `Landing Page` template in [`page-templates/template-landing.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-landing.php).
 
-| Field Name | Recommended Type | Notes |
-| --- | --- | --- |
-| `hero_title` | Text | Main hero heading |
-| `hero_description` | Textarea | Short supporting copy |
-| `hero_image` | Image | Can return array, ID, or URL |
-| `cta_text` | Text | CTA message shown before the button |
-| `cta_link` | URL | Link used by the CTA button |
-| `features_items` | Textarea | One feature per line |
+| Field Name         | Recommended Type | Notes                               |
+| ------------------ | ---------------- | ----------------------------------- |
+| `hero_title`       | Text             | Main hero heading                   |
+| `hero_description` | Textarea         | Short supporting copy               |
+| `hero_image`       | Image            | Can return array, ID, or URL        |
+| `cta_text`         | Text             | CTA message shown before the button |
+| `cta_link`         | URL              | Link used by the CTA button         |
+| `features_items`   | Textarea         | One feature per line                |
 
 ### About Page
 
 Use these fields for Pages assigned to the `About Page` template in [`page-templates/template-about.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-about.php).
 
-| Field Name | Recommended Type | Notes |
-| --- | --- | --- |
-| `about_title` | Text | Page heading override |
-| `about_content` | WYSIWYG Editor | Main about content |
-| `team_section_title` | Text | Team section heading |
-| `team_members` | Textarea | One team member per line |
+| Field Name           | Recommended Type | Notes                    |
+| -------------------- | ---------------- | ------------------------ |
+| `about_title`        | Text             | Page heading override    |
+| `about_content`      | WYSIWYG Editor   | Main about content       |
+| `team_section_title` | Text             | Team section heading     |
+| `team_members`       | Textarea         | One team member per line |
 
 ### Contact Page
 
 Use these fields for Pages assigned to the `Contact Page` template in [`page-templates/template-contact.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-contact.php).
 
-| Field Name | Recommended Type | Notes |
-| --- | --- | --- |
-| `contact_title` | Text | Page heading override |
-| `contact_description` | Textarea | Intro copy |
-| `contact_email` | Email | Email address |
-| `contact_phone` | Text | Phone number as entered by the editor |
-| `contact_address` | Textarea | Address block |
-| `contact_map_embed` | Textarea | Paste iframe embed code |
+| Field Name            | Recommended Type | Notes                                 |
+| --------------------- | ---------------- | ------------------------------------- |
+| `contact_title`       | Text             | Page heading override                 |
+| `contact_description` | Textarea         | Intro copy                            |
+| `contact_email`       | Email            | Email address                         |
+| `contact_phone`       | Text             | Phone number as entered by the editor |
+| `contact_address`     | Textarea         | Address block                         |
+| `contact_map_embed`   | Textarea         | Paste iframe embed code               |
 
 ## How To Create Pages From Templates
 
@@ -214,7 +204,6 @@ Use these files when you want to change the frontend HTML or layout:
 
 - [`page-templates/template-landing.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-landing.php)
 - [`page-templates/template-home.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-home.php)
-- [`page-templates/template-home-v1.php`](page-templates/template-home-v1.php)
 - [`page-templates/template-about.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-about.php)
 - [`page-templates/template-contact.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-contact.php)
 - [`template-parts/sections/hero.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/template-parts/sections/hero.php)
@@ -225,15 +214,7 @@ Use these files when you want to change the frontend HTML or layout:
 - [`template-parts/sections/home/projects.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/template-parts/sections/home/projects.php)
 - [`template-parts/sections/home/who-we-are.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/template-parts/sections/home/who-we-are.php)
 - [`template-parts/sections/home/contact.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/template-parts/sections/home/contact.php)
-- [`template-parts/sections/home-v1/hero.php`](template-parts/sections/home-v1/hero.php) (Home V1 hero markup)
-- [`style.css`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/style.css) (Home V1 hero styles under `.aiagency-wez-home-v1-template`)
-
-## Home Page - Version 1
-
-- Assign the **Home Page - Version 1** template (`page-templates/template-home-v1.php`) to a Page and sync ACF fields from `acf-json/group_aiagency_wez_home_page_v1.json` when offered in **Custom Fields**.
-- The body class `aiagency-wez-home-v1-template` scopes Home V1–specific layout and styling in `style.css`.
-- The hero banner is **full viewport width**, uses **`min-height: 100vh` / `100svh`** so it fills at least one screen on laptop and tablet, and supports an optional ACF **Hero Background Image** via the CSS variable `--aiagency-wez-home-v1-hero-image` (set inline on the hero `<section>`). Inner content is capped at **1200px** inside `.home-v1-shell`.
-- Hero copy uses **Montserrat** / **Poppins** (enqueued in `functions.php`). Multi-line hero titles from the ACF textarea render correctly with `white-space: pre-line` on `.home-v1-hero__title`.
+- [`style.css`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/style.css)
 
 ## Notes
 
