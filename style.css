@@ -3871,6 +3871,23 @@ body.aiagency-wez-home-v1-template,
   }
 }
 
+@media (min-width: 1040px) and (max-width: 1120px) {
+  .home-v1-hero {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 1.25rem;
+  }
+
+  .home-v1-hero__content {
+    position: relative;
+    z-index: 2;
+    margin-right: -2rem;
+  }
+
+  .home-v1-hero__visual {
+    justify-content: flex-end;
+  }
+}
+
 @media (max-width: 860px) {
   .site-header__nav-group {
     flex-direction: column;
