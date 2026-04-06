@@ -2303,7 +2303,7 @@ body.aiagency-wez-home-v1-template,
 
 .home-v1-hero__visual-frame {
   position: relative;
-  width: min(100%, 38rem);
+  width: min(100%, 40rem);
   aspect-ratio: 4 / 5;
   overflow: hidden;
   padding: 0.25rem;
@@ -3760,7 +3760,7 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-hero__visual-frame {
-    width: min(100%, 36rem);
+    width: min(100%, 37rem);
   }
 
   .home-v1-hero__portrait {
