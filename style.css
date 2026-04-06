@@ -2212,7 +2212,7 @@ body.aiagency-wez-home-v1-template,
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
   gap: 4rem;
-  --home-v1-hero-portrait-max-height: min(60vh, 39rem);
+  --home-v1-hero-portrait-max-height: min(66vh, 43rem);
 }
 
 .home-v1-hero__content {
@@ -2303,7 +2303,7 @@ body.aiagency-wez-home-v1-template,
 
 .home-v1-hero__visual-frame {
   position: relative;
-  width: min(100%, 34.5rem);
+  width: min(100%, 36.5rem);
   padding: 0.25rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 3rem;
@@ -2357,7 +2357,7 @@ body.aiagency-wez-home-v1-template,
 .home-v1-hero__portrait img,
 .home-v1-hero__image-placeholder {
   width: auto;
-  max-width: min(100%, 32.2rem);
+  max-width: min(100%, 34.8rem);
   max-height: var(--home-v1-hero-portrait-max-height);
   border-radius: 2rem;
   object-fit: contain;
@@ -3748,7 +3748,7 @@ body.aiagency-wez-home-v1-template,
 @media (min-width: 1121px) and (max-width: 1680px),
   (min-width: 1121px) and (max-height: 900px) {
   .home-v1-hero {
-    --home-v1-hero-portrait-max-height: min(52vh, 31rem);
+    --home-v1-hero-portrait-max-height: min(58vh, 34rem);
     gap: 3rem;
   }
 
@@ -3757,7 +3757,7 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-hero__visual-frame {
-    width: min(100%, 33rem);
+    width: min(100%, 35rem);
   }
 
   .home-v1-hero__portrait {
@@ -3766,7 +3766,7 @@ body.aiagency-wez-home-v1-template,
 
   .home-v1-hero__portrait img,
   .home-v1-hero__image-placeholder {
-    max-width: min(100%, 31rem);
+    max-width: min(100%, 33.5rem);
   }
 }
 
