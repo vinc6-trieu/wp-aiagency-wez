@@ -2466,14 +2466,36 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-section--competencies {
-  padding: clamp(2.25rem, 4.5vw, 3.75rem) 0;
-  background:
-    radial-gradient(
-      circle at 86% -8%,
-      rgba(107, 185, 228, 0.22) 0%,
-      rgba(107, 185, 228, 0) 42%
-    ),
-    linear-gradient(180deg, #f2f7fc 0%, #f8fafd 30%, #ffffff 100%);
+  /* 128px at theme root 14px ≈ 9.14rem */
+  padding: clamp(3rem, 12vw, 9.15rem) 0;
+  background: #f8f9fe;
+}
+
+.home-v1-section--competencies .home-v1-section-heading {
+  gap: 1.15rem;
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+.home-v1-section--competencies .home-v1-section-heading__eyebrow {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: 0.3em;
+}
+
+.home-v1-section--competencies .home-v1-section-heading__title {
+  font-size: clamp(2rem, 6vw, 3.429rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.075rem;
+}
+
+.home-v1-section--competencies .home-v1-section-heading__bar {
+  width: 5.714rem;
+  height: 0.429rem;
+  margin-top: 0.571rem;
+  margin-bottom: 0;
+  background: #6bb9e4;
 }
 
 .home-v1-section--problems-we-solve {
@@ -2551,46 +2573,39 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-competencies {
-  max-width: 72rem;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 64rem;
+  margin-inline: auto;
 }
 
 .home-v1-competencies__intro {
   max-width: 50rem;
   margin: 0 auto 3rem;
-  color: var(--aiagency-wez-home-v1-body);
-  font-size: clamp(1rem, 1.45vw, 1.2rem);
+  color: #42474e;
+  font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(1rem, 1.45vw, 1.125rem);
   line-height: 1.7;
   text-align: center;
 }
 
 .home-v1-competencies__list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 3.429rem;
 }
 
 .home-v1-competency {
-  display: grid;
-  grid-template-columns: 3.25rem 1fr;
-  gap: 1.125rem;
-  align-items: start;
-  height: 100%;
-  padding: 1.5rem 1.4rem;
-  border: 1px solid rgba(10, 91, 140, 0.14);
-  border-radius: 1.5rem;
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 16px 36px -30px rgba(0, 63, 110, 0.7);
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.home-v1-competency:hover,
-.home-v1-competency:focus-within {
-  transform: translateY(-4px);
-  border-color: rgba(10, 91, 140, 0.32);
-  box-shadow: 0 28px 44px -30px rgba(0, 63, 110, 0.65);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.714rem;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1.714rem;
+  border-radius: 1.143rem;
+  background: transparent;
 }
 
 .home-v1-competency__icon {
@@ -2599,27 +2614,22 @@ body.aiagency-wez-home-v1-template,
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: 3.25rem;
-  height: 3.25rem;
-  color: var(--aiagency-wez-home-v1-accent);
+  width: 2.857rem;
+  height: 2.857rem;
+  margin-top: 0.286rem;
   border-radius: 999px;
-  border: 1px solid rgba(10, 91, 140, 0.2);
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.96) 0%,
-    rgba(214, 236, 249, 0.95) 100%
-  );
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 2px solid #0a5b8c;
+  background: #ffffff;
 }
 
 .home-v1-competency__icon--svg {
-  color: var(--aiagency-wez-home-v1-accent);
+  color: inherit;
 }
 
 .home-v1-competency__icon svg {
   display: block;
-  width: 2rem;
-  height: 2rem;
+  width: 2.857rem;
+  height: 2.857rem;
 }
 
 .home-v1-competency__icon--image img {
@@ -2629,44 +2639,77 @@ body.aiagency-wez-home-v1-template,
   object-fit: contain;
 }
 
+.home-v1-competency__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.571rem;
+  align-items: flex-start;
+  min-width: 0;
+}
+
 .home-v1-competency h3 {
-  margin: 0 0 0.5rem;
-  color: var(--aiagency-wez-home-v1-accent);
+  margin: 0;
+  color: #0a5b8c;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(1.22rem, 1.7vw, 1.45rem);
+  font-size: 1.714rem;
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.333;
 }
 
 .home-v1-competency p {
   margin: 0;
-  color: var(--aiagency-wez-home-v1-body);
-  font-size: 1.02rem;
-  line-height: 1.65;
+  color: #42474e;
+  font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.286rem;
+  font-weight: 400;
+  line-height: 1.611;
 }
 
 .home-v1-competencies__footer {
-  display: grid;
-  justify-items: center;
-  gap: 2rem;
-  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.429rem;
+  padding-top: clamp(2.5rem, 6vw, 3rem);
+}
+
+.home-v1-section--competencies .home-v1-competencies__cta {
+  min-height: unset;
+  padding: 1.429rem 3.429rem;
+  gap: 0.857rem;
+  background: linear-gradient(105.46deg, #0a5b8c 0%, #003f6e 100%);
+  box-shadow:
+    0 20px 25px -5px rgba(10, 91, 140, 0.2),
+    0 8px 10px -6px rgba(10, 91, 140, 0.2);
+  font-size: 1.429rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.home-v1-section--competencies .home-v1-competencies__cta .home-v1-button__icon {
+  width: 1.429rem;
+  height: 1.429rem;
 }
 
 .home-v1-competencies__notes {
-  max-width: 56rem;
-  display: grid;
-  gap: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 64rem;
+  margin: 0;
+  padding-inline: 0.964rem;
   text-align: center;
 }
 
 .home-v1-competencies__notes p {
   margin: 0;
-  color: var(--aiagency-wez-home-v1-body);
-  font-size: 0.95rem;
-  line-height: 1.7;
 }
 
 .home-v1-competencies__disclaimer {
+  color: #42474e;
+  font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.286rem;
+  font-weight: 400;
+  line-height: 1.611;
   opacity: 0.8;
 }
 
@@ -3861,10 +3904,6 @@ body.aiagency-wez-home-v1-template,
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .home-v1-competencies__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .home-v1-team-layout {
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -4022,7 +4061,10 @@ body.aiagency-wez-home-v1-template,
     padding: 1rem 0;
   }
 
-  .home-v1-section--competencies,
+  .home-v1-section--competencies {
+    padding: clamp(2rem, 8vw, 3.5rem) 0;
+  }
+
   .home-v1-section--problems-we-solve {
     padding: 1.25rem 0;
   }
@@ -4153,12 +4195,9 @@ body.aiagency-wez-home-v1-template,
     margin-left: -0.45rem;
   }
 
-  .home-v1-competencies__list {
-    grid-template-columns: 1fr;
-  }
-
   .home-v1-competency {
-    padding: 1.25rem 1.1rem;
+    padding: 1.25rem 1rem;
+    gap: 1rem;
   }
 
   .home-v1-section--contact .home-v1-form-shell p:has(input[type="submit"]),

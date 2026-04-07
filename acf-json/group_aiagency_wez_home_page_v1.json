@@ -208,7 +208,7 @@
       "wrapper": {
         "width": "30"
       },
-      "placeholder": "SERVICES"
+      "placeholder": "VALUE"
     },
     {
       "key": "field_aiagency_wez_home_v1_competencies_title",
@@ -218,7 +218,7 @@
       "wrapper": {
         "width": "70"
       },
-      "placeholder": "Our Core Competencies"
+      "placeholder": "OUR CORE COMPETENCIES"
     },
     {
       "key": "field_aiagency_wez_home_v1_competencies_intro",
@@ -226,7 +226,7 @@
       "name": "home_v1_competencies_intro",
       "type": "textarea",
       "rows": 4,
-      "placeholder": "We build AI systems that elevate strategic decision-making, streamline operations, and shape memorable customer experiences."
+      "placeholder": "Optional. Leave empty to match the minimal hero → list layout."
     },
     {
       "key": "field_aiagency_wez_home_v1_competency_1_title",
@@ -256,7 +256,7 @@
         "width": "65"
       },
       "rows": 3,
-      "placeholder": "Executive dashboards, scenario planning, and AI-assisted strategic analysis."
+      "placeholder": "AI agents as business analysts that interpret data, explain performance, and support strategic decision-making with clear, real-time insights."
     },
     {
       "key": "field_aiagency_wez_home_v1_competency_2_title",
@@ -286,7 +286,7 @@
         "width": "65"
       },
       "rows": 3,
-      "placeholder": "Workflow automation, knowledge retrieval, and real-time business assistance."
+      "placeholder": "Department-level AI assistants that streamline workflows, support teams, and provide instant access to structured knowledge."
     },
     {
       "key": "field_aiagency_wez_home_v1_competency_3_title",
@@ -316,7 +316,7 @@
         "width": "65"
       },
       "rows": 3,
-      "placeholder": "Conversational interfaces and AI-led journeys that strengthen brand experience."
+      "placeholder": "Customer-facing AI agents that guide, recommend, and engage, transforming interaction into a personalized and meaningful experience."
     },
     {
       "key": "field_aiagency_wez_home_v1_competencies_cta_text",
@@ -326,7 +326,7 @@
       "wrapper": {
         "width": "50"
       },
-      "placeholder": "To Services"
+      "placeholder": "Talk to Lina"
     },
     {
       "key": "field_aiagency_wez_home_v1_competencies_cta_url",
@@ -340,11 +340,11 @@
     },
     {
       "key": "field_aiagency_wez_home_v1_competencies_disclaimer",
-      "label": "Disclaimer Text",
+      "label": "Closing quote",
       "name": "home_v1_competencies_disclaimer",
       "type": "textarea",
       "rows": 3,
-      "placeholder": "Every solution is tailored to your business model, data maturity, and growth objectives."
+      "placeholder": "Our systems unify internal data, market signals, and customer interactions into one continuous feedback loop that enables businesses to move seamlessly from insight to action to experience."
     },
     {
       "key": "field_aiagency_wez_home_v1_tab_problems_we_solve",

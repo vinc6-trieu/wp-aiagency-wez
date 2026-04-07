@@ -5,7 +5,7 @@ Classic WordPress starter theme for Local on macOS. This theme uses standard PHP
 ## Typography
 
 - The theme sets **`html { font-size: 14px }`** and **`body { font-size: 1rem }`**, so **`1rem = 14px`** (~2px smaller than a typical 16px base). Sizes defined in `rem` or `clamp(..., rem, ...)` in `style.css` follow this root.
-- Vertical padding between major front-page stripes (`.home-section`, `.section`, and `.home-v1-section--*`) is set slightly tighter than the original defaults—roughly **15–20%** less—to reduce empty space while keeping responsive `clamp()` behavior on the Home V1 hero. The **Our core competencies** (`.home-v1-section--competencies`) and **What problems we solve** (`.home-v1-section--problems-we-solve`) stripes use **smaller** vertical padding than the other Home V1 sections.
+- Vertical padding between major front-page stripes (`.home-section`, `.section`, and `.home-v1-section--*`) is tuned with responsive `clamp()`; the Home V1 hero stays compact. **Our core competencies** (`.home-v1-section--competencies`) uses a **flat `#F8F9FE` background**, **generous** vertical padding on large screens (scaled from the design’s ~128px), and a **single centered column** (max **896px** at the theme’s 14px root) for the three competency rows, CTA, and closing quote. **What problems we solve** (`.home-v1-section--problems-we-solve`) still uses **smaller** vertical padding than most other Home V1 sections.
 - Between **561px** and **1120px** width, **Our core competencies** inner `.home-v1-shell` elements use **`1.25rem`** horizontal padding so that stripe keeps a narrower inset than other Home V1 shells (which use the wider breakpoint default in `style.css`). **≤560px** still follows the global shell `padding-inline` for small screens.
 
 ## File Structure
@@ -165,7 +165,7 @@ Use [`page-templates/template-home-v1.php`](/Users/vincent6/Local%20Sites/wp-bas
 | `home_v1_competency_2_icon` | Image | Replaces default SVG for competency 2 |
 | `home_v1_competency_3_icon` | Image | Replaces default SVG for competency 3 |
 
-If an icon field is empty, the theme shows a built-in SVG (thin circle with checkmark) so the section is never blank.
+If an icon field is empty, the theme shows a built-in SVG (white circle, **2px** `#0A5B8C` border, solid check) so the section is never blank.
 
 The **Problems we solve** block renders between competencies and projects when any of `home_v1_problems_title`, `home_v1_problem_1_text`–`home_v1_problem_6_text`, or `home_v1_problems_quote` is set. Markup lives in [`template-parts/sections/home-v1/problems-we-solve.php`](template-parts/sections/home-v1/problems-we-solve.php) (`#problems-we-solve`). Empty problem lines are skipped so you can use fewer than six bullets.
 
@@ -202,7 +202,7 @@ The **Contact** block (`#contact-us`, [`template-parts/sections/home-v1/contact.
 | `home_v1_contact_description` | Textarea | Supporting copy |
 | `home_v1_contact_form_shortcode` | Textarea | CF7 / WPForms / etc. Shortcodes inherit contact field styling under `#contact-us`. |
 
-The competencies section CTA (`home_v1_competencies_cta_text` / `home_v1_competencies_cta_url`) includes a leading **chat bubbles** icon (inherits button text color).
+The competencies section CTA (`home_v1_competencies_cta_text` / `home_v1_competencies_cta_url`) includes a leading **filled white chat bubble** icon. The closing line under the button is **`home_v1_competencies_disclaimer`** (centered quote, ~80% opacity body color).
 
 The **Final CTA** block renders after `#contact-us` as `#final-cta` ([`template-parts/sections/home-v1/final-cta.php`](template-parts/sections/home-v1/final-cta.php)): light page background (`#F8F9FE`), full-width gradient card with soft blur orbs, centered headline and subcopy, optional **Lanova email** (`home_v1_final_cta_email`) as a `mailto:` link, and a white pill button.
 

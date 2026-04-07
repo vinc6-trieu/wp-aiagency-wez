@@ -73,19 +73,17 @@ $args = wp_parse_args(
 
 		<div class="home-v1-competencies__footer">
 			<?php if ( $args['cta_text'] && $args['cta_url'] ) : ?>
-				<a class="home-v1-button home-v1-button--compact" href="<?php echo esc_url( $args['cta_url'] ); ?>">
+				<a class="home-v1-button home-v1-button--compact home-v1-competencies__cta" href="<?php echo esc_url( $args['cta_url'] ); ?>">
 					<?php
-					echo '<svg xmlns="http://www.w3.org/2000/svg" class="home-v1-button__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 17V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v13"/><path d="M15 9H5a2 2 0 0 0-2 2v7l4-4h8a2 2 0 0 0 2-2Z"/></svg>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- inline SVG; paths are static.
+					echo '<svg xmlns="http://www.w3.org/2000/svg" class="home-v1-button__icon" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true" focusable="false"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- inline SVG; paths are static.
 					echo esc_html( $args['cta_text'] );
 					?>
 				</a>
 			<?php endif; ?>
 
-			<?php if ( $args['intro'] || $args['disclaimer'] ) : ?>
+			<?php if ( $args['disclaimer'] ) : ?>
 				<div class="home-v1-competencies__notes">
-					<?php if ( $args['disclaimer'] ) : ?>
-						<p class="home-v1-competencies__disclaimer"><?php echo esc_html( $args['disclaimer'] ); ?></p>
-					<?php endif; ?>
+					<p class="home-v1-competencies__disclaimer"><?php echo esc_html( $args['disclaimer'] ); ?></p>
 				</div>
 			<?php endif; ?>
 		</div>

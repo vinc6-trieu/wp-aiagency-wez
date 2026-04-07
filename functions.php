@@ -363,5 +363,5 @@ function aiagency_wez_get_image_data( $image ) {
  * @return string
  */
 function aiagency_wez_home_v1_competency_default_icon_svg() {
-	return '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.25" fill="none" stroke="currentColor" stroke-width="1.3"/><path stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" d="M7.6 12.2 10.4 15l6-6.2"/></svg>';
+	return '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" focusable="false"><path fill="#0a5b8c" d="M27.8 12.9a1.25 1.25 0 0 1 0 1.77l-9.6 9.6a1.25 1.25 0 0 1-1.77 0l-4.8-4.8a1.25 1.25 0 1 1 1.77-1.77l3.92 3.91 8.71-8.71a1.25 1.25 0 0 1 1.77 0Z"/></svg>';
 }
