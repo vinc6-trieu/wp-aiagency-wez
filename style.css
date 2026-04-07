@@ -2212,8 +2212,8 @@ body.aiagency-wez-home-v1-template,
   grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
   align-items: center;
   gap: 4rem;
-  --home-v1-hero-visual-max-width: 22rem;
-  --home-v1-hero-portrait-max-height: min(48vh, 22rem);
+  --home-v1-hero-visual-max-width: 20rem;
+  --home-v1-hero-portrait-max-height: min(46vh, 20rem);
 }
 
 .home-v1-hero__content {
