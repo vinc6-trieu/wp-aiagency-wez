@@ -2156,9 +2156,9 @@ body.aiagency-wez-home-v1-template,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: clamp(34rem, calc(100svh - 5.5rem), 46rem);
+  min-height: clamp(42rem, calc(100svh - 5rem), 58rem);
   overflow: hidden;
-  padding: clamp(3.75rem, 6vw, 5, 75rem) 0 clamp(3rem, 5vw, 4.75rem);
+  padding: clamp(3.75rem, 6vw, 5.75rem) 0 clamp(3rem, 5vw, 4.75rem);
   background-color: #003f6e;
   background-image:
     radial-gradient(
@@ -3817,8 +3817,7 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-section--hero {
-    min-height: clamp(33rem, calc(100svh - 6rem), 42rem);
-    padding: 1.5rem 0 1rem;
+    padding: 4.25rem 0;
   }
 
   .home-v1-hero__visual-frame {
@@ -3837,8 +3836,8 @@ body.aiagency-wez-home-v1-template,
 
 @media (max-width: 1120px) {
   .home-v1-section--hero {
-    min-height: clamp(34rem, 80svh, 44rem);
-    padding: clamp(1.35rem, 2.8vh, 2rem) 0 clamp(0.9rem, 2vh, 1.5rem);
+    min-height: clamp(40rem, 86svh, 52rem);
+    padding: clamp(2rem, 3.8vh, 2.75rem) 0;
   }
 
   .site-header__inner--home-v1,
@@ -3911,8 +3910,8 @@ body.aiagency-wez-home-v1-template,
 @media (min-width: 768px) and (max-width: 1120px) {
   .home-v1-section--hero {
     justify-content: center;
-    min-height: clamp(35rem, 80svh, 46rem);
-    padding: 1.4rem 0 1rem;
+    min-height: clamp(42rem, 84svh, 56rem);
+    padding: 2rem 0 1.5rem;
   }
 
   .home-v1-hero {
@@ -4005,8 +4004,8 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-section--hero {
-    min-height: clamp(32rem, 78svh, 42rem);
-    padding: 0.85rem 0;
+    min-height: clamp(38rem, 92svh, 48rem);
+    padding: 1.2rem 0;
   }
 
   .home-v1-section--projects {
@@ -4211,8 +4210,8 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-section--hero {
-    min-height: clamp(30rem, 76svh, 38rem);
-    padding: 0.65rem 0;
+    min-height: clamp(35rem, 88svh, 44rem);
+    padding: 0.85rem 0;
   }
 
   .home-v1-hero__title {
