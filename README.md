@@ -5,8 +5,7 @@ Classic WordPress starter theme for Local on macOS. This theme uses standard PHP
 ## Typography
 
 - The theme sets **`html { font-size: 14px }`** and **`body { font-size: 1rem }`**, so **`1rem = 14px`** (~2px smaller than a typical 16px base). Sizes defined in `rem` or `clamp(..., rem, ...)` in `style.css` follow this root.
-- Vertical padding between major front-page stripes (`.home-section`, `.section`, and `.home-v1-section--*`) is tuned with responsive `clamp()`; the Home V1 hero stays compact. **Our core competencies** (`.home-v1-section--competencies`) uses a **flat `#F8F9FE` background**, **generous** vertical padding on large screens (scaled from the design’s ~128px), and a **single centered column** (max **896px** at the theme’s 14px root) for the three competency rows, CTA, and closing quote. **What problems we solve** (`.home-v1-section--problems-we-solve`) still uses **smaller** vertical padding than most other Home V1 sections.
-- Between **561px** and **1120px** width, **Our core competencies** inner `.home-v1-shell` elements use **`1.25rem`** horizontal padding so that stripe keeps a narrower inset than other Home V1 shells (which use the wider breakpoint default in `style.css`). **≤560px** still follows the global shell `padding-inline` for small screens.
+- Vertical padding between major front-page stripes (`.home-section`, `.section`, and `.home-v1-section--*`) is tuned with responsive rules; the Home V1 hero stays compact. **Our core competencies** (`.home-v1-section--competencies`) now follows the same **stripe padding** as **About / Team / Contact** (`3.75rem` vertical on large screens, shared `2rem` rule in the **≤860px** breakpoint), uses **`var(--aiagency-wez-home-v1-bg)`** (`#F8F9FE`), and mirrors **Problems we solve**: one `.home-v1-shell`, centered column flex **`gap: clamp(1.5rem, 3vw, 2.5rem)`**, list **`max-width: 48rem`**, closing copy up to **`58rem`**, list row gap **`1.625rem`**, and the global **`.home-v1-section-heading**` styles (no section-specific heading overrides). **What problems we solve** still uses **smaller** vertical padding than those sections.
 
 ## File Structure
 
@@ -202,7 +201,7 @@ The **Contact** block (`#contact-us`, [`template-parts/sections/home-v1/contact.
 | `home_v1_contact_description` | Textarea | Supporting copy |
 | `home_v1_contact_form_shortcode` | Textarea | CF7 / WPForms / etc. Shortcodes inherit contact field styling under `#contact-us`. |
 
-The competencies section CTA (`home_v1_competencies_cta_text` / `home_v1_competencies_cta_url`) includes a leading **filled white chat bubble** icon. The closing line under the button is **`home_v1_competencies_disclaimer`** (centered quote, ~80% opacity body color).
+The competencies section CTA (`home_v1_competencies_cta_text` / `home_v1_competencies_cta_url`) uses the same **`.home-v1-button--compact`** treatment as elsewhere (stroke **chat** icon, `currentColor` on white). The closing line is **`home_v1_competencies_disclaimer`** (centered; body color with slight opacity; type scale aligned with **Problems we solve** quote breakpoints).
 
 The **Final CTA** block renders after `#contact-us` as `#final-cta` ([`template-parts/sections/home-v1/final-cta.php`](template-parts/sections/home-v1/final-cta.php)): light page background (`#F8F9FE`), full-width gradient card with soft blur orbs, centered headline and subcopy, optional **Lanova email** (`home_v1_final_cta_email`) as a `mailto:` link, and a white pill button.
 
