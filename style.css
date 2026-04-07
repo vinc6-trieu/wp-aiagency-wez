@@ -3813,34 +3813,9 @@ body.aiagency-wez-home-v1-template,
     gap: 1rem;
   }
 
-  .home-v1-hero,
   .home-v1-about,
   .home-v1-contact {
     grid-template-columns: 1fr;
-  }
-
-  .home-v1-hero {
-    gap: 1rem;
-  }
-
-  .home-v1-hero__visual {
-    order: 1;
-    justify-content: center;
-  }
-
-  .home-v1-hero__content {
-    order: 2;
-    position: relative;
-    z-index: 2;
-    margin-top: -6.5rem;
-    padding: 1.25rem;
-    border-radius: 1.5rem;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 63, 110, 0.78) 0%,
-      rgba(0, 63, 110, 0.6) 100%
-    );
-    backdrop-filter: blur(4px);
   }
 
   .home-v1-contact {
@@ -3891,18 +3866,26 @@ body.aiagency-wez-home-v1-template,
   }
 }
 
-@media (min-width: 1040px) and (max-width: 1120px) {
+@media (min-width: 768px) and (max-width: 1120px) {
   .home-v1-hero {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+    gap: 2rem;
+    --home-v1-hero-visual-max-width: 31rem;
+    --home-v1-hero-portrait-max-height: min(52vh, 31rem);
   }
 
   .home-v1-hero__content {
-    margin-top: -7rem;
+    order: 1;
+    margin-top: 0;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    backdrop-filter: none;
   }
 
   .home-v1-hero__visual {
-    justify-content: center;
+    order: 2;
+    justify-content: flex-end;
   }
 }
 
@@ -3972,10 +3955,29 @@ body.aiagency-wez-home-v1-template,
     max-width: none;
   }
 
+  .home-v1-hero {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .home-v1-hero__visual {
+    order: 1;
+    justify-content: center;
+  }
+
   .home-v1-hero__content {
+    order: 2;
+    position: relative;
+    z-index: 2;
     margin-top: -5.5rem;
     padding: 1rem;
     border-radius: 1.25rem;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 63, 110, 0.78) 0%,
+      rgba(0, 63, 110, 0.6) 100%
+    );
+    backdrop-filter: blur(4px);
   }
 
   .home-v1-hero {
