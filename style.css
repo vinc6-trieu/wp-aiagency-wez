@@ -2466,7 +2466,7 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-section--competencies {
-  padding: clamp(3.5rem, 6.25vw, 5.5rem) 0;
+  padding: clamp(2.25rem, 4.5vw, 3.75rem) 0;
   background:
     radial-gradient(
       circle at 86% -8%,
@@ -2477,7 +2477,7 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-section--problems-we-solve {
-  padding: clamp(2.35rem, 5.25vw, 4rem) 0;
+  padding: clamp(1.5rem, 3.75vw, 2.75rem) 0;
   background: var(--aiagency-wez-home-v1-surface);
 }
 
@@ -4014,6 +4014,11 @@ body.aiagency-wez-home-v1-template,
   .home-v1-section--hero {
     min-height: clamp(38rem, 92svh, 48rem);
     padding: 1rem 0;
+  }
+
+  .home-v1-section--competencies,
+  .home-v1-section--problems-we-solve {
+    padding: 1.25rem 0;
   }
 
   .home-v1-section--projects {
