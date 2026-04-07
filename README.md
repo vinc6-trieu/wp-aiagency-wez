@@ -52,6 +52,7 @@ aiagency-wez/
 
 ## Home V1 hero portrait
 
+- **Tablet / narrow desktop (`min-width: 768px` and `max-width: 1120px`):** the hero inner wrapper (`.home-v1-shell.home-v1-hero`, one element with both classes) uses **`display: flex`**, **`flex-direction: row`**, and **`justify-content: space-between`** so headline column and portrait column stay separated; **`min-width: 0`** on the text column avoids flex overflow clipping.
 - The **hero banner** (`.home-v1-section--hero`) now fills the viewport on larger screens with **`min-height: 100vh`** (fallback) and **`min-height: 100svh`** (modern browsers), plus vertical centering and layered gradient/image background treatment.
 - The hero figure (portrait image in `.home-v1-hero__visual-frame`) is limited by **`--home-v1-hero-portrait-max-height`** on `.home-v1-hero`: default **`min(60vh, 39rem)`** on large displays; **laptop / ~14" MacBook** (two-column hero): **`min(52vh, 31rem)`** when **`(min-width: 1121px) and (max-width: 1680px)`** or **`(min-width: 1121px) and (max-height: 900px)`**; **`min(52vh, 28rem)`** at ≤860px; **`min(48vh, 22rem)`** at ≤560px. On phones (≤560px), hero `min-height` is reset to `auto` to avoid cramped content.
 

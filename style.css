@@ -3912,14 +3912,21 @@ body.aiagency-wez-home-v1-template,
     padding: 2rem 0 1.5rem;
   }
 
+  /* Same element: .home-v1-shell.home-v1-hero — flex + justify-content spaces copy vs portrait like desktop grid */
   .home-v1-hero {
-    grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
     gap: 1.25rem;
     --home-v1-hero-visual-max-width: 26rem;
     --home-v1-hero-portrait-max-height: min(42vh, 24rem);
   }
 
   .home-v1-hero__content {
+    flex: 1 1 auto;
+    min-width: 0;
     order: 1;
     max-width: 32rem;
     gap: 1.1rem;
@@ -3975,6 +3982,9 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-hero__visual {
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 0;
     order: 2;
     justify-content: flex-end;
   }
@@ -4052,6 +4062,7 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-hero {
+    display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
     --home-v1-hero-visual-max-width: min(80vw, 22rem);
@@ -4059,6 +4070,7 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-hero__visual {
+    width: 100%;
     order: 1;
     justify-content: center;
   }
