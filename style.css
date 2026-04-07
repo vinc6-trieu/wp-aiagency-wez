@@ -294,7 +294,7 @@ a:focus {
 }
 
 .section {
-  padding: 2rem 0;
+  padding: 24px 0;
 }
 
 .section--panel .section__inner,
@@ -627,7 +627,7 @@ a:focus {
 
 .home-section {
   position: relative;
-  padding: 6rem 0;
+  padding: 24px 0;
 }
 
 .home-section--surface {
@@ -639,7 +639,7 @@ a:focus {
 }
 
 .home-section--contact {
-  padding-bottom: 2rem;
+  padding-bottom: 24px;
 }
 
 .home-shell {
@@ -671,7 +671,7 @@ a:focus {
 }
 
 .home-section-heading--spaced {
-  margin-top: 5rem;
+  margin-top: 24px;
 }
 
 .home-hero-section {
@@ -1160,7 +1160,7 @@ a:focus {
   }
 
   .home-section {
-    padding: 4rem 0;
+    padding: 24px 0;
   }
 
   .home-section-heading {
@@ -2158,7 +2158,7 @@ body.aiagency-wez-home-v1-template,
   justify-content: center;
   min-height: clamp(42rem, calc(100svh - 5rem), 58rem);
   overflow: hidden;
-  padding: clamp(3.75rem, 6vw, 5.75rem) 0 clamp(3rem, 5vw, 4.75rem);
+  padding: clamp(3.75rem, 6vw, 5.75rem) 0 24px;
   background-color: #003f6e;
   background-image:
     radial-gradient(
@@ -2466,7 +2466,7 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-section--competencies {
-  padding: clamp(4rem, 7vw, 6.5rem) 0;
+  padding: 24px 0;
   background:
     radial-gradient(
       circle at 86% -8%,
@@ -2477,7 +2477,7 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-section--problems-we-solve {
-  padding: clamp(2.75rem, 5.75vw, 4.75rem) 0;
+  padding: 24px 0;
   background: var(--aiagency-wez-home-v1-surface);
 }
 
@@ -2671,12 +2671,12 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-section--projects {
-  padding: 3.5rem 0 4.25rem;
+  padding: 24px 0;
   background: var(--aiagency-wez-home-v1-surface-soft);
 }
 
 .home-v1-section--team {
-  padding: 4.5rem 0;
+  padding: 24px 0;
   background: var(--aiagency-wez-home-v1-surface-soft);
 }
 
@@ -2842,12 +2842,12 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-section--about {
-  padding: 4.5rem 0;
+  padding: 24px 0;
   background: #ffffff;
 }
 
 .home-v1-section--contact {
-  padding: 4.5rem 0;
+  padding: 24px 0;
   background: linear-gradient(90deg, rgba(160, 216, 239, 0.3) 0%, #ffffff 100%);
 }
 
@@ -3403,7 +3403,7 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-section--final-cta {
-  padding: 2.75rem 0;
+  padding: 24px 0;
   background: var(--aiagency-wez-home-v1-bg);
 }
 
@@ -3815,7 +3815,7 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-section--hero {
-    padding: 4.25rem 0;
+    padding: 4.25rem 0 24px;
   }
 
   .home-v1-hero__visual-frame {
@@ -3835,7 +3835,7 @@ body.aiagency-wez-home-v1-template,
 @media (max-width: 1120px) {
   .home-v1-section--hero {
     min-height: clamp(40rem, 86svh, 52rem);
-    padding: clamp(2rem, 3.8vh, 2.75rem) 0;
+    padding: clamp(2rem, 3.8vh, 2.75rem) 0 24px;
   }
 
   .site-header__inner--home-v1,
@@ -3909,7 +3909,7 @@ body.aiagency-wez-home-v1-template,
   .home-v1-section--hero {
     justify-content: center;
     min-height: clamp(42rem, 84svh, 56rem);
-    padding: 2rem 0 1.5rem;
+    padding: 2rem 0 24px;
   }
 
   /* Same element: .home-v1-shell.home-v1-hero — flex + justify-content spaces copy vs portrait like desktop grid */
@@ -4008,20 +4008,20 @@ body.aiagency-wez-home-v1-template,
   .home-v1-section--problems-we-solve,
   .home-v1-section--about,
   .home-v1-section--contact {
-    padding: 2.5rem 0;
+    padding: 24px 0;
   }
 
   .home-v1-section--hero {
     min-height: clamp(38rem, 92svh, 48rem);
-    padding: 1.2rem 0;
+    padding: 1.2rem 0 24px;
   }
 
   .home-v1-section--projects {
-    padding: 2.5rem 0 3rem;
+    padding: 24px 0;
   }
 
   .home-v1-section--team {
-    padding: 2.5rem 0;
+    padding: 24px 0;
   }
 
   .home-v1-split-heading__main {
@@ -4221,7 +4221,7 @@ body.aiagency-wez-home-v1-template,
 
   .home-v1-section--hero {
     min-height: clamp(35rem, 88svh, 44rem);
-    padding: 0.85rem 0;
+    padding: 0.85rem 0 24px;
   }
 
   .home-v1-hero__title {
