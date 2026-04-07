@@ -6,6 +6,7 @@ Classic WordPress starter theme for Local on macOS. This theme uses standard PHP
 
 - The theme sets **`html { font-size: 14px }`** and **`body { font-size: 1rem }`**, so **`1rem = 14px`** (~2px smaller than a typical 16px base). Sizes defined in `rem` or `clamp(..., rem, ...)` in `style.css` follow this root.
 - Vertical padding between major front-page stripes (`.home-section`, `.section`, and `.home-v1-section--*`) is set slightly tighter than the original defaults—roughly **15–20%** less—to reduce empty space while keeping responsive `clamp()` behavior on the Home V1 hero. The **Our core competencies** (`.home-v1-section--competencies`) and **What problems we solve** (`.home-v1-section--problems-we-solve`) stripes use **smaller** vertical padding than the other Home V1 sections.
+- Between **561px** and **1120px** width, **Our core competencies** inner `.home-v1-shell` elements use **`1.25rem`** horizontal padding so that stripe keeps a narrower inset than other Home V1 shells (which use the wider breakpoint default in `style.css`). **≤560px** still follows the global shell `padding-inline` for small screens.
 
 ## File Structure
 

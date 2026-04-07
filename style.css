@@ -3905,6 +3905,12 @@ body.aiagency-wez-home-v1-template,
   }
 }
 
+@media (max-width: 1120px) and (min-width: 561px) {
+  .home-v1-section--competencies .home-v1-shell {
+    padding-inline: 1.25rem;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1120px) {
   .home-v1-section--hero {
     justify-content: center;
