@@ -2528,7 +2528,7 @@ body.aiagency-wez-home-v1-template,
   width: 100%;
   max-width: 64rem;
   margin: 0;
-  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+  padding-top: clamp(1rem, 3vw, 1.5rem);
   border-top: 1px solid #f3f4f6;
 }
 
