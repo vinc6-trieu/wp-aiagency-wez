@@ -76,9 +76,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
 							</svg>
 						</span>
+						<label class="screen-reader-text" for="site-footer-language-switcher"><?php esc_html_e( 'Change language', 'aiagency-wez' ); ?></label>
+						<select
+							id="site-footer-language-switcher"
+							class="site-footer__translate-select home-v1-language-switcher"
+							data-aiagency-wez-language-switcher
+						>
+							<option value="en"><?php esc_html_e( 'English', 'aiagency-wez' ); ?></option>
+							<option value="vi"><?php esc_html_e( 'Vietnamese', 'aiagency-wez' ); ?></option>
+						</select>
 						<div
 							id="google_translate_element"
 							class="site-footer__translate-mount"
+							aria-hidden="true"
 						></div>
 					</div>
 

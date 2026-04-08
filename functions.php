@@ -239,9 +239,31 @@ function aiagency_wez_enqueue_google_translate() {
 	wp_enqueue_script( 'aiagency-wez-gtranslate-init' );
 
 	$init = sprintf(
-		'function aiagencyWezGoogleTranslateInit(){if(typeof google===\'undefined\'||!google.translate){return;}' .
-		'new google.translate.TranslateElement({pageLanguage:\'%s\',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},\'google_translate_element\');}',
-		esc_js( $page_lang )
+		'function aiagencyWezGetGoogleTranslateSelect(){return document.querySelector(\'#google_translate_element .goog-te-combo\');}' .
+		'function aiagencyWezPopulateFooterLanguageSwitcher(){var googleSelect=aiagencyWezGetGoogleTranslateSelect();var footerSwitcher=document.getElementById(\'site-footer-language-switcher\');if(!(googleSelect instanceof HTMLSelectElement)||!(footerSwitcher instanceof HTMLSelectElement)){return;}' .
+		'var options=Array.from(googleSelect.options).filter(function(option){return option.value;});if(!options.length){return;}' .
+		'if(footerSwitcher.options.length===options.length&&footerSwitcher.dataset.aiagencyWezPopulated===\'true\'){return;}' .
+		'var currentValue=footerSwitcher.value;footerSwitcher.innerHTML=\'\';options.forEach(function(option){var nextOption=document.createElement(\'option\');nextOption.value=option.value;nextOption.textContent=option.textContent||option.innerText||option.value;footerSwitcher.appendChild(nextOption);});' .
+		'footerSwitcher.dataset.aiagencyWezPopulated=\'true\';if(currentValue){footerSwitcher.value=currentValue;}}' .
+		'function aiagencyWezReadGoogleTranslateLanguage(defaultLang){var match=document.cookie.match(/(?:^|; )googtrans=([^;]+)/);if(!match){return defaultLang;}' .
+		'var parts=decodeURIComponent(match[1]).split(\'/\');return parts[parts.length-1]||defaultLang;}' .
+		'function aiagencyWezSyncLanguageSwitchers(lang){document.querySelectorAll(\'[data-aiagency-wez-language-switcher]\').forEach(function(switcher){if(!(switcher instanceof HTMLSelectElement)){return;}var hasOption=Array.from(switcher.options).some(function(option){return option.value===lang;});if(hasOption&&switcher.value!==lang){switcher.value=lang;}});}' .
+		'function aiagencyWezApplyGoogleTranslateLanguage(lang){var nextLang=typeof lang===\'string\'&&lang?lang:\'en\';var select=aiagencyWezGetGoogleTranslateSelect();if(!(select instanceof HTMLSelectElement)){window.setTimeout(function(){aiagencyWezApplyGoogleTranslateLanguage(nextLang);},250);return;}' .
+		'if(select.value!==nextLang){select.value=nextLang;select.dispatchEvent(new Event(\'change\',{bubbles:true}));}' .
+		'aiagencyWezSyncLanguageSwitchers(nextLang);}' .
+		'function aiagencyWezBindGoogleTranslateSwitchers(defaultLang){if(window.aiagencyWezGoogleTranslateSwitchersBound){aiagencyWezSyncLanguageSwitchers(aiagencyWezReadGoogleTranslateLanguage(defaultLang));return;}' .
+		'window.aiagencyWezGoogleTranslateSwitchersBound=true;' .
+		'document.addEventListener(\'change\',function(event){if(event.target instanceof HTMLSelectElement&&event.target.matches(\'[data-aiagency-wez-language-switcher]\')){aiagencyWezApplyGoogleTranslateLanguage(event.target.value);}});' .
+		'var syncControls=function(){var select=aiagencyWezGetGoogleTranslateSelect();if(select instanceof HTMLSelectElement&&!select.dataset.aiagencyWezBound){select.dataset.aiagencyWezBound=\'true\';select.addEventListener(\'change\',function(){aiagencyWezSyncLanguageSwitchers(select.value);});}' .
+		'aiagencyWezPopulateFooterLanguageSwitcher();' .
+		'aiagencyWezSyncLanguageSwitchers(aiagencyWezReadGoogleTranslateLanguage(defaultLang));};' .
+		'window.setTimeout(syncControls,0);window.setTimeout(syncControls,300);window.setTimeout(syncControls,900);window.addEventListener(\'pageshow\',function(){aiagencyWezSyncLanguageSwitchers(aiagencyWezReadGoogleTranslateLanguage(defaultLang));});' .
+		'aiagencyWezSyncLanguageSwitchers(aiagencyWezReadGoogleTranslateLanguage(defaultLang));}' .
+		'function aiagencyWezGoogleTranslateInit(){if(typeof google===\'undefined\'||!google.translate||!document.getElementById(\'google_translate_element\')){return;}' .
+		'new google.translate.TranslateElement({pageLanguage:\'%s\',autoDisplay:false},\'google_translate_element\');' .
+		'aiagencyWezBindGoogleTranslateSwitchers(\'%s\');}',
+		esc_js( $page_lang ),
+		esc_js( 'vi' === $page_lang ? 'vi' : 'en' )
 	);
 	wp_add_inline_script( 'aiagency-wez-gtranslate-init', $init, 'after' );
 
@@ -358,10 +380,18 @@ function aiagency_wez_get_image_data( $image ) {
 }
 
 /**
- * Inline SVG for Home V1 competency rows when no icon image is set (circle + checkmark).
+ * Inline SVG for Home V1 competency cards when no icon image is set.
  *
+ * @param int $variant Optional icon variant.
  * @return string
  */
-function aiagency_wez_home_v1_competency_default_icon_svg() {
-	return '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" focusable="false"><path fill="#0a5b8c" d="M27.8 12.9a1.25 1.25 0 0 1 0 1.77l-9.6 9.6a1.25 1.25 0 0 1-1.77 0l-4.8-4.8a1.25 1.25 0 1 1 1.77-1.77l3.92 3.91 8.71-8.71a1.25 1.25 0 0 1 1.77 0Z"/></svg>';
+function aiagency_wez_home_v1_competency_default_icon_svg( $variant = 0 ) {
+	$icons = array(
+		'<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true" focusable="false"><path d="M6.25 21.25l5.1-5.1 3.95 3.95 8.45-8.45" stroke="currentColor" stroke-width="2.35" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.6 11.65h3.15v3.15" stroke="currentColor" stroke-width="2.35" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.15 8.4l.7 1.55 1.55.7-1.55.7-.7 1.55-.7-1.55-1.55-.7 1.55-.7.7-1.55Z" fill="currentColor"/><path d="M15.95 5.65l.45.95.95.45-.95.45-.45.95-.45-.95-.95-.45.95-.45.45-.95Z" fill="currentColor"/></svg>',
+		'<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true" focusable="false"><path d="M12.2 5.75v3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M17.8 5.75v3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M8.65 8.15l2.1 2.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M21.35 8.15l-2.1 2.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M6.2 13.65h3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M20.8 13.65h3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M9.2 18.8a6.2 6.2 0 1 1 8.55 0" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.2 23.15a3.8 3.8 0 0 1 7.6 0v1.1h-7.6v-1.1Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="22.2" cy="21.8" r="2.2" stroke="currentColor" stroke-width="2.2"/><path d="M22.2 20.7v2.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M21.1 21.8h2.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+		'<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true" focusable="false"><circle cx="15" cy="6.4" r="2.65" stroke="currentColor" stroke-width="2.2"/><circle cx="7.2" cy="15" r="2.65" stroke="currentColor" stroke-width="2.2"/><circle cx="22.8" cy="15" r="2.65" stroke="currentColor" stroke-width="2.2"/><circle cx="10.15" cy="23.1" r="2.65" stroke="currentColor" stroke-width="2.2"/><circle cx="19.85" cy="23.1" r="2.65" stroke="currentColor" stroke-width="2.2"/><path d="M13.2 8.55 9 12.85" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M16.8 8.55 21 12.85" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M9.85 17.45 11.2 20.35" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M20.15 17.45 18.8 20.35" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M12.8 23.1h4.4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+	);
+	$variant = max( 0, (int) $variant );
+
+	return $icons[ $variant % count( $icons ) ];
 }

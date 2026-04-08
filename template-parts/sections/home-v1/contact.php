@@ -19,6 +19,8 @@ $args = wp_parse_args(
 		'status_badge'      => '',
 		'title'             => '',
 		'description'       => '',
+		'email_label'       => '',
+		'email_value'       => '',
 		'form_shortcode'    => '',
 	)
 );
@@ -33,6 +35,18 @@ if ( ! empty( $args['form_shortcode'] ) && is_string( $args['form_shortcode'] ) 
 $status_kicker = is_string( $args['status_kicker'] ) ? trim( $args['status_kicker'] ) : '';
 $status_line   = is_string( $args['status_line'] ) ? trim( $args['status_line'] ) : '';
 $status_badge  = is_string( $args['status_badge'] ) ? trim( $args['status_badge'] ) : '';
+$email_label   = is_string( $args['email_label'] ) ? trim( $args['email_label'] ) : '';
+$email_raw     = is_string( $args['email_value'] ) ? trim( $args['email_value'] ) : '';
+$email         = $email_raw ? sanitize_email( $email_raw ) : '';
+
+if ( $email ) {
+	if ( '' === $email_label ) {
+		$email_label = __( 'Or Email us', 'aiagency-wez' );
+	} elseif ( 0 !== stripos( ltrim( $email_label ), 'or ' ) ) {
+		/* translators: %s: custom email contact label. */
+		$email_label = sprintf( __( 'Or %s', 'aiagency-wez' ), $email_label );
+	}
+}
 
 if ( $status_kicker === '' ) {
 	$status_kicker = __( 'System status', 'aiagency-wez' );
@@ -85,40 +99,54 @@ if ( $status_badge === '' ) {
 				<?php if ( ! empty( $args['description'] ) ) : ?>
 					<p class="home-v1-contact__description"><?php echo esc_html( $args['description'] ); ?></p>
 				<?php endif; ?>
+
 			</div>
 
-			<div class="home-v1-form-shell home-v1-form-shell--contact">
-				<?php if ( $shortcode_output ) : ?>
-					<?php echo $shortcode_output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<?php else : ?>
-					<div class="home-v1-form-placeholder home-v1-form-placeholder--contact">
-						<div class="home-v1-form-placeholder__row">
-							<div class="home-v1-form-placeholder__field">
-								<label><?php esc_html_e( 'Full Name', 'aiagency-wez' ); ?></label>
-								<span><?php esc_html_e( 'John Doe', 'aiagency-wez' ); ?></span>
+			<div class="home-v1-contact__form-stack">
+				<div class="home-v1-form-shell home-v1-form-shell--contact">
+					<?php if ( $shortcode_output ) : ?>
+						<?php echo $shortcode_output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php else : ?>
+						<div class="home-v1-form-placeholder home-v1-form-placeholder--contact">
+							<div class="home-v1-form-placeholder__row">
+								<div class="home-v1-form-placeholder__field">
+									<label><?php esc_html_e( 'Full Name', 'aiagency-wez' ); ?></label>
+									<span><?php esc_html_e( 'John Doe', 'aiagency-wez' ); ?></span>
+								</div>
+								<div class="home-v1-form-placeholder__field">
+									<label><?php esc_html_e( 'Work Email', 'aiagency-wez' ); ?></label>
+									<span><?php esc_html_e( 'john@company.com', 'aiagency-wez' ); ?></span>
+								</div>
 							</div>
-							<div class="home-v1-form-placeholder__field">
-								<label><?php esc_html_e( 'Work Email', 'aiagency-wez' ); ?></label>
-								<span><?php esc_html_e( 'john@company.com', 'aiagency-wez' ); ?></span>
+							<div class="home-v1-form-placeholder__row">
+								<div class="home-v1-form-placeholder__field">
+									<label><?php esc_html_e( 'Company', 'aiagency-wez' ); ?></label>
+									<span><?php esc_html_e( 'Acme Corp', 'aiagency-wez' ); ?></span>
+								</div>
+								<div class="home-v1-form-placeholder__field">
+									<label><?php esc_html_e( 'Phone Number', 'aiagency-wez' ); ?></label>
+									<span><?php esc_html_e( '+1 (555) 000-0000', 'aiagency-wez' ); ?></span>
+								</div>
+							</div>
+							<div class="home-v1-form-placeholder__field home-v1-form-placeholder__field--full">
+								<label><?php esc_html_e( 'Message', 'aiagency-wez' ); ?></label>
+								<span class="home-v1-form-placeholder__message"><?php esc_html_e( 'Tell us about your AI goals…', 'aiagency-wez' ); ?></span>
+							</div>
+							<div class="home-v1-form-placeholder__actions">
+								<div class="home-v1-form-placeholder__submit"><?php esc_html_e( 'Book a demo', 'aiagency-wez' ); ?></div>
 							</div>
 						</div>
-						<div class="home-v1-form-placeholder__row">
-							<div class="home-v1-form-placeholder__field">
-								<label><?php esc_html_e( 'Company', 'aiagency-wez' ); ?></label>
-								<span><?php esc_html_e( 'Acme Corp', 'aiagency-wez' ); ?></span>
-							</div>
-							<div class="home-v1-form-placeholder__field">
-								<label><?php esc_html_e( 'Phone Number', 'aiagency-wez' ); ?></label>
-								<span><?php esc_html_e( '+1 (555) 000-0000', 'aiagency-wez' ); ?></span>
-							</div>
-						</div>
-						<div class="home-v1-form-placeholder__field home-v1-form-placeholder__field--full">
-							<label><?php esc_html_e( 'Message', 'aiagency-wez' ); ?></label>
-							<span class="home-v1-form-placeholder__message"><?php esc_html_e( 'Tell us about your AI goals…', 'aiagency-wez' ); ?></span>
-						</div>
-						<div class="home-v1-form-placeholder__actions">
-							<div class="home-v1-form-placeholder__submit"><?php esc_html_e( 'Submit', 'aiagency-wez' ); ?></div>
-						</div>
+					<?php endif; ?>
+				</div>
+
+				<?php if ( $email ) : ?>
+					<div class="home-v1-contact__email home-v1-contact__email--after-form">
+						<?php if ( '' !== $email_label ) : ?>
+							<p class="home-v1-contact__email-label"><?php echo esc_html( $email_label ); ?></p>
+						<?php endif; ?>
+						<a class="home-v1-contact__email-link" href="<?php echo esc_url( 'mailto:' . $email ); ?>">
+							<?php echo esc_html( $email ); ?>
+						</a>
 					</div>
 				<?php endif; ?>
 			</div>

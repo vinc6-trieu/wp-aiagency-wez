@@ -54,8 +54,8 @@ aiagency-wez/
 ## Home V1 hero portrait
 
 - **Tablet / narrow desktop (`min-width: 768px` and `max-width: 1120px`):** the hero inner wrapper (`.home-v1-shell.home-v1-hero`, one element with both classes) uses **`display: flex`**, **`flex-direction: row`**, and **`justify-content: space-between`** so headline column and portrait column stay separated; **`min-width: 0`** on the text column avoids flex overflow clipping.
-- The **hero banner** (`.home-v1-section--hero`) now fills the viewport on larger screens with **`min-height: 100vh`** (fallback) and **`min-height: 100svh`** (modern browsers), plus vertical centering and layered gradient/image background treatment.
-- The hero figure (portrait image in `.home-v1-hero__visual-frame`) is limited by **`--home-v1-hero-portrait-max-height`** on `.home-v1-hero`: default **`min(60vh, 39rem)`** on large displays; **laptop / ~14" MacBook** (two-column hero): **`min(52vh, 31rem)`** when **`(min-width: 1121px) and (max-width: 1680px)`** or **`(min-width: 1121px) and (max-height: 900px)`**; **`min(52vh, 28rem)`** at ≤860px; **`min(48vh, 22rem)`** at ≤560px. On phones (≤560px), hero `min-height` is reset to `auto` to avoid cramped content.
+- The **hero banner** (`.home-v1-section--hero`) uses a shared **`--home-v1-header-height`** token so its first-load size is the visible viewport minus the sticky header: **`min-height: calc(100vh - var(--home-v1-header-height))`** with a modern **`100svh`** override, plus vertical centering and the existing layered gradient/image background treatment.
+- The hero figure (portrait image in `.home-v1-hero__visual-frame`) now respects **`--home-v1-hero-portrait-max-height`** directly by capping frame width with that height-derived value, so the portrait shrinks before the section overflows the first screen. Short-height breakpoints further reduce hero padding, gaps, type sizing, button height, and stat-card insets so common laptop and phone viewports keep the full banner visible beneath the sticky header.
 
 ## Installation
 
@@ -216,7 +216,7 @@ The **Final CTA** block renders after `#contact-us` as `#final-cta` ([`template-
 
 **In-page navigation:** `assets/js/home-v1-smooth-nav.js` intercepts same-page links (`#section-id` or current URL + hash), smooth-scrolls with a sticky-header offset, and updates the URL via `history.pushState` so the browser does not perform a full navigation/reload.
 
-**Translation:** On Home V1, Google’s Website Translator mounts in the **footer** (`#google_translate_element` inside `.site-footer__translate`), beside a **globe icon** pill— not in the header. `autoDisplay` is **off** so Google’s top-of-page banner does not compete with the sticky header. Source language comes from `get_locale()`. To show Google’s auto banner again, set `autoDisplay` to `true` in `aiagency_wez_enqueue_google_translate()` in `functions.php`.
+**Translation:** On Home V1, Google’s Website Translator mounts in the **footer** (`#google_translate_element` inside `.site-footer__translate`), beside a **globe icon** pill— not in the header. `autoDisplay` is **off** so Google’s top-of-page banner does not compete with the sticky header. Source language comes from `get_locale()`. To show Google’s auto banner again, set `autoDisplay` to `true` in `aiagency_wez_enqueue_google_translate()` in `functions.php`. The theme caps the floating `.goog-te-menu-frame` iframe with `max-width` / `max-height` in `style.css` so the language list stays a narrow, scrollable panel instead of stretching across the viewport in many columns.
 
 ### Landing Page
 

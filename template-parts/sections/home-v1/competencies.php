@@ -43,18 +43,18 @@ $args = wp_parse_args(
 		<?php if ( ! empty( $args['items'] ) ) : ?>
 			<div class="home-v1-competencies__list">
 				<?php
-				$default_icon_svg = aiagency_wez_home_v1_competency_default_icon_svg();
-				foreach ( $args['items'] as $item ) :
+				foreach ( $args['items'] as $index => $item ) :
 					$icon       = isset( $item['icon'] ) ? $item['icon'] : array( 'url' => '', 'alt' => '' );
 					$icon_url   = is_array( $icon ) && ! empty( $icon['url'] ) ? $icon['url'] : '';
 					$icon_class = 'home-v1-competency__icon' . ( $icon_url ? ' home-v1-competency__icon--image' : ' home-v1-competency__icon--svg' );
+					$icon_svg   = aiagency_wez_home_v1_competency_default_icon_svg( $index );
 					?>
 					<article class="home-v1-competency">
 						<span class="<?php echo esc_attr( $icon_class ); ?>" aria-hidden="true">
 							<?php if ( $icon_url ) : ?>
 								<img src="<?php echo esc_url( $icon_url ); ?>" alt="" width="40" height="40" loading="lazy" decoding="async" />
 							<?php else : ?>
-								<?php echo $default_icon_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- theme-owned inline SVG markup. ?>
+								<?php echo $icon_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- theme-owned inline SVG markup. ?>
 							<?php endif; ?>
 						</span>
 						<div class="home-v1-competency__copy">

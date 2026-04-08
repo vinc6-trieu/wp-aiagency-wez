@@ -197,19 +197,9 @@ while ( have_posts() ) :
 				'status_badge'   => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_status_badge', $page_id ) : '',
 				'title'          => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_title', $page_id ) : '',
 				'description'    => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_description', $page_id ) : '',
+				'email_label'    => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_email_label', $page_id ) : '',
+				'email_value'    => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_email_value', $page_id ) : '',
 				'form_shortcode' => function_exists( 'get_field' ) ? get_field( 'home_v1_contact_form_shortcode', $page_id ) : '',
-			)
-		);
-
-		get_template_part(
-			'template-parts/sections/home-v1/final-cta',
-			null,
-			array(
-				'title'       => function_exists( 'get_field' ) ? get_field( 'home_v1_final_cta_title', $page_id ) : '',
-				'description' => function_exists( 'get_field' ) ? get_field( 'home_v1_final_cta_description', $page_id ) : '',
-				'email'       => function_exists( 'get_field' ) ? get_field( 'home_v1_final_cta_email', $page_id ) : '',
-				'button_text' => function_exists( 'get_field' ) ? get_field( 'home_v1_final_cta_button_text', $page_id ) : '',
-				'button_url'  => function_exists( 'get_field' ) ? get_field( 'home_v1_final_cta_button_url', $page_id ) : '',
 			)
 		);
 		?>
