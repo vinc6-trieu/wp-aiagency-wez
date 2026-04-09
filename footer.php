@@ -90,23 +90,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 			'our-projects' => $is_home_v1 ? '#our-projects' : ( function_exists( 'aiagency_wez_get_home_v1_page_url' ) ? aiagency_wez_get_home_v1_page_url( 'our-projects' ) : home_url( '/#our-projects' ) ),
 			'contact-us'  => $is_home_v1 ? '#contact-us' : ( function_exists( 'aiagency_wez_get_home_v1_page_url' ) ? aiagency_wez_get_home_v1_page_url( 'contact-us' ) : home_url( '/#contact-us' ) ),
 		);
-		$footer_secondary_links = $normalize_link_rows( function_exists( 'get_field' ) ? get_field( 'home_v1_footer_secondary_links', $chrome_page_id ) : array() );
+		$footer_secondary_links = array();
+		for ( $index = 1; $index <= 6; $index++ ) {
+			$field_name = 'home_v1_footer_secondary_link_' . $index;
+			$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
+			$link_item  = $normalize_link_field( $link_value );
+
+			if ( $link_item ) {
+				$footer_secondary_links[] = $link_item;
+			}
+		}
+
 		$footer_legal_custom_links = $normalize_link_rows( function_exists( 'get_field' ) ? get_field( 'home_v1_footer_legal_links', $chrome_page_id ) : array() );
 
 		if ( $footer_email_raw ) {
 			$footer_email = sanitize_email( $footer_email_raw );
-		}
-
-		if ( empty( $footer_secondary_links ) ) {
-			for ( $index = 1; $index <= 3; $index++ ) {
-				$field_name = 'home_v1_footer_secondary_link_' . $index;
-				$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
-				$link_item  = $normalize_link_field( $link_value );
-
-				if ( $link_item ) {
-					$footer_secondary_links[] = $link_item;
-				}
-			}
 		}
 
 		if ( $footer_address ) {

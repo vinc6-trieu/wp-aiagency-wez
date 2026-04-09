@@ -59,37 +59,65 @@
       "placeholder": "Sections"
     },
     {
-      "key": "field_aiagency_wez_home_v1_footer_secondary_links",
-      "label": "Footer Secondary Links",
-      "name": "home_v1_footer_secondary_links",
-      "type": "repeater",
+      "key": "field_aiagency_wez_home_v1_footer_secondary_link_1",
+      "label": "Connect column — link 1",
+      "name": "home_v1_footer_secondary_link_1",
+      "type": "link",
+      "instructions": "When any of these Connect links are set, they replace the default Who We Are / Projects / Contact row (in order 1–6; leave blanks to skip).",
+      "return_format": "array",
       "wrapper": {
-        "width": "100"
-      },
-      "layout": "table",
-      "button_label": "Add Secondary Link",
-      "sub_fields": [
-        {
-          "key": "field_aiagency_wez_home_v1_footer_secondary_links_label",
-          "label": "Label",
-          "name": "label",
-          "type": "text",
-          "wrapper": {
-            "width": "40"
-          },
-          "parent_repeater": "field_aiagency_wez_home_v1_footer_secondary_links"
-        },
-        {
-          "key": "field_aiagency_wez_home_v1_footer_secondary_links_url",
-          "label": "URL",
-          "name": "url",
-          "type": "url",
-          "wrapper": {
-            "width": "60"
-          },
-          "parent_repeater": "field_aiagency_wez_home_v1_footer_secondary_links"
-        }
-      ]
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_secondary_link_2",
+      "label": "Connect column — link 2",
+      "name": "home_v1_footer_secondary_link_2",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_secondary_link_3",
+      "label": "Connect column — link 3",
+      "name": "home_v1_footer_secondary_link_3",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_secondary_link_4",
+      "label": "Connect column — link 4",
+      "name": "home_v1_footer_secondary_link_4",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_secondary_link_5",
+      "label": "Connect column — link 5",
+      "name": "home_v1_footer_secondary_link_5",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_secondary_link_6",
+      "label": "Connect column — link 6",
+      "name": "home_v1_footer_secondary_link_6",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
     },
     {
       "key": "field_aiagency_wez_home_v1_footer_social_linkedin_url",
@@ -1141,5 +1169,5 @@
   "active": true,
   "description": "Fields for the Home Page - Version 1 template.",
   "show_in_rest": 0,
-  "modified": 1774883200
+  "modified": 1775797247
 }

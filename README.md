@@ -158,11 +158,12 @@ Use these fields for Pages assigned to the `Home Page` template in [`page-templa
 
 Use [`page-templates/template-home-v1.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-home-v1.php) with ACF group [`acf-json/group_aiagency_wez_home_page_v1.json`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/acf-json/group_aiagency_wez_home_page_v1.json) (sync in **Custom Fields**). Competency rows support optional icon images:
 
-The **Home V1 footer** lives in [`footer.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/footer.php). It renders three menu columns titled **Explore**, **Connect**, and **Legal**, plus a contact card on the right. `Explore` uses the theme’s primary menu, `Connect` is a fixed set of section anchors, `Legal` shows any available privacy/legal pages, the footer email uses `home_v1_contact_email_value`, LinkedIn uses `home_v1_footer_social_linkedin_url`, and the embedded map appears automatically when `home_v1_footer_address` is filled.
+The **Home V1 footer** lives in [`footer.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/footer.php). It renders three menu columns titled **Explore**, **Connect**, and **Legal**, plus a contact card on the right. `Explore` uses the theme’s primary menu, `Connect` uses `home_v1_footer_secondary_link_1`–`home_v1_footer_secondary_link_6` when set (Link fields, **free ACF**–compatible); otherwise it falls back to fixed section anchors, `Legal` shows any available privacy/legal pages, the footer email uses `home_v1_contact_email_value`, LinkedIn uses `home_v1_footer_social_linkedin_url`, and the embedded map appears automatically when `home_v1_footer_address` is filled.
 
 | Field Name | Type | Notes |
 | ---------- | ---- | ----- |
 | `home_v1_footer_copy` | Textarea | Brand/supporting copy under the footer logo |
+| `home_v1_footer_secondary_link_1` … `home_v1_footer_secondary_link_6` | Link | Optional Connect column links (order preserved; empty slots skipped). **BREAKING:** Replaces the old repeater `home_v1_footer_secondary_links` (Pro-only). Re-sync ACF JSON and re-enter links if you migrated from the repeater. |
 | `home_v1_footer_social_linkedin_url` | URL | Public LinkedIn profile or company page |
 | `home_v1_footer_address` | Textarea | Optional. When filled, the footer shows an embedded map automatically |
 
