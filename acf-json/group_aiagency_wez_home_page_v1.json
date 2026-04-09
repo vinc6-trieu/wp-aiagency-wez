@@ -124,16 +124,6 @@
       "placeholder": "https://instagram.com/example"
     },
     {
-      "key": "field_aiagency_wez_home_v1_footer_contact_title",
-      "label": "Footer Contact Title",
-      "name": "home_v1_footer_contact_title",
-      "type": "text",
-      "wrapper": {
-        "width": "50"
-      },
-      "placeholder": "Contact"
-    },
-    {
       "key": "field_aiagency_wez_home_v1_footer_legal_heading",
       "label": "Footer Legal Heading",
       "name": "home_v1_footer_legal_heading",
