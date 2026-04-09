@@ -1217,6 +1217,13 @@
         "operator": "==",
         "value": "page-templates/template-home-v1.php"
       }
+    ],
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-templates/template-welcome-page.php"
+      }
     ]
   ],
   "menu_order": 0,
@@ -1226,7 +1233,7 @@
   "instruction_placement": "label",
   "hide_on_screen": "",
   "active": true,
-  "description": "Fields for the Home Page - Version 1 template.",
+  "description": "Fields for the Home Page - Version 1.",
   "show_in_rest": 0,
-  "modified": 1775758657
+  "modified": 1775761703
 }
