@@ -23,7 +23,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				return null;
 			}
 
-			$title = isset( $value['title'] ) && is_string( $value['title'] ) ? trim( $value['title'] ) : '';
+			$title = '';
+			if ( isset( $value['title'] ) && is_string( $value['title'] ) ) {
+				$title = trim( $value['title'] );
+			} elseif ( isset( $value['label'] ) && is_string( $value['label'] ) ) {
+				$title = trim( $value['label'] );
+			}
 			$url   = isset( $value['url'] ) && is_string( $value['url'] ) ? trim( $value['url'] ) : '';
 
 			if ( '' === $title || '' === $url ) {
@@ -36,6 +41,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 				'target' => isset( $value['target'] ) && is_string( $value['target'] ) && '' !== $value['target'] ? $value['target'] : '',
 			);
 		};
+		$normalize_link_rows = static function ( $rows ) use ( $normalize_link_field ) {
+			if ( ! is_array( $rows ) ) {
+				return array();
+			}
+
+			$links = array();
+
+			foreach ( $rows as $row ) {
+				$link_item = $normalize_link_field( $row );
+
+				if ( $link_item ) {
+					$links[] = $link_item;
+				}
+			}
+
+			return $links;
+		};
 
 		$footer_copy                 = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_copy', $chrome_page_id ) : '';
 		$footer_nav_primary_heading  = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_nav_primary_heading', $chrome_page_id ) : '';
@@ -44,7 +66,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$footer_linkedin_url         = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_social_linkedin_url', $chrome_page_id ) : '';
 		$footer_instagram_url        = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_social_instagram_url', $chrome_page_id ) : '';
 		$footer_address              = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_address', $chrome_page_id ) : '';
-		$footer_contact_title        = function_exists( 'get_field' ) ? get_field( 'home_v1_contact_title', $chrome_page_id ) : '';
+		$footer_contact_title        = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_contact_title', $chrome_page_id ) : '';
+		$contact_section_title       = function_exists( 'get_field' ) ? get_field( 'home_v1_contact_title', $chrome_page_id ) : '';
 		$footer_phone_label          = function_exists( 'get_field' ) ? get_field( 'home_v1_contact_phone_label', $chrome_page_id ) : '';
 		$footer_phone_value          = function_exists( 'get_field' ) ? get_field( 'home_v1_contact_phone_value', $chrome_page_id ) : '';
 		$footer_email_label          = function_exists( 'get_field' ) ? get_field( 'home_v1_contact_email_label', $chrome_page_id ) : '';
@@ -59,6 +82,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$footer_instagram_url        = is_string( $footer_instagram_url ) ? trim( $footer_instagram_url ) : '';
 		$footer_address              = is_string( $footer_address ) ? trim( $footer_address ) : '';
 		$footer_contact_title        = is_string( $footer_contact_title ) ? trim( $footer_contact_title ) : '';
+		$contact_section_title       = is_string( $contact_section_title ) ? trim( $contact_section_title ) : '';
 		$footer_phone_label          = is_string( $footer_phone_label ) ? trim( $footer_phone_label ) : '';
 		$footer_phone_value          = is_string( $footer_phone_value ) ? trim( $footer_phone_value ) : '';
 		$footer_email_label          = is_string( $footer_email_label ) ? trim( $footer_email_label ) : '';
@@ -68,20 +92,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 			'our-projects' => $is_home_v1 ? '#our-projects' : ( function_exists( 'aiagency_wez_get_home_v1_page_url' ) ? aiagency_wez_get_home_v1_page_url( 'our-projects' ) : home_url( '/#our-projects' ) ),
 			'contact-us'  => $is_home_v1 ? '#contact-us' : ( function_exists( 'aiagency_wez_get_home_v1_page_url' ) ? aiagency_wez_get_home_v1_page_url( 'contact-us' ) : home_url( '/#contact-us' ) ),
 		);
-		$footer_secondary_links = array();
-		$footer_legal_custom_links = array();
+		$footer_secondary_links = $normalize_link_rows( function_exists( 'get_field' ) ? get_field( 'home_v1_footer_secondary_links', $chrome_page_id ) : array() );
+		$footer_legal_custom_links = $normalize_link_rows( function_exists( 'get_field' ) ? get_field( 'home_v1_footer_legal_links', $chrome_page_id ) : array() );
 
 		if ( $footer_email_raw ) {
 			$footer_email = sanitize_email( $footer_email_raw );
 		}
 
-		for ( $index = 1; $index <= 3; $index++ ) {
-			$field_name = 'home_v1_footer_secondary_link_' . $index;
-			$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
-			$link_item  = $normalize_link_field( $link_value );
+		if ( empty( $footer_secondary_links ) ) {
+			for ( $index = 1; $index <= 3; $index++ ) {
+				$field_name = 'home_v1_footer_secondary_link_' . $index;
+				$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
+				$link_item  = $normalize_link_field( $link_value );
 
-			if ( $link_item ) {
-				$footer_secondary_links[] = $link_item;
+				if ( $link_item ) {
+					$footer_secondary_links[] = $link_item;
+				}
 			}
 		}
 
@@ -123,13 +149,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$legal_page_ids[] = $legal_page->ID;
 		}
 
-		for ( $index = 1; $index <= 4; $index++ ) {
-			$field_name = 'home_v1_footer_legal_link_' . $index;
-			$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
-			$link_item  = $normalize_link_field( $link_value );
+		if ( empty( $footer_legal_custom_links ) ) {
+			for ( $index = 1; $index <= 4; $index++ ) {
+				$field_name = 'home_v1_footer_legal_link_' . $index;
+				$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
+				$link_item  = $normalize_link_field( $link_value );
 
-			if ( $link_item ) {
-				$footer_legal_custom_links[] = $link_item;
+				if ( $link_item ) {
+					$footer_legal_custom_links[] = $link_item;
+				}
 			}
 		}
 
@@ -223,7 +251,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php if ( $footer_has_contact ) : ?>
 					<div class="site-footer__meta">
 						<div class="site-footer__contact-card">
-							<p class="site-footer__contact-title"><?php echo esc_html( $footer_contact_title ?: __( 'Contact', 'aiagency-wez' ) ); ?></p>
+							<p class="site-footer__contact-title"><?php echo esc_html( $footer_contact_title ?: $contact_section_title ?: __( 'Contact', 'aiagency-wez' ) ); ?></p>
 
 							<div class="site-footer__contact-items">
 								<?php if ( $footer_phone_value ) : ?>

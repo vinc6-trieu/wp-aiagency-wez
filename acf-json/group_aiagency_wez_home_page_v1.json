@@ -59,34 +59,37 @@
       "placeholder": "Sections"
     },
     {
-      "key": "field_aiagency_wez_home_v1_footer_secondary_link_1",
-      "label": "Footer Secondary Link 1",
-      "name": "home_v1_footer_secondary_link_1",
-      "type": "link",
+      "key": "field_aiagency_wez_home_v1_footer_secondary_links",
+      "label": "Footer Secondary Links",
+      "name": "home_v1_footer_secondary_links",
+      "type": "repeater",
       "wrapper": {
-        "width": "33"
+        "width": "100"
       },
-      "return_format": "array"
-    },
-    {
-      "key": "field_aiagency_wez_home_v1_footer_secondary_link_2",
-      "label": "Footer Secondary Link 2",
-      "name": "home_v1_footer_secondary_link_2",
-      "type": "link",
-      "wrapper": {
-        "width": "33"
-      },
-      "return_format": "array"
-    },
-    {
-      "key": "field_aiagency_wez_home_v1_footer_secondary_link_3",
-      "label": "Footer Secondary Link 3",
-      "name": "home_v1_footer_secondary_link_3",
-      "type": "link",
-      "wrapper": {
-        "width": "33"
-      },
-      "return_format": "array"
+      "layout": "table",
+      "button_label": "Add Secondary Link",
+      "sub_fields": [
+        {
+          "key": "field_aiagency_wez_home_v1_footer_secondary_links_label",
+          "label": "Label",
+          "name": "label",
+          "type": "text",
+          "wrapper": {
+            "width": "40"
+          },
+          "parent_repeater": "field_aiagency_wez_home_v1_footer_secondary_links"
+        },
+        {
+          "key": "field_aiagency_wez_home_v1_footer_secondary_links_url",
+          "label": "URL",
+          "name": "url",
+          "type": "url",
+          "wrapper": {
+            "width": "60"
+          },
+          "parent_repeater": "field_aiagency_wez_home_v1_footer_secondary_links"
+        }
+      ]
     },
     {
       "key": "field_aiagency_wez_home_v1_footer_social_linkedin_url",
@@ -121,6 +124,16 @@
       "placeholder": "https://instagram.com/example"
     },
     {
+      "key": "field_aiagency_wez_home_v1_footer_contact_title",
+      "label": "Footer Contact Title",
+      "name": "home_v1_footer_contact_title",
+      "type": "text",
+      "wrapper": {
+        "width": "50"
+      },
+      "placeholder": "Contact"
+    },
+    {
       "key": "field_aiagency_wez_home_v1_footer_legal_heading",
       "label": "Footer Legal Heading",
       "name": "home_v1_footer_legal_heading",
@@ -131,44 +144,37 @@
       "placeholder": "Legal"
     },
     {
-      "key": "field_aiagency_wez_home_v1_footer_legal_link_1",
-      "label": "Footer Legal Link 1",
-      "name": "home_v1_footer_legal_link_1",
-      "type": "link",
+      "key": "field_aiagency_wez_home_v1_footer_legal_links",
+      "label": "Footer Legal Links",
+      "name": "home_v1_footer_legal_links",
+      "type": "repeater",
       "wrapper": {
-        "width": "50"
+        "width": "100"
       },
-      "return_format": "array"
-    },
-    {
-      "key": "field_aiagency_wez_home_v1_footer_legal_link_2",
-      "label": "Footer Legal Link 2",
-      "name": "home_v1_footer_legal_link_2",
-      "type": "link",
-      "wrapper": {
-        "width": "50"
-      },
-      "return_format": "array"
-    },
-    {
-      "key": "field_aiagency_wez_home_v1_footer_legal_link_3",
-      "label": "Footer Legal Link 3",
-      "name": "home_v1_footer_legal_link_3",
-      "type": "link",
-      "wrapper": {
-        "width": "50"
-      },
-      "return_format": "array"
-    },
-    {
-      "key": "field_aiagency_wez_home_v1_footer_legal_link_4",
-      "label": "Footer Legal Link 4",
-      "name": "home_v1_footer_legal_link_4",
-      "type": "link",
-      "wrapper": {
-        "width": "50"
-      },
-      "return_format": "array"
+      "layout": "table",
+      "button_label": "Add Legal Link",
+      "sub_fields": [
+        {
+          "key": "field_aiagency_wez_home_v1_footer_legal_links_label",
+          "label": "Label",
+          "name": "label",
+          "type": "text",
+          "wrapper": {
+            "width": "40"
+          },
+          "parent_repeater": "field_aiagency_wez_home_v1_footer_legal_links"
+        },
+        {
+          "key": "field_aiagency_wez_home_v1_footer_legal_links_url",
+          "label": "URL",
+          "name": "url",
+          "type": "url",
+          "wrapper": {
+            "width": "60"
+          },
+          "parent_repeater": "field_aiagency_wez_home_v1_footer_legal_links"
+        }
+      ]
     },
     {
       "key": "field_aiagency_wez_home_v1_tab_hero",
