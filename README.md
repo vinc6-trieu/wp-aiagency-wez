@@ -158,6 +158,16 @@ Use these fields for Pages assigned to the `Home Page` template in [`page-templa
 
 Use [`page-templates/template-home-v1.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-home-v1.php) with ACF group [`acf-json/group_aiagency_wez_home_page_v1.json`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/acf-json/group_aiagency_wez_home_page_v1.json) (sync in **Custom Fields**). Competency rows support optional icon images:
 
+The **Home V1 footer** lives in [`footer.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/footer.php). It renders three menu columns titled **Explore**, **Connect**, and **Legal**, plus a contact card on the right. `Explore` uses the theme’s primary menu, `Connect` is a fixed set of section anchors, `Legal` shows any available privacy/legal pages, the footer email uses `home_v1_contact_email_value`, LinkedIn uses `home_v1_footer_social_linkedin_url`, and the embedded map appears automatically when `home_v1_footer_address` is filled.
+
+| Field Name | Type | Notes |
+| ---------- | ---- | ----- |
+| `home_v1_footer_copy` | Textarea | Brand/supporting copy under the footer logo |
+| `home_v1_footer_social_linkedin_url` | URL | Public LinkedIn profile or company page |
+| `home_v1_footer_address` | Textarea | Optional. When filled, the footer shows an embedded map automatically |
+
+Legacy footer heading / Instagram fields remain in ACF JSON for backward compatibility, but the current footer layout does not render them.
+
 | Field Name                  | Type  | Notes                                 |
 | --------------------------- | ----- | ------------------------------------- |
 | `home_v1_competency_1_icon` | Image | Replaces default SVG for competency 1 |
@@ -188,7 +198,7 @@ The **Team** block (`#team`, [`template-parts/sections/home-v1/team.php`](templa
 
 The section renders when any of the title, intro, featured image, or expertise lines are set.
 
-The **Contact** block (`#contact-us`, [`template-parts/sections/home-v1/contact.php`](template-parts/sections/home-v1/contact.php)) uses a horizontal gradient background, a two-column layout (≈96px gap on large screens), a framed portrait card with a glass “system status” bar, and a headline stack plus form. **Layout note:** `home_v1_contact_phone_*` and `home_v1_contact_email_*` are kept in ACF but are not rendered in this section; use the form shortcode or another page for direct phone/email.
+The **Contact** block (`#contact-us`, [`template-parts/sections/home-v1/contact.php`](template-parts/sections/home-v1/contact.php)) uses a horizontal gradient background, a two-column layout (≈96px gap on large screens), a framed portrait card with a glass “system status” bar, and a headline stack plus form. **Layout note:** `home_v1_contact_phone_*` and `home_v1_contact_email_label` are kept in ACF but are not rendered in this section; `home_v1_contact_email_value` is used by the Home V1 footer contact card when filled.
 
 | Field Name | Type | Notes |
 | ---------- | ---- | ----- |
@@ -199,6 +209,7 @@ The **Contact** block (`#contact-us`, [`template-parts/sections/home-v1/contact.
 | `home_v1_contact_status_badge` | Text | Green badge text (defaults if empty) |
 | `home_v1_contact_title` | Textarea | Main headline (sentence case; not forced uppercase) |
 | `home_v1_contact_description` | Textarea | Supporting copy |
+| `home_v1_contact_email_value` | Email | Optional. Reused by the Home V1 footer contact card |
 | `home_v1_contact_form_shortcode` | Textarea | CF7 / WPForms / etc. Shortcodes inherit contact field styling under `#contact-us`. |
 
 The competencies section CTA (`home_v1_competencies_cta_text` / `home_v1_competencies_cta_url`) uses the same **`.home-v1-button--compact`** treatment as elsewhere (stroke **chat** icon, `currentColor` on white). The closing line is **`home_v1_competencies_disclaimer`** (centered; body color with slight opacity; type scale aligned with **Problems we solve** quote breakpoints).

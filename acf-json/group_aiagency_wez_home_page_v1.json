@@ -69,6 +69,18 @@
       "placeholder": "https://linkedin.com/company/example"
     },
     {
+      "key": "field_aiagency_wez_home_v1_footer_address",
+      "label": "Footer Address",
+      "name": "home_v1_footer_address",
+      "type": "textarea",
+      "rows": 3,
+      "wrapper": {
+        "width": "50"
+      },
+      "instructions": "Optional. When filled, the footer shows an embedded map automatically.",
+      "placeholder": "Ecopark Township, Hanoi, Vietnam"
+    },
+    {
       "key": "field_aiagency_wez_home_v1_footer_social_instagram_url",
       "label": "Instagram URL",
       "name": "home_v1_footer_social_instagram_url",
@@ -965,7 +977,7 @@
       "wrapper": {
         "width": "25"
       },
-      "instructions": "Optional. Not shown in the Home V1 contact layout.",
+      "instructions": "Optional. Not shown in the Home V1 contact section, but used in the Home V1 footer contact block when filled.",
       "placeholder": "hello@example.com"
     },
     {

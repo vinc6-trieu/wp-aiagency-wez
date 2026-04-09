@@ -16,55 +16,163 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$current_page_id = get_queried_object_id();
 
 	if ( $is_home_v1 ) :
-		$footer_copy              = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_copy', $current_page_id ) : '';
-		$footer_primary_heading   = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_nav_primary_heading', $current_page_id ) : '';
-		$footer_secondary_heading = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_nav_secondary_heading', $current_page_id ) : '';
-		$footer_linkedin_url      = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_social_linkedin_url', $current_page_id ) : '';
-		$footer_instagram_url     = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_social_instagram_url', $current_page_id ) : '';
-		$footer_copy              = $footer_copy ? $footer_copy : __( 'AI-powered ecosystems that connect knowledge, operations, and customer experience into one intelligent business layer.', 'aiagency-wez' );
-		$footer_primary_heading   = $footer_primary_heading ? $footer_primary_heading : __( 'Navigation', 'aiagency-wez' );
-		$footer_secondary_heading = $footer_secondary_heading ? $footer_secondary_heading : __( 'Sections', 'aiagency-wez' );
+		$footer_copy         = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_copy', $current_page_id ) : '';
+		$footer_linkedin_url = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_social_linkedin_url', $current_page_id ) : '';
+		$footer_address      = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_address', $current_page_id ) : '';
+		$footer_email_raw    = function_exists( 'get_field' ) ? get_field( 'home_v1_contact_email_value', $current_page_id ) : '';
+		$footer_email        = '';
+		$footer_map_url      = '';
+		$footer_copy         = $footer_copy ? $footer_copy : __( 'AI-powered ecosystems that connect knowledge, operations, and customer experience into one intelligent business layer.', 'aiagency-wez' );
+		$footer_address      = is_string( $footer_address ) ? trim( $footer_address ) : '';
+		$footer_email_raw    = is_string( $footer_email_raw ) ? trim( $footer_email_raw ) : '';
+
+		if ( $footer_email_raw ) {
+			$footer_email = sanitize_email( $footer_email_raw );
+		}
+
+		if ( $footer_address ) {
+			$footer_map_url = sprintf(
+				'https://maps.google.com/maps?q=%s&z=15&output=embed',
+				rawurlencode( $footer_address )
+			);
+		}
+
+		$legal_links        = array();
+		$privacy_policy_url = function_exists( 'get_privacy_policy_url' ) ? get_privacy_policy_url() : '';
+
+		if ( is_string( $privacy_policy_url ) && '' !== $privacy_policy_url ) {
+			$legal_links[] = array(
+				'label' => __( 'Privacy Policy', 'aiagency-wez' ),
+				'url'   => $privacy_policy_url,
+			);
+		}
+
+		$legal_page_candidates = array(
+			'terms-and-conditions' => __( 'Terms & Conditions', 'aiagency-wez' ),
+			'terms-of-service'     => __( 'Terms of Service', 'aiagency-wez' ),
+			'cookie-policy'        => __( 'Cookie Policy', 'aiagency-wez' ),
+		);
+		$legal_page_ids        = array();
+
+		foreach ( $legal_page_candidates as $page_slug => $page_label ) {
+			$legal_page = get_page_by_path( $page_slug );
+
+			if ( ! ( $legal_page instanceof WP_Post ) || in_array( $legal_page->ID, $legal_page_ids, true ) ) {
+				continue;
+			}
+
+			$legal_links[]    = array(
+				'label' => $page_label,
+				'url'   => get_permalink( $legal_page ),
+			);
+			$legal_page_ids[] = $legal_page->ID;
+		}
+
+		$footer_has_contact = $footer_email || $footer_linkedin_url || $footer_map_url;
 		?>
 		<footer class="site-footer site-footer--home-v1">
-			<div class="site-footer__inner site-footer__inner--home-v1">
-				<div class="site-footer__brand">
-					<p class="site-footer__logo">
-						<a class="site-branding__link" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-							<?php echo wp_kses_post( aiagency_wez_get_site_logo_img_html() ); ?>
-						</a>
+			<div class="site-footer__inner site-footer__inner--home-v1<?php echo $footer_has_contact ? '' : ' site-footer__inner--home-v1-no-contact'; ?>">
+				<div class="site-footer__content">
+					<div class="site-footer__brand">
+						<p class="site-footer__logo">
+							<a class="site-branding__link" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+								<?php echo wp_kses_post( aiagency_wez_get_site_logo_img_html() ); ?>
+							</a>
+						</p>
+						<p class="site-footer__copy"><?php echo esc_html( $footer_copy ); ?></p>
+					</div>
+
+					<div class="site-footer__menus">
+						<div class="site-footer__menu-group">
+							<p class="site-footer__menu-title"><?php esc_html_e( 'Explore', 'aiagency-wez' ); ?></p>
+							<nav class="site-footer__nav" aria-label="<?php esc_attr_e( 'Explore', 'aiagency-wez' ); ?>">
+								<?php
+								wp_nav_menu(
+									array(
+										'theme_location' => 'primary',
+										'container'      => false,
+										'menu_class'     => 'site-footer__menu',
+										'fallback_cb'    => false,
+									)
+								);
+								?>
+							</nav>
+						</div>
+
+						<div class="site-footer__menu-group">
+							<p class="site-footer__menu-title"><?php esc_html_e( 'Connect', 'aiagency-wez' ); ?></p>
+							<ul class="site-footer__menu">
+								<li><a href="#who-we-are"><?php esc_html_e( 'Who We Are', 'aiagency-wez' ); ?></a></li>
+								<li><a href="#our-projects"><?php esc_html_e( 'Projects', 'aiagency-wez' ); ?></a></li>
+								<li><a href="#contact-us"><?php esc_html_e( 'Contact', 'aiagency-wez' ); ?></a></li>
+							</ul>
+						</div>
+
+						<div class="site-footer__menu-group">
+							<p class="site-footer__menu-title"><?php esc_html_e( 'Legal', 'aiagency-wez' ); ?></p>
+							<ul class="site-footer__menu">
+								<?php if ( $legal_links ) : ?>
+									<?php foreach ( $legal_links as $legal_link ) : ?>
+										<li><a href="<?php echo esc_url( $legal_link['url'] ); ?>"><?php echo esc_html( $legal_link['label'] ); ?></a></li>
+									<?php endforeach; ?>
+								<?php else : ?>
+									<li class="site-footer__menu-note"><?php esc_html_e( 'All rights reserved.', 'aiagency-wez' ); ?></li>
+								<?php endif; ?>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<?php if ( $footer_has_contact ) : ?>
+					<div class="site-footer__meta">
+						<div class="site-footer__contact-card">
+							<p class="site-footer__contact-title"><?php esc_html_e( 'Contact', 'aiagency-wez' ); ?></p>
+
+							<div class="site-footer__contact-items">
+								<?php if ( $footer_email ) : ?>
+									<div class="site-footer__contact-row">
+										<span class="site-footer__contact-label"><?php esc_html_e( 'Email', 'aiagency-wez' ); ?></span>
+										<a class="site-footer__contact-link" href="<?php echo esc_url( 'mailto:' . $footer_email ); ?>">
+											<?php echo esc_html( antispambot( $footer_email ) ); ?>
+										</a>
+									</div>
+								<?php endif; ?>
+
+								<?php if ( $footer_linkedin_url ) : ?>
+									<div class="site-footer__contact-row">
+										<span class="site-footer__contact-label"><?php esc_html_e( 'LinkedIn', 'aiagency-wez' ); ?></span>
+										<a class="site-footer__contact-link" href="<?php echo esc_url( $footer_linkedin_url ); ?>" target="_blank" rel="noreferrer noopener">
+											<?php esc_html_e( 'Visit profile', 'aiagency-wez' ); ?>
+										</a>
+									</div>
+								<?php endif; ?>
+							</div>
+
+							<?php if ( $footer_map_url ) : ?>
+								<div class="site-footer__contact-map">
+									<iframe
+										src="<?php echo esc_url( $footer_map_url ); ?>"
+										title="<?php echo esc_attr( $footer_address ); ?>"
+										loading="lazy"
+										referrerpolicy="no-referrer-when-downgrade"
+										allowfullscreen
+									></iframe>
+								</div>
+							<?php endif; ?>
+						</div>
+					</div>
+				<?php endif; ?>
+
+				<div class="site-footer__utility">
+					<p class="site-footer__legal">
+						<?php
+						printf(
+							/* translators: %s: current year. */
+							esc_html__( '© %s aiagency-wez. All rights reserved.', 'aiagency-wez' ),
+							esc_html( gmdate( 'Y' ) )
+						);
+						?>
 					</p>
-					<p class="site-footer__copy"><?php echo esc_html( $footer_copy ); ?></p>
-				</div>
-
-				<div class="site-footer__menus">
-					<div class="site-footer__menu-group">
-						<p class="site-footer__menu-title"><?php echo esc_html( $footer_primary_heading ); ?></p>
-						<nav class="site-footer__nav" aria-label="<?php echo esc_attr( $footer_primary_heading ); ?>">
-							<?php
-							wp_nav_menu(
-								array(
-									'theme_location' => 'primary',
-									'container'      => false,
-									'menu_class'     => 'site-footer__menu',
-									'fallback_cb'    => 'wp_page_menu',
-								)
-							);
-							?>
-						</nav>
-					</div>
-
-					<div class="site-footer__menu-group">
-						<p class="site-footer__menu-title"><?php echo esc_html( $footer_secondary_heading ); ?></p>
-						<ul class="site-footer__menu">
-							<li><a href="#core-competencies"><?php esc_html_e( 'Competencies', 'aiagency-wez' ); ?></a></li>
-							<li><a href="#our-projects"><?php esc_html_e( 'Projects', 'aiagency-wez' ); ?></a></li>
-							<li><a href="#who-we-are"><?php esc_html_e( 'Who We Are', 'aiagency-wez' ); ?></a></li>
-							<li><a href="#contact-us"><?php esc_html_e( 'Contact', 'aiagency-wez' ); ?></a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="site-footer__meta">
 					<div
 						class="site-footer__translate"
 						role="navigation"
@@ -91,34 +199,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 							aria-hidden="true"
 						></div>
 					</div>
-
-					<div class="site-footer__socials">
-						<?php if ( $footer_linkedin_url ) : ?>
-							<a class="site-footer__social-link" href="<?php echo esc_url( $footer_linkedin_url ); ?>" aria-label="<?php esc_attr_e( 'LinkedIn', 'aiagency-wez' ); ?>">
-								<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-									<path d="M6.94 8.5H3.56V20h3.38zm.22-5.03A1.97 1.97 0 0 0 5.2 1.5a1.97 1.97 0 0 0-1.94 1.97A1.94 1.94 0 0 0 5.2 5.41a1.94 1.94 0 0 0 1.96-1.94M20.74 20v-6.31c0-3.38-1.8-4.95-4.2-4.95-1.94 0-2.8 1.07-3.28 1.82V8.5H9.88c.05 1.36 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.69.13-.93.27-.68.88-1.38 1.9-1.38 1.34 0 1.88 1.03 1.88 2.54V20z"/>
-								</svg>
-							</a>
-						<?php endif; ?>
-
-						<?php if ( $footer_instagram_url ) : ?>
-							<a class="site-footer__social-link" href="<?php echo esc_url( $footer_instagram_url ); ?>" aria-label="<?php esc_attr_e( 'Instagram', 'aiagency-wez' ); ?>">
-								<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-									<path d="M7.5 2h9A5.51 5.51 0 0 1 22 7.5v9a5.51 5.51 0 0 1-5.5 5.5h-9A5.51 5.51 0 0 1 2 16.5v-9A5.51 5.51 0 0 1 7.5 2m0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7zm9.45 1.35a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1M12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86m0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66"/>
-								</svg>
-							</a>
-						<?php endif; ?>
-					</div>
-
-					<p class="site-footer__legal">
-						<?php
-						printf(
-							/* translators: %s: current year. */
-							esc_html__( '© %s aiagency-wez. All rights reserved.', 'aiagency-wez' ),
-							esc_html( gmdate( 'Y' ) )
-						);
-						?>
-					</p>
 				</div>
 			</div>
 		</footer>
