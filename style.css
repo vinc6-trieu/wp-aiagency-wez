@@ -2369,6 +2369,7 @@ body.aiagency-wez-home-v1-template,
 
   .home-v1-hero__title {
     font-size: clamp(1.85rem, 3.6vw, 3.35rem);
+    max-width: 15.5ch;
   }
 
   .home-v1-hero__visual {
@@ -4404,19 +4405,19 @@ iframe.goog-te-menu-frame,
     justify-content: flex-start;
   }
 
-  .site-footer__translate {
+  .site-footer--home-v1 .site-footer__translate {
     justify-content: flex-start;
     width: 100%;
     max-width: 20rem;
   }
 
-  .site-footer__translate-mount {
+  .site-footer--home-v1 .site-footer__translate-mount {
     flex: 1 1 auto;
     max-width: none;
   }
 
-  .site-footer__translate-mount .goog-te-gadget .goog-te-combo,
-  .site-footer__translate-mount .goog-te-gadget-simple .goog-te-menu-value {
+  .site-footer--home-v1 .site-footer__translate-mount .goog-te-gadget .goog-te-combo,
+  .site-footer--home-v1 .site-footer__translate-mount .goog-te-gadget-simple .goog-te-menu-value {
     max-width: none !important;
   }
 
@@ -4427,6 +4428,23 @@ iframe.goog-te-menu-frame,
 }
 
 @media (min-width: 768px) and (max-width: 1120px) {
+  .site-header__inner--home-v1 {
+    padding-inline: 1.5rem;
+  }
+
+  .site-header__nav-group {
+    flex-wrap: nowrap;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .main-navigation--home-v1 ul {
+    gap: 0.8rem;
+  }
+
+  .site-header__translate {
+    align-self: center;
+  }
+
   .home-v1-section--hero {
     justify-content: center;
     padding: 1.35rem 0 1rem;
