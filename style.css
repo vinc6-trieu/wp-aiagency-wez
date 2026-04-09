@@ -2307,7 +2307,7 @@ body.aiagency-wez-home-v1-template,
   width: min(
     100%,
     var(--home-v1-hero-visual-max-width),
-    calc(var(--home-v1-hero-portrait-max-height) * 0.8)
+    calc(var(--home-v1-hero-portrait-max-height) * 1)
   );
   aspect-ratio: 4 / 5;
   overflow: hidden;
@@ -2332,7 +2332,7 @@ body.aiagency-wez-home-v1-template,
   .home-v1-hero {
     grid-template-columns:
       minmax(0, 40rem)
-      minmax(18rem, calc(var(--home-v1-hero-portrait-max-height) * 0.8));
+      minmax(18rem, calc(var(--home-v1-hero-portrait-max-height) * 1));
     justify-content: center;
     gap: clamp(0.45rem, 1vw, 1rem);
     --home-v1-hero-visual-max-width: 33rem;
@@ -4262,7 +4262,7 @@ iframe.goog-te-menu-frame,
     width: min(
       100%,
       32rem,
-      calc(var(--home-v1-hero-portrait-max-height) * 0.8)
+      calc(var(--home-v1-hero-portrait-max-height) * 1)
     );
   }
 
