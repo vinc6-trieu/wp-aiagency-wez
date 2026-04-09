@@ -2252,16 +2252,16 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-hero__title {
-  max-width: 10ch;
+  max-width: none;
   margin: 0;
   color: #ffffff;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(2.35rem, 4.55vw, 4.2rem);
   font-weight: 900;
-  line-height: 0.91;
+  line-height: 1.08;
   letter-spacing: -0.04em;
   text-wrap: balance;
-  white-space: pre-line;
+  white-space: normal;
 }
 
 .home-v1-hero__description {
@@ -2307,7 +2307,7 @@ body.aiagency-wez-home-v1-template,
   width: min(
     100%,
     var(--home-v1-hero-visual-max-width),
-    calc(var(--home-v1-hero-portrait-max-height) * 1)
+    calc(var(--home-v1-hero-portrait-max-height) * 1.05)
   );
   aspect-ratio: 4 / 5;
   overflow: hidden;
@@ -2332,7 +2332,7 @@ body.aiagency-wez-home-v1-template,
   .home-v1-hero {
     grid-template-columns:
       minmax(0, 40rem)
-      minmax(18rem, calc(var(--home-v1-hero-portrait-max-height) * 1));
+      minmax(18rem, calc(var(--home-v1-hero-portrait-max-height) * 1.05));
     justify-content: center;
     gap: clamp(0.45rem, 1vw, 1rem);
     --home-v1-hero-visual-max-width: 33rem;
@@ -2349,6 +2349,12 @@ body.aiagency-wez-home-v1-template,
 
   .home-v1-hero__visual {
     justify-content: flex-start;
+  }
+}
+
+@media (min-width: 861px) {
+  .home-v1-hero__title {
+    white-space: nowrap;
   }
 }
 
@@ -2681,7 +2687,7 @@ body.aiagency-wez-home-v1-template,
   max-width: 52rem;
   color: var(--aiagency-wez-home-v1-accent);
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(1.375rem, 1.8vw, 1.5rem);
+  font-size: 1rem;
   font-weight: 700;
   font-style: italic;
   line-height: 1.33;
@@ -2716,7 +2722,7 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-problems-we-solve__quote {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 }
 
@@ -2745,7 +2751,15 @@ body.aiagency-wez-home-v1-template,
 .home-v1-competencies
   > .home-v1-section-heading
   .home-v1-section-heading__title {
-  max-width: 14ch;
+  max-width: none;
+}
+
+@media (min-width: 861px) {
+  .home-v1-competencies
+    > .home-v1-section-heading
+    .home-v1-section-heading__title {
+    white-space: nowrap;
+  }
 }
 
 .home-v1-competencies > .home-v1-section-heading .home-v1-section-heading__bar {
@@ -2862,7 +2876,7 @@ body.aiagency-wez-home-v1-template,
   margin: 0;
   color: var(--aiagency-wez-home-v1-accent);
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(1.5rem, 1.65vw, 1.75rem);
+  font-size: clamp(0.5rem, calc(1.65vw - 1rem), 0.75rem);
   font-weight: 700;
   line-height: 1.25;
 }
@@ -2918,7 +2932,7 @@ body.aiagency-wez-home-v1-template,
 .home-v1-competencies__disclaimer {
   color: var(--aiagency-wez-home-v1-body);
   font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 400;
   font-style: italic;
   line-height: 1.62;
@@ -2927,7 +2941,7 @@ body.aiagency-wez-home-v1-template,
 
 @media (min-width: 641px) {
   .home-v1-competencies__disclaimer {
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1.4;
   }
 }
@@ -3303,6 +3317,7 @@ body.aiagency-wez-home-v1-template,
   color: var(--aiagency-wez-home-v1-body);
   font-size: 1.125rem;
   line-height: 1.62;
+  text-align: justify;
 }
 
 .home-v1-about__highlight {
@@ -4262,7 +4277,7 @@ iframe.goog-te-menu-frame,
     width: min(
       100%,
       32rem,
-      calc(var(--home-v1-hero-portrait-max-height) * 1)
+      calc(var(--home-v1-hero-portrait-max-height) * 1.05)
     );
   }
 
@@ -4408,7 +4423,7 @@ iframe.goog-te-menu-frame,
 
   .home-v1-hero__title {
     font-size: clamp(2.35rem, 4.9vw, 3.55rem);
-    line-height: 0.93;
+    line-height: 1.08;
   }
 
   .home-v1-hero__description {
@@ -4483,7 +4498,7 @@ iframe.goog-te-menu-frame,
   }
 
   .home-v1-hero__title {
-    max-width: 11ch;
+    max-width: none;
     font-size: clamp(2.75rem, 6vw, 3.95rem);
   }
 
@@ -4628,7 +4643,7 @@ iframe.goog-te-menu-frame,
 
   .home-v1-hero__title {
     font-size: clamp(1.9rem, 7.4vw, 2.55rem);
-    line-height: 0.96;
+    line-height: 1.1;
   }
 
   .home-v1-hero__description {
