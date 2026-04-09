@@ -2252,13 +2252,13 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-hero__title {
-  max-width: none;
+  max-width: 12ch;
   margin: 0;
   color: #ffffff;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(2.05rem, 4.1vw, 3.75rem);
   font-weight: 900;
-  line-height: 1.08;
+  line-height: 1.16;
   letter-spacing: -0.04em;
   text-wrap: balance;
   white-space: normal;
@@ -2354,7 +2354,7 @@ body.aiagency-wez-home-v1-template,
 
 @media (min-width: 861px) {
   .home-v1-hero__title {
-    white-space: nowrap;
+    white-space: normal;
   }
 }
 
@@ -2894,13 +2894,6 @@ body.aiagency-wez-home-v1-template,
   color: var(--aiagency-wez-home-v1-body);
   font-size: 1rem;
   line-height: 1.5;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  overflow: hidden;
-  min-height: calc(1.5em * 3);
-  max-height: calc(1.5em * 3);
 }
 
 .home-v1-competencies__footer {
@@ -3584,7 +3577,7 @@ body.aiagency-wez-home-v1-template,
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(2.25rem, 5vw, 3.75rem);
   font-weight: 900;
-  line-height: 1;
+  line-height: 1.16;
   letter-spacing: -0.03em;
   text-transform: none;
 }
@@ -4438,7 +4431,7 @@ iframe.goog-te-menu-frame,
 
   .home-v1-hero__title {
     font-size: clamp(2.05rem, 4.45vw, 3.15rem);
-    line-height: 1.08;
+    line-height: 1.16;
   }
 
   .home-v1-hero__description {
@@ -4658,7 +4651,7 @@ iframe.goog-te-menu-frame,
 
   .home-v1-hero__title {
     font-size: clamp(1.64rem, 6.9vw, 2.25rem);
-    line-height: 1.1;
+    line-height: 1.16;
   }
 
   .home-v1-hero__description {
