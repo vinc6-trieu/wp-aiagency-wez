@@ -1349,6 +1349,30 @@ body.aiagency-wez-home-v1-template,
   transform: translateY(-1px);
 }
 
+@media (min-width: 1121px) and (max-width: 1240px) {
+  .site-header--home-v1 .site-branding__logo {
+    max-width: min(340px, 44vw);
+  }
+
+  .site-header--home-v1 .site-header__nav-group {
+    flex-wrap: nowrap;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .site-header--home-v1 .main-navigation--home-v1 ul {
+    gap: 1rem;
+  }
+
+  .site-header--home-v1 .site-header__cta {
+    padding: 0.4rem 1.15rem;
+    font-size: 0.82rem;
+  }
+
+  .site-header--home-v1 .site-header__translate {
+    margin-left: 0;
+  }
+}
+
 .home-v1-page {
   overflow: clip;
 }
@@ -2252,7 +2276,7 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-hero__title {
-  max-width: 12ch;
+  max-width: 14ch;
   margin: 0;
   color: #ffffff;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -2800,7 +2824,7 @@ body.aiagency-wez-home-v1-template,
   width: 100%;
   margin: 0;
   min-height: 22.375rem;
-  padding: 2.5rem;
+  padding: 2rem;
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -2957,6 +2981,16 @@ body.aiagency-wez-home-v1-template,
 @media (max-width: 1120px) {
   .home-v1-competencies__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-v1-competency h3 {
+    display: block;
+    -webkit-box-orient: initial;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: hidden;
+    min-height: calc(1.25em * 3);
+    max-height: calc(1.25em * 3);
   }
 }
 
