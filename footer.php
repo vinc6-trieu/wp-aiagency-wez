@@ -41,23 +41,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				'target' => isset( $value['target'] ) && is_string( $value['target'] ) && '' !== $value['target'] ? $value['target'] : '',
 			);
 		};
-		$normalize_link_rows = static function ( $rows ) use ( $normalize_link_field ) {
-			if ( ! is_array( $rows ) ) {
-				return array();
-			}
-
-			$links = array();
-
-			foreach ( $rows as $row ) {
-				$link_item = $normalize_link_field( $row );
-
-				if ( $link_item ) {
-					$links[] = $link_item;
-				}
-			}
-
-			return $links;
-		};
 
 		$footer_copy                 = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_copy', $chrome_page_id ) : '';
 		$footer_nav_primary_heading  = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_nav_primary_heading', $chrome_page_id ) : '';
@@ -90,8 +73,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 			'our-projects' => $is_home_v1 ? '#our-projects' : ( function_exists( 'aiagency_wez_get_home_v1_page_url' ) ? aiagency_wez_get_home_v1_page_url( 'our-projects' ) : home_url( '/#our-projects' ) ),
 			'contact-us'  => $is_home_v1 ? '#contact-us' : ( function_exists( 'aiagency_wez_get_home_v1_page_url' ) ? aiagency_wez_get_home_v1_page_url( 'contact-us' ) : home_url( '/#contact-us' ) ),
 		);
+		$footer_primary_links = array();
+		for ( $index = 1; $index <= 5; $index++ ) {
+			$field_name = 'home_v1_footer_primary_link_' . $index;
+			$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
+			$link_item  = $normalize_link_field( $link_value );
+
+			if ( $link_item ) {
+				$footer_primary_links[] = $link_item;
+			}
+		}
 		$footer_secondary_links = array();
-		for ( $index = 1; $index <= 6; $index++ ) {
+		for ( $index = 1; $index <= 5; $index++ ) {
 			$field_name = 'home_v1_footer_secondary_link_' . $index;
 			$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
 			$link_item  = $normalize_link_field( $link_value );
@@ -101,7 +94,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 			}
 		}
 
-		$footer_legal_custom_links = $normalize_link_rows( function_exists( 'get_field' ) ? get_field( 'home_v1_footer_legal_links', $chrome_page_id ) : array() );
+		$footer_legal_custom_links = array();
+		for ( $index = 1; $index <= 5; $index++ ) {
+			$field_name = 'home_v1_footer_legal_link_' . $index;
+			$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
+			$link_item  = $normalize_link_field( $link_value );
+
+			if ( $link_item ) {
+				$footer_legal_custom_links[] = $link_item;
+			}
+		}
 
 		if ( $footer_email_raw ) {
 			$footer_email = sanitize_email( $footer_email_raw );
@@ -145,18 +147,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$legal_page_ids[] = $legal_page->ID;
 		}
 
-		if ( empty( $footer_legal_custom_links ) ) {
-			for ( $index = 1; $index <= 4; $index++ ) {
-				$field_name = 'home_v1_footer_legal_link_' . $index;
-				$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
-				$link_item  = $normalize_link_field( $link_value );
-
-				if ( $link_item ) {
-					$footer_legal_custom_links[] = $link_item;
-				}
-			}
-		}
-
 		if ( $footer_secondary_links ) {
 			$home_v1_section_links = $footer_secondary_links;
 		}
@@ -187,16 +177,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<div class="site-footer__menu-group">
 							<p class="site-footer__menu-title"><?php echo esc_html( $footer_nav_primary_heading ?: __( 'Explore', 'aiagency-wez' ) ); ?></p>
 							<nav class="site-footer__nav" aria-label="<?php esc_attr_e( 'Explore', 'aiagency-wez' ); ?>">
-								<?php
-								wp_nav_menu(
-									array(
-										'theme_location' => 'primary',
-										'container'      => false,
-										'menu_class'     => 'site-footer__menu',
-										'fallback_cb'    => false,
-									)
-								);
-								?>
+								<?php if ( $footer_primary_links ) : ?>
+									<ul class="site-footer__menu">
+										<?php foreach ( $footer_primary_links as $footer_primary_item ) : ?>
+											<li>
+												<a
+													href="<?php echo esc_url( $footer_primary_item['url'] ); ?>"
+													<?php echo ! empty( $footer_primary_item['target'] ) ? ' target="' . esc_attr( $footer_primary_item['target'] ) . '" rel="noreferrer noopener"' : ''; ?>
+												>
+													<?php echo esc_html( $footer_primary_item['title'] ); ?>
+												</a>
+											</li>
+										<?php endforeach; ?>
+									</ul>
+								<?php else : ?>
+									<?php
+									wp_nav_menu(
+										array(
+											'theme_location' => 'primary',
+											'container'      => false,
+											'menu_class'     => 'site-footer__menu',
+											'fallback_cb'    => false,
+										)
+									);
+									?>
+								<?php endif; ?>
 							</nav>
 						</div>
 

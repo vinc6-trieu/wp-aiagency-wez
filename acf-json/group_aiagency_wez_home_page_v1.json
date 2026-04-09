@@ -49,6 +49,57 @@
       "placeholder": "Navigation"
     },
     {
+      "key": "field_aiagency_wez_home_v1_footer_primary_link_1",
+      "label": "Explore column — link 1",
+      "name": "home_v1_footer_primary_link_1",
+      "type": "link",
+      "instructions": "Optional. When any Explore link is set, these replace the theme primary menu in the footer (order 1–5; blanks skipped).",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_primary_link_2",
+      "label": "Explore column — link 2",
+      "name": "home_v1_footer_primary_link_2",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_primary_link_3",
+      "label": "Explore column — link 3",
+      "name": "home_v1_footer_primary_link_3",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_primary_link_4",
+      "label": "Explore column — link 4",
+      "name": "home_v1_footer_primary_link_4",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_primary_link_5",
+      "label": "Explore column — link 5",
+      "name": "home_v1_footer_primary_link_5",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
       "key": "field_aiagency_wez_home_v1_footer_nav_secondary_heading",
       "label": "Footer Secondary Nav Heading",
       "name": "home_v1_footer_nav_secondary_heading",
@@ -63,7 +114,7 @@
       "label": "Connect column — link 1",
       "name": "home_v1_footer_secondary_link_1",
       "type": "link",
-      "instructions": "When any of these Connect links are set, they replace the default Who We Are / Projects / Contact row (in order 1–6; leave blanks to skip).",
+      "instructions": "When any Connect link is set, these replace the default Who We Are / Projects / Contact row (order 1–5; blanks skipped).",
       "return_format": "array",
       "wrapper": {
         "width": "50"
@@ -103,16 +154,6 @@
       "key": "field_aiagency_wez_home_v1_footer_secondary_link_5",
       "label": "Connect column — link 5",
       "name": "home_v1_footer_secondary_link_5",
-      "type": "link",
-      "return_format": "array",
-      "wrapper": {
-        "width": "50"
-      }
-    },
-    {
-      "key": "field_aiagency_wez_home_v1_footer_secondary_link_6",
-      "label": "Connect column — link 6",
-      "name": "home_v1_footer_secondary_link_6",
       "type": "link",
       "return_format": "array",
       "wrapper": {
@@ -162,37 +203,55 @@
       "placeholder": "Legal"
     },
     {
-      "key": "field_aiagency_wez_home_v1_footer_legal_links",
-      "label": "Footer Legal Links",
-      "name": "home_v1_footer_legal_links",
-      "type": "repeater",
+      "key": "field_aiagency_wez_home_v1_footer_legal_link_1",
+      "label": "Legal column — link 1",
+      "name": "home_v1_footer_legal_link_1",
+      "type": "link",
+      "instructions": "Optional. When any Legal link is set, these replace auto-detected privacy / terms pages (order 1–5; blanks skipped).",
+      "return_format": "array",
       "wrapper": {
-        "width": "100"
-      },
-      "layout": "table",
-      "button_label": "Add Legal Link",
-      "sub_fields": [
-        {
-          "key": "field_aiagency_wez_home_v1_footer_legal_links_label",
-          "label": "Label",
-          "name": "label",
-          "type": "text",
-          "wrapper": {
-            "width": "40"
-          },
-          "parent_repeater": "field_aiagency_wez_home_v1_footer_legal_links"
-        },
-        {
-          "key": "field_aiagency_wez_home_v1_footer_legal_links_url",
-          "label": "URL",
-          "name": "url",
-          "type": "url",
-          "wrapper": {
-            "width": "60"
-          },
-          "parent_repeater": "field_aiagency_wez_home_v1_footer_legal_links"
-        }
-      ]
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_legal_link_2",
+      "label": "Legal column — link 2",
+      "name": "home_v1_footer_legal_link_2",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_legal_link_3",
+      "label": "Legal column — link 3",
+      "name": "home_v1_footer_legal_link_3",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_legal_link_4",
+      "label": "Legal column — link 4",
+      "name": "home_v1_footer_legal_link_4",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_legal_link_5",
+      "label": "Legal column — link 5",
+      "name": "home_v1_footer_legal_link_5",
+      "type": "link",
+      "return_format": "array",
+      "wrapper": {
+        "width": "50"
+      }
     },
     {
       "key": "field_aiagency_wez_home_v1_tab_hero",
@@ -1169,5 +1228,5 @@
   "active": true,
   "description": "Fields for the Home Page - Version 1 template.",
   "show_in_rest": 0,
-  "modified": 1775797247
+  "modified": 1775758657
 }
