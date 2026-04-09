@@ -2276,7 +2276,7 @@ body.aiagency-wez-home-v1-template,
 }
 
 .home-v1-hero__title {
-  max-width: 14ch;
+  max-width: 17ch;
   margin: 0;
   color: #ffffff;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -2364,12 +2364,12 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-hero__content {
-    max-width: 31rem;
+    max-width: 39rem;
   }
 
   .home-v1-hero__title {
     font-size: clamp(1.85rem, 3.6vw, 3.35rem);
-    max-width: 15.5ch;
+    max-width: 17ch;
   }
 
   .home-v1-hero__visual {
@@ -4232,7 +4232,10 @@ body.aiagency-wez-home-v1-template,
 .site-footer__translate-mount .goog-te-gadget-simple .goog-te-menu-value span {
   color: inherit !important;
   font:
-    600 0.75rem/1.35 "Poppins", "Helvetica Neue", Helvetica, Arial,
+    600 0.75rem/1.35 "Poppins",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
     sans-serif !important;
 }
 
@@ -4416,8 +4419,14 @@ iframe.goog-te-menu-frame,
     max-width: none;
   }
 
-  .site-footer--home-v1 .site-footer__translate-mount .goog-te-gadget .goog-te-combo,
-  .site-footer--home-v1 .site-footer__translate-mount .goog-te-gadget-simple .goog-te-menu-value {
+  .site-footer--home-v1
+    .site-footer__translate-mount
+    .goog-te-gadget
+    .goog-te-combo,
+  .site-footer--home-v1
+    .site-footer__translate-mount
+    .goog-te-gadget-simple
+    .goog-te-menu-value {
     max-width: none !important;
   }
 
