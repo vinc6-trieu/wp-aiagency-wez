@@ -4055,11 +4055,6 @@ body.aiagency-wez-home-v1-template,
 .site-footer__contact-card {
   display: grid;
   gap: 1.5rem;
-  padding: 1.75rem;
-  border: 1px solid rgba(10, 91, 140, 0.12);
-  border-radius: 1.5rem;
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 20px 45px -30px rgba(10, 91, 140, 0.3);
 }
 
 .site-footer__contact-items {
@@ -4932,10 +4927,6 @@ iframe.goog-te-menu-frame,
   .site-footer__inner--home-v1 {
     width: min(calc(100% - 1rem), 1280px);
     padding-inline: 0.5rem;
-  }
-
-  .site-footer__contact-card {
-    padding: 1.25rem;
   }
 
   .site-footer__contact-row {
