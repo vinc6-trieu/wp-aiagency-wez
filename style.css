@@ -2256,7 +2256,7 @@ body.aiagency-wez-home-v1-template,
   margin: 0;
   color: #ffffff;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(2.25rem, 4.4vw, 4.05rem);
+  font-size: clamp(2.05rem, 4.1vw, 3.75rem);
   font-weight: 900;
   line-height: 1.08;
   letter-spacing: -0.04em;
@@ -2344,7 +2344,7 @@ body.aiagency-wez-home-v1-template,
   }
 
   .home-v1-hero__title {
-    font-size: clamp(2.05rem, 3.9vw, 3.65rem);
+    font-size: clamp(1.85rem, 3.6vw, 3.35rem);
   }
 
   .home-v1-hero__visual {
@@ -4430,7 +4430,7 @@ iframe.goog-te-menu-frame,
   }
 
   .home-v1-hero__title {
-    font-size: clamp(2.25rem, 4.75vw, 3.4rem);
+    font-size: clamp(2.05rem, 4.45vw, 3.15rem);
     line-height: 1.08;
   }
 
@@ -4507,7 +4507,7 @@ iframe.goog-te-menu-frame,
 
   .home-v1-hero__title {
     max-width: none;
-    font-size: clamp(2.6rem, 5.85vw, 3.8rem);
+    font-size: clamp(2.3rem, 5.55vw, 3.5rem);
   }
 
   .home-v1-hero__description {
@@ -4650,7 +4650,7 @@ iframe.goog-te-menu-frame,
   }
 
   .home-v1-hero__title {
-    font-size: clamp(1.8rem, 7.2vw, 2.45rem);
+    font-size: clamp(1.64rem, 6.9vw, 2.25rem);
     line-height: 1.1;
   }
 
@@ -4777,7 +4777,7 @@ iframe.goog-te-menu-frame,
   }
 
   .home-v1-hero__title {
-    font-size: clamp(1.58rem, 7.8vw, 2.05rem);
+    font-size: clamp(1.42rem, 7.5vw, 1.87rem);
   }
 
   .home-v1-hero__description {
@@ -4820,7 +4820,7 @@ iframe.goog-te-menu-frame,
   }
 
   .home-v1-hero__title {
-    font-size: clamp(2.05rem, 4.35vw, 3rem);
+    font-size: clamp(1.85rem, 4.05vw, 2.7rem);
   }
 
   .home-v1-hero__description {
@@ -4860,7 +4860,7 @@ iframe.goog-te-menu-frame,
   }
 
   .home-v1-hero__title {
-    font-size: clamp(1.68rem, 6.75vw, 2.2rem);
+    font-size: clamp(1.52rem, 6.45vw, 2.02rem);
   }
 
   .home-v1-hero__description {
@@ -4894,7 +4894,7 @@ iframe.goog-te-menu-frame,
   }
 
   .home-v1-hero__title {
-    font-size: clamp(1.42rem, 7.2vw, 1.86rem);
+    font-size: clamp(1.28rem, 6.9vw, 1.7rem);
   }
 
   .home-v1-hero__description {
