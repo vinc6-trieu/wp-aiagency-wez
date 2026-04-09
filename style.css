@@ -2868,6 +2868,7 @@ body.aiagency-wez-home-v1-template,
   align-items: flex-start;
   min-width: 0;
   width: 100%;
+  font-size: 1.5rem;
   position: relative;
   z-index: 1;
 }
@@ -2876,7 +2877,7 @@ body.aiagency-wez-home-v1-template,
   margin: 0;
   color: var(--aiagency-wez-home-v1-accent);
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(0.5rem, calc(1.65vw - 1rem), 0.75rem);
+  font-size: 1em;
   font-weight: 700;
   line-height: 1.25;
 }
@@ -2884,8 +2885,15 @@ body.aiagency-wez-home-v1-template,
 .home-v1-competency p {
   margin: 0;
   color: var(--aiagency-wez-home-v1-body);
-  font-size: 1rem;
-  line-height: 1.62;
+  font-size: 1em;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  min-height: calc(1.5em * 3);
+  max-height: calc(1.5em * 3);
 }
 
 .home-v1-competencies__footer {

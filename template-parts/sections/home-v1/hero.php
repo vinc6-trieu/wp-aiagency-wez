@@ -27,6 +27,11 @@ $args = wp_parse_args(
 );
 
 $hero_style = '';
+$hero_title = isset( $args['title'] ) ? trim( (string) $args['title'] ) : '';
+
+if ( 'Meet Lina, Our AI Business Agent' === $hero_title ) {
+	$hero_title = "Meet Lina,\nOur AI Business Agent";
+}
 
 if ( ! empty( $args['background_image']['url'] ) ) {
 	$hero_style = sprintf(
@@ -46,8 +51,8 @@ if ( ! empty( $args['background_image']['url'] ) ) {
 				</p>
 			<?php endif; ?>
 
-			<?php if ( $args['title'] ) : ?>
-				<h1 class="home-v1-hero__title"><?php echo esc_html( $args['title'] ); ?></h1>
+			<?php if ( $hero_title ) : ?>
+				<h1 class="home-v1-hero__title"><?php echo nl2br( esc_html( $hero_title ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h1>
 			<?php endif; ?>
 
 			<?php if ( $args['description'] ) : ?>
