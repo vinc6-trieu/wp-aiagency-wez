@@ -20,7 +20,8 @@ $args = wp_parse_args(
 	)
 );
 
-if ( empty( $args['projects'] ) ) {
+$section_title = isset( $args['title'] ) ? trim( (string) $args['title'] ) : '';
+if ( $section_title === '' || empty( $args['projects'] ) ) {
 	return;
 }
 ?>
@@ -29,9 +30,7 @@ if ( empty( $args['projects'] ) ) {
 	<div class="home-v1-shell">
 		<div class="home-v1-split-heading">
 			<div class="home-v1-split-heading__main">
-				<?php if ( $args['title'] ) : ?>
-					<h2><?php echo esc_html( $args['title'] ); ?></h2>
-				<?php endif; ?>
+				<h2><?php echo esc_html( $section_title ); ?></h2>
 				<span class="home-v1-split-heading__line" aria-hidden="true"></span>
 				<?php if ( $args['all_link_text'] && $args['all_link_url'] ) : ?>
 					<a class="home-v1-inline-link" href="<?php echo esc_url( $args['all_link_url'] ); ?>"><?php echo esc_html( $args['all_link_text'] ); ?></a>

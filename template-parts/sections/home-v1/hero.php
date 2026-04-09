@@ -26,9 +26,12 @@ $args = wp_parse_args(
 	)
 );
 
-$hero_style = '';
 $hero_title = isset( $args['title'] ) ? trim( (string) $args['title'] ) : '';
+if ( $hero_title === '' ) {
+	return;
+}
 
+$hero_style = '';
 if ( 'Meet Lina, Our AI Business Agent' === $hero_title ) {
 	$hero_title = "Meet Lina,\nOur AI Business Agent";
 }

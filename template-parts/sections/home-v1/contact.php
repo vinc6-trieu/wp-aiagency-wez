@@ -25,6 +25,11 @@ $args = wp_parse_args(
 	)
 );
 
+$contact_title = isset( $args['title'] ) ? trim( (string) $args['title'] ) : '';
+if ( $contact_title === '' ) {
+	return;
+}
+
 $visual = is_array( $args['visual_image'] ) ? $args['visual_image'] : array();
 
 $shortcode_output = '';
@@ -92,9 +97,7 @@ if ( $status_badge === '' ) {
 					<p class="home-v1-contact__eyebrow"><?php echo esc_html( $args['eyebrow'] ); ?></p>
 				<?php endif; ?>
 
-				<?php if ( ! empty( $args['title'] ) ) : ?>
-					<h2 class="home-v1-contact__title"><?php echo esc_html( $args['title'] ); ?></h2>
-				<?php endif; ?>
+				<h2 class="home-v1-contact__title"><?php echo esc_html( $contact_title ); ?></h2>
 
 				<?php if ( ! empty( $args['description'] ) ) : ?>
 					<p class="home-v1-contact__description"><?php echo esc_html( $args['description'] ); ?></p>

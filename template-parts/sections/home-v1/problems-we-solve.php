@@ -18,6 +18,11 @@ $args = wp_parse_args(
 	)
 );
 
+$section_title = isset( $args['title'] ) ? trim( (string) $args['title'] ) : '';
+if ( $section_title === '' ) {
+	return;
+}
+
 $items = array_values(
 	array_filter(
 		array_map(
@@ -28,20 +33,14 @@ $items = array_values(
 		)
 	)
 );
-
-if ( ! $args['title'] && ! $items && ! $args['quote'] ) {
-	return;
-}
 ?>
 
 <section id="problems-we-solve" class="home-v1-section home-v1-section--problems-we-solve">
 	<div class="home-v1-shell home-v1-problems-we-solve__inner">
-		<?php if ( $args['title'] ) : ?>
-			<div class="home-v1-section-heading home-v1-section-heading--centered">
-				<h2 class="home-v1-section-heading__title"><?php echo esc_html( $args['title'] ); ?></h2>
-				<span class="home-v1-section-heading__bar" aria-hidden="true"></span>
-			</div>
-		<?php endif; ?>
+		<div class="home-v1-section-heading home-v1-section-heading--centered">
+			<h2 class="home-v1-section-heading__title"><?php echo esc_html( $section_title ); ?></h2>
+			<span class="home-v1-section-heading__bar" aria-hidden="true"></span>
+		</div>
 
 		<?php if ( $items ) : ?>
 			<ul class="home-v1-problems-we-solve__list">

@@ -159,6 +159,8 @@ Use these fields for Pages assigned to the `Home Page` template in [`page-templa
 
 Use [`page-templates/template-home-v1.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-home-v1.php) with ACF group [`acf-json/group_aiagency_wez_home_page_v1.json`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/acf-json/group_aiagency_wez_home_page_v1.json) (sync in **Custom Fields**). [`page-templates/template-welcome-page.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/page-templates/template-welcome-page.php) is an alternate template label that renders the same sections and `home_v1_*` fields. Competency rows support optional icon images:
 
+**Section visibility:** On Home V1, each main stripe is output only when its primary **title** field is non-empty after trimming—**Hero** (`home_v1_hero_title`), **Core competencies** (`home_v1_competencies_title`), **Problems we solve** (`home_v1_problems_title`), **Projects** (`home_v1_projects_title`, and at least one project row), **Who we are** (`home_v1_who_title`), **Team** (`home_v1_team_title`), and **Contact** (`home_v1_contact_title`). Other fields alone do not render a section.
+
 The **Home V1 footer** lives in [`footer.php`](/Users/vincent6/Local%20Sites/wp-base/app/public/wp-content/themes/aiagency-wez/footer.php). It renders three menu columns titled **Explore**, **Connect**, and **Legal**, plus a contact card on the right. Each column supports up to **five** ACF **Link** fields (`home_v1_footer_primary_link_*`, `home_v1_footer_secondary_link_*`, `home_v1_footer_legal_link_*`). When a column has at least one link set, that list is used; otherwise **Explore** falls back to the theme primary menu, **Connect** to fixed section anchors, and **Legal** to auto-detected privacy/terms pages. Link fields are **free ACF**–compatible (no repeater). The footer email uses `home_v1_contact_email_value`, LinkedIn uses `home_v1_footer_social_linkedin_url`, and the embedded map appears automatically when `home_v1_footer_address` is filled.
 
 | Field Name | Type | Notes |
@@ -178,11 +180,11 @@ Legacy footer heading / Instagram fields remain in ACF JSON for backward compati
 | `home_v1_competency_2_icon` | Image | Replaces default SVG for competency 2 |
 | `home_v1_competency_3_icon` | Image | Replaces default SVG for competency 3 |
 
-If an icon field is empty, the theme shows a built-in SVG (white circle, **2px** `#0A5B8C` border, solid check) so the section is never blank.
+If an icon field is empty, the theme shows a built-in SVG (white circle, **2px** `#0A5B8C` border, solid check) so each competency row still has an icon treatment.
 
-The **Problems we solve** block renders between competencies and projects when any of `home_v1_problems_title`, `home_v1_problem_1_text`–`home_v1_problem_6_text`, or `home_v1_problems_quote` is set. Markup lives in [`template-parts/sections/home-v1/problems-we-solve.php`](template-parts/sections/home-v1/problems-we-solve.php) (`#problems-we-solve`). Empty problem lines are skipped so you can use fewer than six bullets.
+The **Problems we solve** block renders between competencies and projects when `home_v1_problems_title` is set (see **Section visibility** above); bullets and the quote still appear when `home_v1_problem_*` / `home_v1_problems_quote` are filled. Markup lives in [`template-parts/sections/home-v1/problems-we-solve.php`](template-parts/sections/home-v1/problems-we-solve.php) (`#problems-we-solve`). Empty problem lines are skipped so you can use fewer than six bullets.
 
-The **Projects** block (`#our-projects`, [`template-parts/sections/home-v1/projects.php`](template-parts/sections/home-v1/projects.php)) uses a four-column grid on large screens, two columns up to **1120px**, and a **horizontal scroll-snap** row at **860px width and below** (CSS only; swipe or trackpad scroll). The track is wrapped in `.home-v1-projects-scroll` with edge-aligned padding; a `.screen-reader-text` hint names the region for assistive tech. Card overlays use a stronger default gradient on those small viewports so copy stays readable without hover.
+The **Projects** block (`#our-projects`, [`template-parts/sections/home-v1/projects.php`](template-parts/sections/home-v1/projects.php)) requires `home_v1_projects_title` and at least one project card (see **Section visibility**). It uses a four-column grid on large screens, two columns up to **1120px**, and a **horizontal scroll-snap** row at **860px width and below** (CSS only; swipe or trackpad scroll). The track is wrapped in `.home-v1-projects-scroll` with edge-aligned padding; a `.screen-reader-text` hint names the region for assistive tech. Card overlays use a stronger default gradient on those small viewports so copy stays readable without hover.
 
 | Field Name | Type | Notes |
 | ---------- | ---- | ----- |
@@ -200,9 +202,9 @@ The **Team** block (`#team`, [`template-parts/sections/home-v1/team.php`](templa
 | `home_v1_team_expertise_heading` | Text | Subheading above the list (defaults to “Our Expertise” when the heading is empty but lines exist) |
 | `home_v1_team_expertise_1_text` … `home_v1_team_expertise_6_text` | Text | One bullet each; empty fields are skipped |
 
-The section renders when any of the title, intro, featured image, or expertise lines are set.
+The section renders when `home_v1_team_title` is set (see **Section visibility**); intro, featured image, and expertise lines still display beneath the heading when configured.
 
-The **Contact** block (`#contact-us`, [`template-parts/sections/home-v1/contact.php`](template-parts/sections/home-v1/contact.php)) uses a horizontal gradient background, a two-column layout (≈96px gap on large screens), a framed portrait card with a glass “system status” bar, and a headline stack plus form. **Layout note:** `home_v1_contact_phone_*` and `home_v1_contact_email_label` are kept in ACF but are not rendered in this section; `home_v1_contact_email_value` is used by the Home V1 footer contact card when filled.
+The **Contact** block (`#contact-us`, [`template-parts/sections/home-v1/contact.php`](template-parts/sections/home-v1/contact.php)) uses a horizontal gradient background, a two-column layout (≈96px gap on large screens), a framed portrait card with a glass “system status” bar, and a headline stack plus form. **`home_v1_contact_title` is required** for the block to appear (see **Section visibility**). **Layout note:** `home_v1_contact_phone_*` and `home_v1_contact_email_label` are kept in ACF but are not rendered in this section; `home_v1_contact_email_value` is used by the Home V1 footer contact card when filled.
 
 | Field Name | Type | Notes |
 | ---------- | ---- | ----- |

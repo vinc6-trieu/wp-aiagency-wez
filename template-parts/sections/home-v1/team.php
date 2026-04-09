@@ -20,6 +20,11 @@ $args = wp_parse_args(
 	)
 );
 
+$section_title = isset( $args['title'] ) ? trim( (string) $args['title'] ) : '';
+if ( $section_title === '' ) {
+	return;
+}
+
 $featured = is_array( $args['featured_image'] ) ? $args['featured_image'] : array();
 $items    = array_values(
 	array_filter(
@@ -48,22 +53,18 @@ if ( $has_featured && ! $has_expertise_content ) {
 
 <section id="team" class="home-v1-section home-v1-section--team">
 	<div class="home-v1-shell">
-		<?php if ( $args['title'] || $args['intro'] ) : ?>
-			<div class="home-v1-split-heading home-v1-split-heading--team">
-				<?php if ( $args['title'] ) : ?>
-					<div class="home-v1-split-heading__main">
-						<h2>
-							<span class="home-v1-split-heading__title-highlight"><?php echo esc_html( $args['title'] ); ?></span>
-						</h2>
-						<span class="home-v1-split-heading__line" aria-hidden="true"></span>
-					</div>
-				<?php endif; ?>
-
-				<?php if ( $args['intro'] ) : ?>
-					<p class="home-v1-split-heading__intro"><?php echo esc_html( $args['intro'] ); ?></p>
-				<?php endif; ?>
+		<div class="home-v1-split-heading home-v1-split-heading--team">
+			<div class="home-v1-split-heading__main">
+				<h2>
+					<span class="home-v1-split-heading__title-highlight"><?php echo esc_html( $section_title ); ?></span>
+				</h2>
+				<span class="home-v1-split-heading__line" aria-hidden="true"></span>
 			</div>
-		<?php endif; ?>
+
+			<?php if ( $args['intro'] ) : ?>
+				<p class="home-v1-split-heading__intro"><?php echo esc_html( $args['intro'] ); ?></p>
+			<?php endif; ?>
+		</div>
 
 		<?php if ( $show_media_column ) : ?>
 			<div class="<?php echo esc_attr( $layout_classes ); ?>">

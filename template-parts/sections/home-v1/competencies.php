@@ -21,6 +21,11 @@ $args = wp_parse_args(
 		'disclaimer' => '',
 	)
 );
+
+$section_title = isset( $args['title'] ) ? trim( (string) $args['title'] ) : '';
+if ( $section_title === '' ) {
+	return;
+}
 ?>
 
 <section id="core-competencies" class="home-v1-section home-v1-section--competencies">
@@ -30,9 +35,7 @@ $args = wp_parse_args(
 				<p class="home-v1-section-heading__eyebrow"><?php echo esc_html( $args['eyebrow'] ); ?></p>
 			<?php endif; ?>
 
-			<?php if ( $args['title'] ) : ?>
-				<h2 class="home-v1-section-heading__title"><?php echo esc_html( $args['title'] ); ?></h2>
-			<?php endif; ?>
+			<h2 class="home-v1-section-heading__title"><?php echo esc_html( $section_title ); ?></h2>
 
 			<span class="home-v1-section-heading__bar" aria-hidden="true"></span>
 		</div>

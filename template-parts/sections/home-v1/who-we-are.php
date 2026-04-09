@@ -20,6 +20,11 @@ $args = wp_parse_args(
 		'highlight'      => '',
 	)
 );
+
+$section_title = isset( $args['title'] ) ? trim( (string) $args['title'] ) : '';
+if ( $section_title === '' ) {
+	return;
+}
 ?>
 
 <section id="who-we-are" class="home-v1-section home-v1-section--about">
@@ -51,9 +56,7 @@ $args = wp_parse_args(
 		<div class="home-v1-about__content">
 			<div class="home-v1-split-heading home-v1-split-heading--tight">
 				<div class="home-v1-split-heading__main">
-					<?php if ( $args['title'] ) : ?>
-						<h2><?php echo esc_html( $args['title'] ); ?></h2>
-					<?php endif; ?>
+					<h2><?php echo esc_html( $section_title ); ?></h2>
 					<span class="home-v1-split-heading__line" aria-hidden="true"></span>
 				</div>
 			</div>

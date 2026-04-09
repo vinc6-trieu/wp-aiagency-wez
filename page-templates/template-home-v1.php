@@ -123,7 +123,8 @@ while ( have_posts() ) :
 		if ( ! is_string( $problems_quote ) ) {
 			$problems_quote = '';
 		}
-		if ( $problems_title || $problem_lines || $problems_quote ) {
+		$problems_title = trim( $problems_title );
+		if ( $problems_title !== '' ) {
 			get_template_part(
 				'template-parts/sections/home-v1/problems-we-solve',
 				null,
@@ -172,7 +173,8 @@ while ( have_posts() ) :
 		if ( ! is_string( $team_expertise_heading ) ) {
 			$team_expertise_heading = '';
 		}
-		if ( $team_title || $team_intro || $team_featured_image['url'] || $team_expertise ) {
+		$team_title = trim( $team_title );
+		if ( $team_title !== '' ) {
 			get_template_part(
 				'template-parts/sections/home-v1/team',
 				null,
