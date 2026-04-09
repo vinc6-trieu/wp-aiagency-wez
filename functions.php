@@ -66,12 +66,34 @@ function aiagency_wez_get_site_logo_img_html() {
 }
 
 /**
+ * Enqueues a theme stylesheet with a filemtime version when the file exists.
+ *
+ * @param string   $handle        Registered style handle.
+ * @param string   $relative_path Theme-relative asset path, starting with "/".
+ * @param string[] $deps          Optional style dependencies.
+ * @return string|false
+ */
+function aiagency_wez_enqueue_versioned_style( $handle, $relative_path, $deps = array() ) {
+	$path = get_template_directory() . $relative_path;
+
+	if ( ! is_readable( $path ) ) {
+		return false;
+	}
+
+	wp_enqueue_style(
+		$handle,
+		get_template_directory_uri() . $relative_path,
+		$deps,
+		(string) filemtime( $path )
+	);
+
+	return $handle;
+}
+
+/**
  * Enqueues theme assets.
  */
 function aiagency_wez_enqueue_assets() {
-	$style_path    = get_stylesheet_directory() . '/style.css';
-	$style_version = file_exists( $style_path ) ? (string) filemtime( $style_path ) : wp_get_theme()->get( 'Version' );
-
 	wp_enqueue_style(
 		'aiagency-wez-fonts',
 		'https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap',
@@ -79,12 +101,33 @@ function aiagency_wez_enqueue_assets() {
 		null
 	);
 
-	wp_enqueue_style(
-		'aiagency-wez-style',
-		get_stylesheet_uri(),
-		array( 'aiagency-wez-fonts' ),
-		$style_version
+	$style_manifest = array(
+		'aiagency-wez-base'               => '/assets/css/base.css',
+		'aiagency-wez-home'               => '/assets/css/home.css',
+		'aiagency-wez-base-responsive'    => '/assets/css/base-responsive.css',
+		'aiagency-wez-home-v1-chrome'     => '/assets/css/home-v1-chrome.css',
+		'aiagency-wez-home-v1-motion'     => '/assets/css/home-v1-motion.css',
+		'aiagency-wez-home-v1-layout'     => '/assets/css/home-v1-layout.css',
+		'aiagency-wez-home-v1-responsive' => '/assets/css/home-v1-responsive.css',
 	);
+
+	$last_style_handle = 'aiagency-wez-fonts';
+
+	foreach ( $style_manifest as $handle => $relative_path ) {
+		$enqueued_handle = aiagency_wez_enqueue_versioned_style( $handle, $relative_path, array( $last_style_handle ) );
+
+		if ( $enqueued_handle ) {
+			$last_style_handle = $enqueued_handle;
+		}
+	}
+
+	if ( aiagency_wez_is_content_page_template() ) {
+		aiagency_wez_enqueue_versioned_style(
+			'aiagency-wez-content-page',
+			'/assets/css/content-page.css',
+			array( $last_style_handle )
+		);
+	}
 
 	$menu_path = get_template_directory() . '/assets/js/site-header-menu.js';
 	if ( is_readable( $menu_path ) ) {
@@ -107,6 +150,24 @@ add_action( 'wp_enqueue_scripts', 'aiagency_wez_enqueue_assets' );
  */
 function aiagency_wez_is_home_v1_template() {
 	return is_page_template( 'page-templates/template-home-v1.php' );
+}
+
+/**
+ * Checks whether the current request uses the Content Page template.
+ *
+ * @return bool
+ */
+function aiagency_wez_is_content_page_template() {
+	return is_page_template( 'page-templates/template-content-page.php' );
+}
+
+/**
+ * Checks whether the current request should use Home V1 header/footer chrome.
+ *
+ * @return bool
+ */
+function aiagency_wez_uses_home_v1_chrome() {
+	return aiagency_wez_is_home_v1_template() || aiagency_wez_is_content_page_template();
 }
 
 /**
@@ -290,6 +351,10 @@ function aiagency_wez_body_classes( $classes ) {
 
 	if ( aiagency_wez_is_home_v1_template() ) {
 		$classes[] = 'aiagency-wez-home-v1-template';
+	}
+
+	if ( aiagency_wez_is_content_page_template() ) {
+		$classes[] = 'aiagency-wez-content-page-template';
 	}
 
 	return $classes;

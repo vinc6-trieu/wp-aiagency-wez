@@ -21,11 +21,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="site-wrapper">
 	<?php
-	$is_home_v1     = function_exists( 'aiagency_wez_is_home_v1_template' ) && aiagency_wez_is_home_v1_template();
-	$home_url       = home_url( '/' );
+	$is_home_v1      = function_exists( 'aiagency_wez_is_home_v1_template' ) && aiagency_wez_is_home_v1_template();
+	$uses_home_v1_ui = function_exists( 'aiagency_wez_uses_home_v1_chrome' ) && aiagency_wez_uses_home_v1_chrome();
+	$home_url        = home_url( '/' );
 	$current_page_id = get_queried_object_id();
 
-	if ( $is_home_v1 ) :
+	if ( $uses_home_v1_ui ) :
 		$header_cta_text = function_exists( 'get_field' ) ? get_field( 'home_v1_header_cta_text', $current_page_id ) : '';
 		$header_cta_url  = function_exists( 'get_field' ) ? get_field( 'home_v1_header_cta_url', $current_page_id ) : '';
 		?>
@@ -81,27 +82,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 							</a>
 						<?php endif; ?>
 
-						<div
-							class="site-header__translate site-footer__translate"
-							role="navigation"
-							aria-label="<?php esc_attr_e( 'Choose site language (Google Translate)', 'aiagency-wez' ); ?>"
-						>
-							<span class="site-header__translate-icon site-footer__translate-icon" aria-hidden="true">
-								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" focusable="false">
-									<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
-									<path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-								</svg>
-							</span>
-							<label class="screen-reader-text" for="site-header-language-switcher"><?php esc_html_e( 'Change language', 'aiagency-wez' ); ?></label>
-							<select
-								id="site-header-language-switcher"
-								class="site-header__translate-select home-v1-language-switcher"
-								data-aiagency-wez-language-switcher
+						<?php if ( $is_home_v1 ) : ?>
+							<div
+								class="site-header__translate site-footer__translate"
+								role="navigation"
+								aria-label="<?php esc_attr_e( 'Choose site language (Google Translate)', 'aiagency-wez' ); ?>"
 							>
-								<option value="en"><?php esc_html_e( 'English', 'aiagency-wez' ); ?></option>
-								<option value="vi"><?php esc_html_e( 'Vietnamese', 'aiagency-wez' ); ?></option>
-							</select>
-						</div>
+								<span class="site-header__translate-icon site-footer__translate-icon" aria-hidden="true">
+									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" focusable="false">
+										<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+										<path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+									</svg>
+								</span>
+								<label class="screen-reader-text" for="site-header-language-switcher"><?php esc_html_e( 'Change language', 'aiagency-wez' ); ?></label>
+								<select
+									id="site-header-language-switcher"
+									class="site-header__translate-select home-v1-language-switcher"
+									data-aiagency-wez-language-switcher
+								>
+									<option value="en"><?php esc_html_e( 'English', 'aiagency-wez' ); ?></option>
+									<option value="vi"><?php esc_html_e( 'Vietnamese', 'aiagency-wez' ); ?></option>
+								</select>
+							</div>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>

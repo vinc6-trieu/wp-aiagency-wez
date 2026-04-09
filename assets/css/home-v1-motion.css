@@ -1,0 +1,602 @@
+/* Home V1 reveal and reduced-motion behavior. */
+@media (prefers-reduced-motion: no-preference) {
+  html.home-v1-reveal-js .home-v1-page {
+    --home-v1-reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --home-v1-reveal-section-duration: 1.05s;
+    --home-v1-reveal-inner-duration: 0.85s;
+    --home-v1-reveal-stagger: 0.09s;
+  }
+
+  html.home-v1-reveal-js .home-v1-page .home-v1-section {
+    opacity: 0;
+    filter: brightness(0.88);
+    transform: translate3d(0, 2.5rem, 0) scale(0.96);
+    transition:
+      opacity var(--home-v1-reveal-section-duration) var(--home-v1-reveal-ease),
+      transform var(--home-v1-reveal-section-duration)
+        var(--home-v1-reveal-ease),
+      filter var(--home-v1-reveal-section-duration) var(--home-v1-reveal-ease);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section.home-v1-section--in-view {
+    opacity: 1;
+    filter: brightness(1);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-hero__content
+    > *,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-hero__visual,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-section-heading--centered
+    > *,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-competencies
+    > .home-v1-competencies__intro,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-competencies
+    > .home-v1-competencies__footer,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-competency,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-problems-we-solve__item,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-problems-we-solve__footer,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-split-heading__main,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-split-heading__intro,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-projects-grid
+    .home-v1-project-card,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-about__visual-card,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-about__content,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-team-layout__media,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-team-layout__expertise,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-contact__visual,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-contact__intro,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-section--contact
+    .home-v1-form-shell,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-final-cta__copy,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section:not(.home-v1-section--in-view)
+    .home-v1-final-cta__action {
+    opacity: 0;
+    transform: translate3d(0, 1.75rem, 0) scale(0.97);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-hero__content
+    > *,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-hero__visual,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-section-heading--centered
+    > *,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-competencies
+    > .home-v1-competencies__intro,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-competencies
+    > .home-v1-competencies__footer,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-competency,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-problems-we-solve__item,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-problems-we-solve__footer,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-split-heading__main,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-split-heading__intro,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-projects-grid
+    .home-v1-project-card,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-about__visual-card,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-about__content,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-team-layout__media,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-team-layout__expertise,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-contact__visual,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-contact__intro,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-section--contact
+    .home-v1-form-shell,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-final-cta__copy,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-final-cta__action {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition:
+      opacity var(--home-v1-reveal-inner-duration) var(--home-v1-reveal-ease),
+      transform var(--home-v1-reveal-inner-duration) var(--home-v1-reveal-ease);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-hero__content
+    > *:nth-child(1) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 1);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-hero__content
+    > *:nth-child(2) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 2);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-hero__content
+    > *:nth-child(3) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 3);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-hero__content
+    > *:nth-child(4) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 4);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-hero__content
+    > *:nth-child(5) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 5);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-hero__visual {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 2.5);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-section-heading--centered
+    > *:nth-child(1) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 1);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-section-heading--centered
+    > *:nth-child(2) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 2);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-section-heading--centered
+    > *:nth-child(3) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 3);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-section-heading--centered
+    > *:nth-child(4) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 4);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-competencies
+    > .home-v1-competencies__intro {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 1);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-competency:nth-child(1) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 2);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-competency:nth-child(2) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 3);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-competency:nth-child(3) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 4);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-competency:nth-child(4) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 5);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-competency:nth-child(5) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 6);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-competencies
+    > .home-v1-competencies__footer {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 6);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-problems-we-solve__item:nth-child(1) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 3);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-problems-we-solve__item:nth-child(2) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 4);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-problems-we-solve__item:nth-child(3) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 5);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-problems-we-solve__item:nth-child(4) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 6);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-problems-we-solve__item:nth-child(5) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 7);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-problems-we-solve__item:nth-child(6) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 8);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-problems-we-solve__footer {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 9);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-split-heading__main {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 1);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-split-heading__intro {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 2);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-projects-grid
+    .home-v1-project-card:nth-child(1),
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-team-layout__media {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 1);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-projects-grid
+    .home-v1-project-card:nth-child(2),
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-team-layout__expertise {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 2);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-projects-grid
+    .home-v1-project-card:nth-child(3) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 3);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-projects-grid
+    .home-v1-project-card:nth-child(4) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 4);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-projects-grid
+    .home-v1-project-card:nth-child(5) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 5);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-projects-grid
+    .home-v1-project-card:nth-child(6) {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 6);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-about__visual-card {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 1);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-about__content {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 2);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-contact__visual {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 1);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-contact__intro {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 2);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-section--contact
+    .home-v1-form-shell {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 3);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-final-cta__copy {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 1);
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section--in-view
+    .home-v1-final-cta__action {
+    transition-delay: calc(var(--home-v1-reveal-stagger) * 2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.home-v1-reveal-js .home-v1-page .home-v1-section {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-hero__content
+    > *,
+  html.home-v1-reveal-js .home-v1-page .home-v1-section .home-v1-hero__visual,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-section-heading--centered
+    > *,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-competencies
+    > .home-v1-competencies__intro,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-competencies
+    > .home-v1-competencies__footer,
+  html.home-v1-reveal-js .home-v1-page .home-v1-section .home-v1-competency,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-problems-we-solve__item,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-problems-we-solve__footer,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-split-heading__main,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-split-heading__intro,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-projects-grid
+    .home-v1-project-card,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-about__visual-card,
+  html.home-v1-reveal-js .home-v1-page .home-v1-section .home-v1-about__content,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-team-layout__media,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-team-layout__expertise,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-contact__visual,
+  html.home-v1-reveal-js .home-v1-page .home-v1-section .home-v1-contact__intro,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-section--contact
+    .home-v1-form-shell,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-final-cta__copy,
+  html.home-v1-reveal-js
+    .home-v1-page
+    .home-v1-section
+    .home-v1-final-cta__action {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .home-v1-projects-grid {
+    scroll-behavior: auto;
+  }
+}

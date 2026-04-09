@@ -1,0 +1,161 @@
+/* Home V1 body tokens plus shared header and footer chrome. */
+.aiagency-wez-home-v1-template {
+  --aiagency-wez-home-v1-bg: #f8f9fe;
+  --aiagency-wez-home-v1-surface: #ffffff;
+  --aiagency-wez-home-v1-surface-soft: #f2f3f8;
+  --aiagency-wez-home-v1-accent: #0a5b8c;
+  --aiagency-wez-home-v1-accent-dark: #003f6e;
+  --aiagency-wez-home-v1-accent-soft: #6bb9e4;
+  --aiagency-wez-home-v1-accent-pale: #a0d8ef;
+  --aiagency-wez-home-v1-text: #0a3353;
+  --aiagency-wez-home-v1-body: #42474e;
+  --aiagency-wez-home-v1-muted: #6b7280;
+  --aiagency-wez-home-v1-border: #e5e7eb;
+  --aiagency-wez-home-v1-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.18);
+  --home-v1-header-logo-max-height: 5rem;
+  --home-v1-header-inner-pad-y: 0.25rem;
+  --home-v1-header-height: calc(
+    var(--home-v1-header-logo-max-height) + var(--home-v1-header-inner-pad-y) *
+      2
+  );
+  background: var(--aiagency-wez-home-v1-bg);
+  color: var(--aiagency-wez-home-v1-body);
+  font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body.aiagency-wez-home-v1-template,
+.aiagency-wez-home-v1-template .site-wrapper {
+  background: var(--aiagency-wez-home-v1-bg);
+}
+
+.aiagency-wez-home-v1-template .site-main {
+  width: 100%;
+  padding: 0;
+}
+
+.site-header--home-v1,
+.site-footer--home-v1 {
+  background: var(--aiagency-wez-home-v1-surface);
+  border-color: rgba(10, 91, 140, 0.08);
+  backdrop-filter: none;
+}
+
+.site-header--home-v1 {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  border-bottom: 1px solid rgba(10, 91, 140, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 30px -28px rgba(3, 55, 93, 0.7);
+}
+
+.site-header__inner--home-v1 {
+  width: min(calc(100% - 2rem), 1280px);
+  /* Logo scales to this height; bar min-height keeps padding + logo from clipping (border-box). */
+  min-height: var(--home-v1-header-height);
+  padding: var(--home-v1-header-inner-pad-y) 0;
+  gap: 1.125rem;
+}
+
+.site-branding--home-v1 .site-branding__tagline {
+  display: none;
+}
+
+.aiagency-wez-home-v1-template .site-branding__title {
+  margin: 0;
+}
+
+.aiagency-wez-home-v1-template .site-branding__logo {
+  width: auto;
+  max-width: min(400px, 55vw);
+  max-height: var(--home-v1-header-logo-max-height, 5rem);
+  height: auto;
+  object-fit: contain;
+}
+
+.site-header__nav-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem 1rem;
+  min-width: 0;
+}
+
+.main-navigation--home-v1 ul {
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+
+.main-navigation--home-v1 a {
+  color: var(--aiagency-wez-home-v1-body);
+  font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: calc(0.875rem + 2px);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.main-navigation--home-v1 a:hover,
+.main-navigation--home-v1 a:focus {
+  color: var(--aiagency-wez-home-v1-accent);
+}
+
+.site-header__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0.45rem 1.5rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    105deg,
+    var(--aiagency-wez-home-v1-accent) 0%,
+    var(--aiagency-wez-home-v1-accent-dark) 100%
+  );
+  color: #ffffff;
+  font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.site-header__cta:hover,
+.site-header__cta:focus {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+@media (min-width: 1121px) and (max-width: 1240px) {
+  .site-header--home-v1 .site-branding__logo {
+    max-width: min(340px, 44vw);
+  }
+
+  .site-header--home-v1 .site-header__nav-group {
+    flex-wrap: nowrap;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .site-header--home-v1 .main-navigation--home-v1 ul {
+    gap: 1rem;
+  }
+
+  .site-header--home-v1 .site-header__cta {
+    padding: 0.4rem 1.15rem;
+    font-size: 0.82rem;
+  }
+
+  .site-header--home-v1 .site-header__translate {
+    margin-left: 0;
+  }
+}
+
+.home-v1-page {
+  overflow: clip;
+}
+
+.home-v1-section {
+  position: relative;
+}

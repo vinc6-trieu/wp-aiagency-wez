@@ -13,16 +13,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php
 	$is_home_v1      = function_exists( 'aiagency_wez_is_home_v1_template' ) && aiagency_wez_is_home_v1_template();
+	$uses_home_v1_ui = function_exists( 'aiagency_wez_uses_home_v1_chrome' ) && aiagency_wez_uses_home_v1_chrome();
 	$current_page_id = get_queried_object_id();
 
-	if ( $is_home_v1 ) :
-		$footer_copy         = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_copy', $current_page_id ) : '';
+	if ( $uses_home_v1_ui ) :
 		$footer_linkedin_url = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_social_linkedin_url', $current_page_id ) : '';
 		$footer_address      = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_address', $current_page_id ) : '';
 		$footer_email_raw    = function_exists( 'get_field' ) ? get_field( 'home_v1_contact_email_value', $current_page_id ) : '';
 		$footer_email        = '';
 		$footer_map_url      = '';
-		$footer_copy         = $footer_copy ? $footer_copy : __( 'AI-powered ecosystems that connect knowledge, operations, and customer experience into one intelligent business layer.', 'aiagency-wez' );
 		$footer_address      = is_string( $footer_address ) ? trim( $footer_address ) : '';
 		$footer_email_raw    = is_string( $footer_email_raw ) ? trim( $footer_email_raw ) : '';
 
@@ -73,15 +72,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<footer class="site-footer site-footer--home-v1">
 			<div class="site-footer__inner site-footer__inner--home-v1<?php echo $footer_has_contact ? '' : ' site-footer__inner--home-v1-no-contact'; ?>">
 				<div class="site-footer__content">
-					<div class="site-footer__brand">
-						<p class="site-footer__logo">
-							<a class="site-branding__link" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-								<?php echo wp_kses_post( aiagency_wez_get_site_logo_img_html() ); ?>
-							</a>
-						</p>
-						<p class="site-footer__copy"><?php echo esc_html( $footer_copy ); ?></p>
-					</div>
-
 					<div class="site-footer__menus">
 						<div class="site-footer__menu-group">
 							<p class="site-footer__menu-title"><?php esc_html_e( 'Explore', 'aiagency-wez' ); ?></p>
@@ -100,12 +90,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</div>
 
 						<div class="site-footer__menu-group">
-							<p class="site-footer__menu-title"><?php esc_html_e( 'Connect', 'aiagency-wez' ); ?></p>
-							<ul class="site-footer__menu">
-								<li><a href="#who-we-are"><?php esc_html_e( 'Who We Are', 'aiagency-wez' ); ?></a></li>
-								<li><a href="#our-projects"><?php esc_html_e( 'Projects', 'aiagency-wez' ); ?></a></li>
-								<li><a href="#contact-us"><?php esc_html_e( 'Contact', 'aiagency-wez' ); ?></a></li>
-							</ul>
+							<?php if ( $is_home_v1 ) : ?>
+								<p class="site-footer__menu-title"><?php esc_html_e( 'Connect', 'aiagency-wez' ); ?></p>
+								<ul class="site-footer__menu">
+									<li><a href="#who-we-are"><?php esc_html_e( 'Who We Are', 'aiagency-wez' ); ?></a></li>
+									<li><a href="#our-projects"><?php esc_html_e( 'Projects', 'aiagency-wez' ); ?></a></li>
+									<li><a href="#contact-us"><?php esc_html_e( 'Contact', 'aiagency-wez' ); ?></a></li>
+								</ul>
+							<?php else : ?>
+								<p class="site-footer__menu-title"><?php esc_html_e( 'Page', 'aiagency-wez' ); ?></p>
+								<ul class="site-footer__menu">
+									<li><a href="<?php echo esc_url( get_permalink( $current_page_id ) ); ?>"><?php echo esc_html( get_the_title( $current_page_id ) ); ?></a></li>
+									<li><a href="#main-content"><?php esc_html_e( 'Back to top', 'aiagency-wez' ); ?></a></li>
+								</ul>
+							<?php endif; ?>
 						</div>
 
 						<div class="site-footer__menu-group">
@@ -173,32 +171,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 						);
 						?>
 					</p>
-					<div
-						class="site-footer__translate"
-						role="navigation"
-						aria-label="<?php esc_attr_e( 'Choose site language (Google Translate)', 'aiagency-wez' ); ?>"
-					>
-						<span class="site-footer__translate-icon" aria-hidden="true">
-							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" focusable="false">
-								<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
-								<path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-							</svg>
-						</span>
-						<label class="screen-reader-text" for="site-footer-language-switcher"><?php esc_html_e( 'Change language', 'aiagency-wez' ); ?></label>
-						<select
-							id="site-footer-language-switcher"
-							class="site-footer__translate-select home-v1-language-switcher"
-							data-aiagency-wez-language-switcher
-						>
-							<option value="en"><?php esc_html_e( 'English', 'aiagency-wez' ); ?></option>
-							<option value="vi"><?php esc_html_e( 'Vietnamese', 'aiagency-wez' ); ?></option>
-						</select>
+					<?php if ( $is_home_v1 ) : ?>
 						<div
-							id="google_translate_element"
-							class="site-footer__translate-mount"
-							aria-hidden="true"
-						></div>
-					</div>
+							class="site-footer__translate"
+							role="navigation"
+							aria-label="<?php esc_attr_e( 'Choose site language (Google Translate)', 'aiagency-wez' ); ?>"
+						>
+							<span class="site-footer__translate-icon" aria-hidden="true">
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" focusable="false">
+									<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+									<path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+								</svg>
+							</span>
+							<label class="screen-reader-text" for="site-footer-language-switcher"><?php esc_html_e( 'Change language', 'aiagency-wez' ); ?></label>
+							<select
+								id="site-footer-language-switcher"
+								class="site-footer__translate-select home-v1-language-switcher"
+								data-aiagency-wez-language-switcher
+							>
+								<option value="en"><?php esc_html_e( 'English', 'aiagency-wez' ); ?></option>
+								<option value="vi"><?php esc_html_e( 'Vietnamese', 'aiagency-wez' ); ?></option>
+							</select>
+							<div
+								id="google_translate_element"
+								class="site-footer__translate-mount"
+								aria-hidden="true"
+							></div>
+						</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</footer>
