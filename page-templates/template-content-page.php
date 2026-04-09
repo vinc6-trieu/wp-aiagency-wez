@@ -18,7 +18,11 @@ get_header();
 	<article <?php post_class( 'content-page' ); ?>>
 		<div class="content-page__inner">
 			<header class="content-page__header">
-				<p class="content-page__eyebrow"><?php esc_html_e( 'Content Page', 'aiagency-wez' ); ?></p>
+				<nav class="content-page__breadcrumb" aria-label="<?php esc_attr_e( 'Breadcrumb', 'aiagency-wez' ); ?>">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'aiagency-wez' ); ?></a>
+					<span class="content-page__breadcrumb-separator" aria-hidden="true">/</span>
+					<span aria-current="page"><?php the_title(); ?></span>
+				</nav>
 				<h1 class="content-page__title"><?php the_title(); ?></h1>
 			</header>
 

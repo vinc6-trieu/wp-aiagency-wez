@@ -1968,6 +1968,16 @@
 .site-footer__content {
   display: grid;
   min-width: 0;
+  gap: 2rem;
+}
+
+.site-footer__copy {
+  max-width: 44rem;
+  margin: 0;
+  color: var(--aiagency-wez-home-v1-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  opacity: 0.88;
 }
 
 .site-footer__legal {
