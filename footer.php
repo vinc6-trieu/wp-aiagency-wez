@@ -18,9 +18,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$chrome_page_id  = function_exists( 'aiagency_wez_get_home_v1_page_id' ) ? aiagency_wez_get_home_v1_page_id() : $current_page_id;
 
 	if ( $uses_home_v1_ui ) :
+		$normalize_link_field = static function ( $value ) {
+			if ( ! is_array( $value ) ) {
+				return null;
+			}
+
+			$title = isset( $value['title'] ) && is_string( $value['title'] ) ? trim( $value['title'] ) : '';
+			$url   = isset( $value['url'] ) && is_string( $value['url'] ) ? trim( $value['url'] ) : '';
+
+			if ( '' === $title || '' === $url ) {
+				return null;
+			}
+
+			return array(
+				'title'  => $title,
+				'url'    => $url,
+				'target' => isset( $value['target'] ) && is_string( $value['target'] ) && '' !== $value['target'] ? $value['target'] : '',
+			);
+		};
+
 		$footer_copy                 = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_copy', $chrome_page_id ) : '';
 		$footer_nav_primary_heading  = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_nav_primary_heading', $chrome_page_id ) : '';
 		$footer_nav_secondary_heading = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_nav_secondary_heading', $chrome_page_id ) : '';
+		$footer_legal_heading        = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_legal_heading', $chrome_page_id ) : '';
 		$footer_linkedin_url         = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_social_linkedin_url', $chrome_page_id ) : '';
 		$footer_instagram_url        = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_social_instagram_url', $chrome_page_id ) : '';
 		$footer_address              = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_address', $chrome_page_id ) : '';
@@ -34,6 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$footer_copy                 = is_string( $footer_copy ) ? trim( $footer_copy ) : '';
 		$footer_nav_primary_heading  = is_string( $footer_nav_primary_heading ) ? trim( $footer_nav_primary_heading ) : '';
 		$footer_nav_secondary_heading = is_string( $footer_nav_secondary_heading ) ? trim( $footer_nav_secondary_heading ) : '';
+		$footer_legal_heading        = is_string( $footer_legal_heading ) ? trim( $footer_legal_heading ) : '';
 		$footer_linkedin_url         = is_string( $footer_linkedin_url ) ? trim( $footer_linkedin_url ) : '';
 		$footer_instagram_url        = is_string( $footer_instagram_url ) ? trim( $footer_instagram_url ) : '';
 		$footer_address              = is_string( $footer_address ) ? trim( $footer_address ) : '';
@@ -47,9 +68,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 			'our-projects' => $is_home_v1 ? '#our-projects' : ( function_exists( 'aiagency_wez_get_home_v1_page_url' ) ? aiagency_wez_get_home_v1_page_url( 'our-projects' ) : home_url( '/#our-projects' ) ),
 			'contact-us'  => $is_home_v1 ? '#contact-us' : ( function_exists( 'aiagency_wez_get_home_v1_page_url' ) ? aiagency_wez_get_home_v1_page_url( 'contact-us' ) : home_url( '/#contact-us' ) ),
 		);
+		$footer_secondary_links = array();
+		$footer_legal_custom_links = array();
 
 		if ( $footer_email_raw ) {
 			$footer_email = sanitize_email( $footer_email_raw );
+		}
+
+		for ( $index = 1; $index <= 3; $index++ ) {
+			$field_name = 'home_v1_footer_secondary_link_' . $index;
+			$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
+			$link_item  = $normalize_link_field( $link_value );
+
+			if ( $link_item ) {
+				$footer_secondary_links[] = $link_item;
+			}
 		}
 
 		if ( $footer_address ) {
@@ -90,6 +123,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$legal_page_ids[] = $legal_page->ID;
 		}
 
+		for ( $index = 1; $index <= 4; $index++ ) {
+			$field_name = 'home_v1_footer_legal_link_' . $index;
+			$link_value = function_exists( 'get_field' ) ? get_field( $field_name, $chrome_page_id ) : null;
+			$link_item  = $normalize_link_field( $link_value );
+
+			if ( $link_item ) {
+				$footer_legal_custom_links[] = $link_item;
+			}
+		}
+
+		if ( $footer_secondary_links ) {
+			$home_v1_section_links = $footer_secondary_links;
+		}
+
+		if ( $footer_legal_custom_links ) {
+			$legal_links = array_map(
+				static function ( $link_item ) {
+					return array(
+						'label'  => $link_item['title'],
+						'url'    => $link_item['url'],
+						'target' => $link_item['target'],
+					);
+				},
+				$footer_legal_custom_links
+			);
+		}
+
 		$footer_has_contact = $footer_email || $footer_phone_value || $footer_linkedin_url || $footer_instagram_url || $footer_map_url;
 		?>
 		<footer class="site-footer site-footer--home-v1">
@@ -119,18 +179,38 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<div class="site-footer__menu-group">
 							<p class="site-footer__menu-title"><?php echo esc_html( $footer_nav_secondary_heading ?: __( 'Connect', 'aiagency-wez' ) ); ?></p>
 							<ul class="site-footer__menu">
-								<li><a href="<?php echo esc_url( $home_v1_section_links['who-we-are'] ); ?>"><?php esc_html_e( 'Who We Are', 'aiagency-wez' ); ?></a></li>
-								<li><a href="<?php echo esc_url( $home_v1_section_links['our-projects'] ); ?>"><?php esc_html_e( 'Projects', 'aiagency-wez' ); ?></a></li>
-								<li><a href="<?php echo esc_url( $home_v1_section_links['contact-us'] ); ?>"><?php esc_html_e( 'Contact', 'aiagency-wez' ); ?></a></li>
+								<?php if ( isset( $home_v1_section_links['who-we-are'] ) ) : ?>
+									<li><a href="<?php echo esc_url( $home_v1_section_links['who-we-are'] ); ?>"><?php esc_html_e( 'Who We Are', 'aiagency-wez' ); ?></a></li>
+									<li><a href="<?php echo esc_url( $home_v1_section_links['our-projects'] ); ?>"><?php esc_html_e( 'Projects', 'aiagency-wez' ); ?></a></li>
+									<li><a href="<?php echo esc_url( $home_v1_section_links['contact-us'] ); ?>"><?php esc_html_e( 'Contact', 'aiagency-wez' ); ?></a></li>
+								<?php else : ?>
+									<?php foreach ( $home_v1_section_links as $footer_link ) : ?>
+										<li>
+											<a
+												href="<?php echo esc_url( $footer_link['url'] ); ?>"
+												<?php echo ! empty( $footer_link['target'] ) ? ' target="' . esc_attr( $footer_link['target'] ) . '" rel="noreferrer noopener"' : ''; ?>
+											>
+												<?php echo esc_html( $footer_link['title'] ); ?>
+											</a>
+										</li>
+									<?php endforeach; ?>
+								<?php endif; ?>
 							</ul>
 						</div>
 
 						<div class="site-footer__menu-group">
-							<p class="site-footer__menu-title"><?php esc_html_e( 'Legal', 'aiagency-wez' ); ?></p>
+							<p class="site-footer__menu-title"><?php echo esc_html( $footer_legal_heading ?: __( 'Legal', 'aiagency-wez' ) ); ?></p>
 							<ul class="site-footer__menu">
 								<?php if ( $legal_links ) : ?>
 									<?php foreach ( $legal_links as $legal_link ) : ?>
-										<li><a href="<?php echo esc_url( $legal_link['url'] ); ?>"><?php echo esc_html( $legal_link['label'] ); ?></a></li>
+										<li>
+											<a
+												href="<?php echo esc_url( $legal_link['url'] ); ?>"
+												<?php echo ! empty( $legal_link['target'] ) ? ' target="' . esc_attr( $legal_link['target'] ) . '" rel="noreferrer noopener"' : ''; ?>
+											>
+												<?php echo esc_html( $legal_link['label'] ); ?>
+											</a>
+										</li>
 									<?php endforeach; ?>
 								<?php else : ?>
 									<li class="site-footer__menu-note"><?php esc_html_e( 'All rights reserved.', 'aiagency-wez' ); ?></li>

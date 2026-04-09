@@ -59,6 +59,36 @@
       "placeholder": "Sections"
     },
     {
+      "key": "field_aiagency_wez_home_v1_footer_secondary_link_1",
+      "label": "Footer Secondary Link 1",
+      "name": "home_v1_footer_secondary_link_1",
+      "type": "link",
+      "wrapper": {
+        "width": "33"
+      },
+      "return_format": "array"
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_secondary_link_2",
+      "label": "Footer Secondary Link 2",
+      "name": "home_v1_footer_secondary_link_2",
+      "type": "link",
+      "wrapper": {
+        "width": "33"
+      },
+      "return_format": "array"
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_secondary_link_3",
+      "label": "Footer Secondary Link 3",
+      "name": "home_v1_footer_secondary_link_3",
+      "type": "link",
+      "wrapper": {
+        "width": "33"
+      },
+      "return_format": "array"
+    },
+    {
       "key": "field_aiagency_wez_home_v1_footer_social_linkedin_url",
       "label": "LinkedIn URL",
       "name": "home_v1_footer_social_linkedin_url",
@@ -89,6 +119,56 @@
         "width": "50"
       },
       "placeholder": "https://instagram.com/example"
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_legal_heading",
+      "label": "Footer Legal Heading",
+      "name": "home_v1_footer_legal_heading",
+      "type": "text",
+      "wrapper": {
+        "width": "50"
+      },
+      "placeholder": "Legal"
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_legal_link_1",
+      "label": "Footer Legal Link 1",
+      "name": "home_v1_footer_legal_link_1",
+      "type": "link",
+      "wrapper": {
+        "width": "50"
+      },
+      "return_format": "array"
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_legal_link_2",
+      "label": "Footer Legal Link 2",
+      "name": "home_v1_footer_legal_link_2",
+      "type": "link",
+      "wrapper": {
+        "width": "50"
+      },
+      "return_format": "array"
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_legal_link_3",
+      "label": "Footer Legal Link 3",
+      "name": "home_v1_footer_legal_link_3",
+      "type": "link",
+      "wrapper": {
+        "width": "50"
+      },
+      "return_format": "array"
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_footer_legal_link_4",
+      "label": "Footer Legal Link 4",
+      "name": "home_v1_footer_legal_link_4",
+      "type": "link",
+      "wrapper": {
+        "width": "50"
+      },
+      "return_format": "array"
     },
     {
       "key": "field_aiagency_wez_home_v1_tab_hero",
