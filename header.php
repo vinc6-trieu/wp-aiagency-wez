@@ -25,10 +25,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$uses_home_v1_ui = function_exists( 'aiagency_wez_uses_home_v1_chrome' ) && aiagency_wez_uses_home_v1_chrome();
 	$home_url        = home_url( '/' );
 	$current_page_id = get_queried_object_id();
+	$chrome_page_id  = function_exists( 'aiagency_wez_get_home_v1_page_id' ) ? aiagency_wez_get_home_v1_page_id() : $current_page_id;
 
 	if ( $uses_home_v1_ui ) :
-		$header_cta_text = function_exists( 'get_field' ) ? get_field( 'home_v1_header_cta_text', $current_page_id ) : '';
-		$header_cta_url  = function_exists( 'get_field' ) ? get_field( 'home_v1_header_cta_url', $current_page_id ) : '';
+		$header_cta_text = function_exists( 'get_field' ) ? get_field( 'home_v1_header_cta_text', $chrome_page_id ) : '';
+		$header_cta_url  = function_exists( 'get_field' ) ? get_field( 'home_v1_header_cta_url', $chrome_page_id ) : '';
 		?>
 		<header class="site-header site-header--home-v1">
 			<div class="site-header__inner site-header__inner--home-v1">
@@ -82,7 +83,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							</a>
 						<?php endif; ?>
 
-						<?php if ( $is_home_v1 ) : ?>
+						<?php if ( $uses_home_v1_ui ) : ?>
 							<div
 								class="site-header__translate site-footer__translate"
 								role="navigation"

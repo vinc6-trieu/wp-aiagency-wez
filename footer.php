@@ -15,15 +15,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$is_home_v1      = function_exists( 'aiagency_wez_is_home_v1_template' ) && aiagency_wez_is_home_v1_template();
 	$uses_home_v1_ui = function_exists( 'aiagency_wez_uses_home_v1_chrome' ) && aiagency_wez_uses_home_v1_chrome();
 	$current_page_id = get_queried_object_id();
+	$chrome_page_id  = function_exists( 'aiagency_wez_get_home_v1_page_id' ) ? aiagency_wez_get_home_v1_page_id() : $current_page_id;
 
 	if ( $uses_home_v1_ui ) :
-		$footer_linkedin_url = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_social_linkedin_url', $current_page_id ) : '';
-		$footer_address      = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_address', $current_page_id ) : '';
-		$footer_email_raw    = function_exists( 'get_field' ) ? get_field( 'home_v1_contact_email_value', $current_page_id ) : '';
+		$footer_linkedin_url = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_social_linkedin_url', $chrome_page_id ) : '';
+		$footer_address      = function_exists( 'get_field' ) ? get_field( 'home_v1_footer_address', $chrome_page_id ) : '';
+		$footer_email_raw    = function_exists( 'get_field' ) ? get_field( 'home_v1_contact_email_value', $chrome_page_id ) : '';
 		$footer_email        = '';
 		$footer_map_url      = '';
 		$footer_address      = is_string( $footer_address ) ? trim( $footer_address ) : '';
 		$footer_email_raw    = is_string( $footer_email_raw ) ? trim( $footer_email_raw ) : '';
+		$home_v1_section_links = array(
+			'who-we-are'  => $is_home_v1 ? '#who-we-are' : ( function_exists( 'aiagency_wez_get_home_v1_page_url' ) ? aiagency_wez_get_home_v1_page_url( 'who-we-are' ) : home_url( '/#who-we-are' ) ),
+			'our-projects' => $is_home_v1 ? '#our-projects' : ( function_exists( 'aiagency_wez_get_home_v1_page_url' ) ? aiagency_wez_get_home_v1_page_url( 'our-projects' ) : home_url( '/#our-projects' ) ),
+			'contact-us'  => $is_home_v1 ? '#contact-us' : ( function_exists( 'aiagency_wez_get_home_v1_page_url' ) ? aiagency_wez_get_home_v1_page_url( 'contact-us' ) : home_url( '/#contact-us' ) ),
+		);
 
 		if ( $footer_email_raw ) {
 			$footer_email = sanitize_email( $footer_email_raw );
@@ -90,20 +96,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</div>
 
 						<div class="site-footer__menu-group">
-							<?php if ( $is_home_v1 ) : ?>
-								<p class="site-footer__menu-title"><?php esc_html_e( 'Connect', 'aiagency-wez' ); ?></p>
-								<ul class="site-footer__menu">
-									<li><a href="#who-we-are"><?php esc_html_e( 'Who We Are', 'aiagency-wez' ); ?></a></li>
-									<li><a href="#our-projects"><?php esc_html_e( 'Projects', 'aiagency-wez' ); ?></a></li>
-									<li><a href="#contact-us"><?php esc_html_e( 'Contact', 'aiagency-wez' ); ?></a></li>
-								</ul>
-							<?php else : ?>
-								<p class="site-footer__menu-title"><?php esc_html_e( 'Page', 'aiagency-wez' ); ?></p>
-								<ul class="site-footer__menu">
-									<li><a href="<?php echo esc_url( get_permalink( $current_page_id ) ); ?>"><?php echo esc_html( get_the_title( $current_page_id ) ); ?></a></li>
-									<li><a href="#main-content"><?php esc_html_e( 'Back to top', 'aiagency-wez' ); ?></a></li>
-								</ul>
-							<?php endif; ?>
+							<p class="site-footer__menu-title"><?php esc_html_e( 'Connect', 'aiagency-wez' ); ?></p>
+							<ul class="site-footer__menu">
+								<li><a href="<?php echo esc_url( $home_v1_section_links['who-we-are'] ); ?>"><?php esc_html_e( 'Who We Are', 'aiagency-wez' ); ?></a></li>
+								<li><a href="<?php echo esc_url( $home_v1_section_links['our-projects'] ); ?>"><?php esc_html_e( 'Projects', 'aiagency-wez' ); ?></a></li>
+								<li><a href="<?php echo esc_url( $home_v1_section_links['contact-us'] ); ?>"><?php esc_html_e( 'Contact', 'aiagency-wez' ); ?></a></li>
+							</ul>
 						</div>
 
 						<div class="site-footer__menu-group">
@@ -171,7 +169,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						);
 						?>
 					</p>
-					<?php if ( $is_home_v1 ) : ?>
+					<?php if ( $uses_home_v1_ui ) : ?>
 						<div
 							class="site-footer__translate"
 							role="navigation"

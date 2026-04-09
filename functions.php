@@ -171,6 +171,60 @@ function aiagency_wez_uses_home_v1_chrome() {
 }
 
 /**
+ * Returns the page ID that owns the Home V1 chrome content.
+ *
+ * @return int
+ */
+function aiagency_wez_get_home_v1_page_id() {
+	if ( aiagency_wez_is_home_v1_template() ) {
+		return (int) get_queried_object_id();
+	}
+
+	$pages = get_posts(
+		array(
+			'post_type'              => 'page',
+			'post_status'            => 'publish',
+			'posts_per_page'         => 1,
+			'fields'                 => 'ids',
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+			'meta_key'               => '_wp_page_template',
+			'meta_value'             => 'page-templates/template-home-v1.php',
+		)
+	);
+
+	if ( empty( $pages ) ) {
+		return 0;
+	}
+
+	return (int) $pages[0];
+}
+
+/**
+ * Returns the Home V1 page URL, with an optional fragment.
+ *
+ * @param string $fragment Optional in-page fragment without leading "#".
+ * @return string
+ */
+function aiagency_wez_get_home_v1_page_url( $fragment = '' ) {
+	$page_id = aiagency_wez_get_home_v1_page_id();
+	$url     = $page_id > 0 ? get_permalink( $page_id ) : home_url( '/' );
+
+	if ( ! is_string( $url ) || '' === $url ) {
+		$url = home_url( '/' );
+	}
+
+	$fragment = is_string( $fragment ) ? ltrim( $fragment, '#' ) : '';
+
+	if ( '' === $fragment ) {
+		return $url;
+	}
+
+	return $url . '#' . $fragment;
+}
+
+/**
  * Normalizes a URL path to match assets/js/home-v1-smooth-nav.js (trailing slash stripped; root is "/").
  *
  * @param string $path Path from wp_parse_url( ..., PHP_URL_PATH ).
@@ -290,7 +344,7 @@ function aiagency_wez_get_page_language_code() {
  * Loads Google Website Translator on Home V1 (user picks language; no full page reload).
  */
 function aiagency_wez_enqueue_google_translate() {
-	if ( is_admin() || ! aiagency_wez_is_home_v1_template() ) {
+	if ( is_admin() || ! aiagency_wez_uses_home_v1_chrome() ) {
 		return;
 	}
 
