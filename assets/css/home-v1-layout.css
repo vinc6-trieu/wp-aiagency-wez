@@ -1230,6 +1230,10 @@
   overflow: hidden;
 }
 
+.home-v1-project-popup-open body {
+  overflow: hidden;
+}
+
 .home-v1-project-popup {
   position: fixed;
   inset: 0;

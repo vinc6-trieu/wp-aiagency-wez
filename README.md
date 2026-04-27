@@ -186,7 +186,7 @@ The **Problems we solve** block renders between competencies and projects when `
 
 The **Projects** block (`#our-projects`, [`template-parts/sections/home-v1/projects.php`](template-parts/sections/home-v1/projects.php)) requires `home_v1_projects_title` and at least one project card (see **Section visibility**). It uses a four-column grid on large screens, two columns up to **1120px**, and a **horizontal scroll-snap** row at **860px width and below** (CSS only; swipe or trackpad scroll). The track is wrapped in `.home-v1-projects-scroll` with edge-aligned padding; a `.screen-reader-text` hint names the region for assistive tech. Card overlays use a stronger default gradient on those small viewports so copy stays readable without hover.
 
-**Project popups:** If a project has a non-empty `home_v1_project_*_description`, clicking the **project image** opens a modal popup showing the description. The “View Case Study” link continues to navigate normally (no popup). Behavior is implemented in `assets/js/home-v1-projects-modal.js`.
+**Project popups:** If a project has a non-empty `home_v1_project_*_description` (WYSIWYG), clicking the **project image** opens a modal popup showing the description. The “View Case Study” link continues to navigate normally (no popup). Behavior is implemented in `assets/js/home-v1-projects-modal.js`.
 
 | Field Name | Type | Notes |
 | ---------- | ---- | ----- |
@@ -195,7 +195,7 @@ The **Projects** block (`#our-projects`, [`template-parts/sections/home-v1/proje
 | `home_v1_projects_all_link_text` / `home_v1_projects_all_link_url` | Text / URL | Optional “View all projects” inline link |
 | `home_v1_project_1_category` … `home_v1_project_4_category` | Text | Optional label shown above title |
 | `home_v1_project_1_title` … `home_v1_project_4_title` | Text | Project title |
-| `home_v1_project_1_description` … `home_v1_project_4_description` | Textarea | Popup body copy (when non-empty) |
+| `home_v1_project_1_description` … `home_v1_project_4_description` | WYSIWYG | Popup body copy (rich text; when non-empty) |
 | `home_v1_project_1_image` … `home_v1_project_4_image` | Image | Card image |
 | `home_v1_project_1_link_text` … `home_v1_project_4_link_text` | Text | Optional case study link label |
 | `home_v1_project_1_link_url` … `home_v1_project_4_link_url` | URL | Optional case study link destination |

@@ -677,9 +677,18 @@
       "key": "field_aiagency_wez_home_v1_project_1_description",
       "label": "Project 1 Description",
       "name": "home_v1_project_1_description",
-      "type": "textarea",
-      "rows": 4,
-      "placeholder": "Short description shown in the project popup."
+      "type": "wysiwyg",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": ""
+      },
+      "default_value": "",
+      "tabs": "all",
+      "toolbar": "basic",
+      "media_upload": 0,
+      "delay": 0
     },
     {
       "key": "field_aiagency_wez_home_v1_project_1_link_text",
@@ -733,9 +742,18 @@
       "key": "field_aiagency_wez_home_v1_project_2_description",
       "label": "Project 2 Description",
       "name": "home_v1_project_2_description",
-      "type": "textarea",
-      "rows": 4,
-      "placeholder": "Short description shown in the project popup."
+      "type": "wysiwyg",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": ""
+      },
+      "default_value": "",
+      "tabs": "all",
+      "toolbar": "basic",
+      "media_upload": 0,
+      "delay": 0
     },
     {
       "key": "field_aiagency_wez_home_v1_project_2_link_text",
@@ -789,9 +807,18 @@
       "key": "field_aiagency_wez_home_v1_project_3_description",
       "label": "Project 3 Description",
       "name": "home_v1_project_3_description",
-      "type": "textarea",
-      "rows": 4,
-      "placeholder": "Short description shown in the project popup."
+      "type": "wysiwyg",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": ""
+      },
+      "default_value": "",
+      "tabs": "all",
+      "toolbar": "basic",
+      "media_upload": 0,
+      "delay": 0
     },
     {
       "key": "field_aiagency_wez_home_v1_project_3_link_text",
@@ -845,9 +872,18 @@
       "key": "field_aiagency_wez_home_v1_project_4_description",
       "label": "Project 4 Description",
       "name": "home_v1_project_4_description",
-      "type": "textarea",
-      "rows": 4,
-      "placeholder": "Short description shown in the project popup."
+      "type": "wysiwyg",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": ""
+      },
+      "default_value": "",
+      "tabs": "all",
+      "toolbar": "basic",
+      "media_upload": 0,
+      "delay": 0
     },
     {
       "key": "field_aiagency_wez_home_v1_project_4_link_text",

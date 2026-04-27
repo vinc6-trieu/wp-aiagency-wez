@@ -36,6 +36,13 @@
 		el.textContent = value || '';
 	}
 
+	function setHtml( el, html ) {
+		if ( ! el ) {
+			return;
+		}
+		el.innerHTML = html || '';
+	}
+
 	function setup() {
 		var modal = document.querySelector( '[data-aiagency-wez-project-popup="true"]' );
 		if ( ! modal ) {
@@ -60,16 +67,18 @@
 
 			var title = trigger.getAttribute( 'data-project-title' ) || '';
 			var category = trigger.getAttribute( 'data-project-category' ) || '';
-			var description = trigger.getAttribute( 'data-project-description' ) || '';
+			var descriptionId = trigger.getAttribute( 'data-project-description-id' ) || '';
+			var source = descriptionId ? document.getElementById( descriptionId ) : null;
+			var descriptionHtml = source ? source.innerHTML : '';
 
-			if ( ! description ) {
+			if ( ! descriptionHtml ) {
 				return;
 			}
 
 			lastTrigger = trigger;
 			setText( titleEl, title );
 			setText( categoryEl, category );
-			setText( descriptionEl, description );
+			setHtml( descriptionEl, descriptionHtml );
 
 			if ( categoryEl ) {
 				categoryEl.style.display = category ? '' : 'none';

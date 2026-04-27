@@ -51,11 +51,12 @@ if ( $section_title === '' || empty( $args['projects'] ) ) {
 			aria-labelledby="home-v1-projects-scroll-hint"
 		>
 			<div class="home-v1-projects-grid">
-				<?php foreach ( $args['projects'] as $project ) : ?>
+				<?php foreach ( $args['projects'] as $project_index => $project ) : ?>
 					<?php
 					$project_title       = ! empty( $project['title'] ) ? trim( (string) $project['title'] ) : '';
 					$project_category    = ! empty( $project['category'] ) ? trim( (string) $project['category'] ) : '';
 					$project_description = ! empty( $project['description'] ) ? trim( (string) $project['description'] ) : '';
+					$project_description_id = 'home-v1-project-popup-description-source-' . (string) $project_index;
 					?>
 					<article class="home-v1-project-card">
 						<div class="home-v1-project-card__media">
@@ -66,13 +67,16 @@ if ( $section_title === '' || empty( $args['projects'] ) ) {
 							<?php endif; ?>
 
 							<?php if ( $project_description !== '' ) : ?>
+								<div id="<?php echo esc_attr( $project_description_id ); ?>" class="home-v1-project-card__popup-content" hidden>
+									<?php echo wp_kses_post( $project_description ); ?>
+								</div>
 								<button
 									type="button"
 									class="home-v1-project-card__popup-trigger"
 									data-aiagency-wez-project-popup-trigger="true"
 									data-project-title="<?php echo esc_attr( $project_title ); ?>"
 									data-project-category="<?php echo esc_attr( $project_category ); ?>"
-									data-project-description="<?php echo esc_attr( $project_description ); ?>"
+									data-project-description-id="<?php echo esc_attr( $project_description_id ); ?>"
 								>
 									<span class="screen-reader-text">
 										<?php
@@ -129,7 +133,7 @@ if ( $section_title === '' || empty( $args['projects'] ) ) {
 
 				<p class="home-v1-project-popup__category" id="home-v1-project-popup-category"></p>
 				<h3 class="home-v1-project-popup__title" id="home-v1-project-popup-title"></h3>
-				<p class="home-v1-project-popup__description" id="home-v1-project-popup-description"></p>
+				<div class="home-v1-project-popup__description" id="home-v1-project-popup-description"></div>
 			</div>
 		</div>
 	</div>
