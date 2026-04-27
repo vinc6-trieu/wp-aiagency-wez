@@ -674,6 +674,14 @@
       "placeholder": "Dina"
     },
     {
+      "key": "field_aiagency_wez_home_v1_project_1_description",
+      "label": "Project 1 Description",
+      "name": "home_v1_project_1_description",
+      "type": "textarea",
+      "rows": 4,
+      "placeholder": "Short description shown in the project popup."
+    },
+    {
       "key": "field_aiagency_wez_home_v1_project_1_link_text",
       "label": "Project 1 Link Text",
       "name": "home_v1_project_1_link_text",
@@ -720,6 +728,14 @@
         "width": "20"
       },
       "placeholder": "HEMA"
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_project_2_description",
+      "label": "Project 2 Description",
+      "name": "home_v1_project_2_description",
+      "type": "textarea",
+      "rows": 4,
+      "placeholder": "Short description shown in the project popup."
     },
     {
       "key": "field_aiagency_wez_home_v1_project_2_link_text",
@@ -770,6 +786,14 @@
       "placeholder": "Lumi"
     },
     {
+      "key": "field_aiagency_wez_home_v1_project_3_description",
+      "label": "Project 3 Description",
+      "name": "home_v1_project_3_description",
+      "type": "textarea",
+      "rows": 4,
+      "placeholder": "Short description shown in the project popup."
+    },
+    {
       "key": "field_aiagency_wez_home_v1_project_3_link_text",
       "label": "Project 3 Link Text",
       "name": "home_v1_project_3_link_text",
@@ -816,6 +840,14 @@
         "width": "20"
       },
       "placeholder": "Avenue"
+    },
+    {
+      "key": "field_aiagency_wez_home_v1_project_4_description",
+      "label": "Project 4 Description",
+      "name": "home_v1_project_4_description",
+      "type": "textarea",
+      "rows": 4,
+      "placeholder": "Short description shown in the project popup."
     },
     {
       "key": "field_aiagency_wez_home_v1_project_4_link_text",

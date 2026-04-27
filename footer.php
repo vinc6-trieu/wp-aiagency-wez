@@ -303,7 +303,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php
 						printf(
 							/* translators: %s: current year. */
-							esc_html__( '© %s aiagency-wez. All rights reserved.', 'aiagency-wez' ),
+							esc_html__( '© %s Lanova Technologies. All rights reserved.', 'aiagency-wez' ),
 							esc_html( gmdate( 'Y' ) )
 						);
 						?>

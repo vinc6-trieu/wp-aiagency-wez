@@ -337,7 +337,8 @@
   }
 
   .home-v1-team-layout,
-  .home-v1-form-placeholder__row {
+  .home-v1-form-placeholder__row,
+  .aiagency-wez-contact-form__row {
     grid-template-columns: 1fr;
   }
 
@@ -451,7 +452,8 @@
   }
 
   .home-v1-section--contact .home-v1-form-shell p:has(input[type="submit"]),
-  .home-v1-section--contact .home-v1-form-shell p:has(button[type="submit"]) {
+  .home-v1-section--contact .home-v1-form-shell p:has(button[type="submit"]),
+  .home-v1-section--contact .home-v1-form-shell .aiagency-wez-contact-form__actions {
     justify-content: stretch;
   }
 
@@ -471,6 +473,11 @@
   }
 
   .home-v1-form-placeholder--contact .home-v1-form-placeholder__submit {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .home-v1-section--contact .home-v1-form-shell .aiagency-wez-contact-form__actions button {
     width: 100%;
     min-width: 0;
   }

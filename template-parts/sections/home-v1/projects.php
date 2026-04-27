@@ -52,6 +52,11 @@ if ( $section_title === '' || empty( $args['projects'] ) ) {
 		>
 			<div class="home-v1-projects-grid">
 				<?php foreach ( $args['projects'] as $project ) : ?>
+					<?php
+					$project_title       = ! empty( $project['title'] ) ? trim( (string) $project['title'] ) : '';
+					$project_category    = ! empty( $project['category'] ) ? trim( (string) $project['category'] ) : '';
+					$project_description = ! empty( $project['description'] ) ? trim( (string) $project['description'] ) : '';
+					?>
 					<article class="home-v1-project-card">
 						<div class="home-v1-project-card__media">
 							<?php if ( ! empty( $project['image']['url'] ) ) : ?>
@@ -59,15 +64,38 @@ if ( $section_title === '' || empty( $args['projects'] ) ) {
 							<?php else : ?>
 								<div class="home-v1-project-card__placeholder" aria-hidden="true"></div>
 							<?php endif; ?>
+
+							<?php if ( $project_description !== '' ) : ?>
+								<button
+									type="button"
+									class="home-v1-project-card__popup-trigger"
+									data-aiagency-wez-project-popup-trigger="true"
+									data-project-title="<?php echo esc_attr( $project_title ); ?>"
+									data-project-category="<?php echo esc_attr( $project_category ); ?>"
+									data-project-description="<?php echo esc_attr( $project_description ); ?>"
+								>
+									<span class="screen-reader-text">
+										<?php
+										echo esc_html(
+											sprintf(
+												/* translators: %s: project title */
+												__( 'Open project details: %s', 'aiagency-wez' ),
+												$project_title !== '' ? $project_title : __( 'Project', 'aiagency-wez' )
+											)
+										);
+										?>
+									</span>
+								</button>
+							<?php endif; ?>
 						</div>
 
 						<div class="home-v1-project-card__overlay">
-							<?php if ( ! empty( $project['category'] ) ) : ?>
-								<p class="home-v1-project-card__category"><?php echo esc_html( $project['category'] ); ?></p>
+							<?php if ( $project_category !== '' ) : ?>
+								<p class="home-v1-project-card__category"><?php echo esc_html( $project_category ); ?></p>
 							<?php endif; ?>
 
-							<?php if ( ! empty( $project['title'] ) ) : ?>
-								<h3><?php echo esc_html( $project['title'] ); ?></h3>
+							<?php if ( $project_title !== '' ) : ?>
+								<h3><?php echo esc_html( $project_title ); ?></h3>
 							<?php endif; ?>
 
 							<?php if ( ! empty( $project['link_text'] ) && ! empty( $project['link_url'] ) ) : ?>
@@ -78,6 +106,30 @@ if ( $section_title === '' || empty( $args['projects'] ) ) {
 						</div>
 					</article>
 				<?php endforeach; ?>
+			</div>
+		</div>
+
+		<div class="home-v1-project-popup" data-aiagency-wez-project-popup="true" hidden>
+			<div class="home-v1-project-popup__backdrop" data-aiagency-wez-project-popup-close="true" aria-hidden="true"></div>
+			<div
+				class="home-v1-project-popup__dialog"
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="home-v1-project-popup-title"
+				aria-describedby="home-v1-project-popup-description"
+			>
+				<button
+					type="button"
+					class="home-v1-project-popup__close"
+					data-aiagency-wez-project-popup-close="true"
+				>
+					<span aria-hidden="true">&times;</span>
+					<span class="screen-reader-text"><?php esc_html_e( 'Close project details', 'aiagency-wez' ); ?></span>
+				</button>
+
+				<p class="home-v1-project-popup__category" id="home-v1-project-popup-category"></p>
+				<h3 class="home-v1-project-popup__title" id="home-v1-project-popup-title"></h3>
+				<p class="home-v1-project-popup__description" id="home-v1-project-popup-description"></p>
 			</div>
 		</div>
 	</div>

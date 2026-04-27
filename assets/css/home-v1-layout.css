@@ -1092,8 +1092,29 @@
 }
 
 .home-v1-project-card__media {
+  position: relative;
   transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
   transform-origin: center center;
+}
+
+.home-v1-project-card__popup-trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.home-v1-project-card__popup-trigger:focus {
+  outline: none;
+}
+
+.home-v1-project-card__popup-trigger:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: -4px;
+  border-radius: 2rem;
 }
 
 .home-v1-project-card:focus-within .home-v1-project-card__media {
@@ -1127,6 +1148,7 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: 2rem;
+  pointer-events: none;
   background: linear-gradient(
     180deg,
     rgba(10, 91, 140, 0) 0%,
@@ -1194,6 +1216,7 @@
 
 .home-v1-project-card__link {
   display: inline-block;
+  pointer-events: auto;
   color: #ffffff;
   font-size: 0.875rem;
   font-weight: 700;
@@ -1201,6 +1224,89 @@
   transition:
     color 0.25s ease,
     transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-v1-project-popup-open {
+  overflow: hidden;
+}
+
+.home-v1-project-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.home-v1-project-popup__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.home-v1-project-popup__dialog {
+  position: relative;
+  width: min(calc(100% - 2rem), 760px);
+  max-height: min(calc(100vh - 4rem), 680px);
+  margin: 2rem auto;
+  padding: 2.25rem 2.25rem 2rem;
+  overflow: auto;
+  border-radius: 1.75rem;
+  background: #ffffff;
+  box-shadow:
+    0 35px 70px -40px rgba(0, 0, 0, 0.75),
+    0 16px 40px -20px rgba(10, 91, 140, 0.45);
+}
+
+.home-v1-project-popup__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(10, 91, 140, 0.08);
+  color: var(--aiagency-wez-home-v1-accent);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.home-v1-project-popup__close:hover,
+.home-v1-project-popup__close:focus {
+  background: rgba(10, 91, 140, 0.12);
+  color: var(--aiagency-wez-home-v1-accent-dark);
+}
+
+.home-v1-project-popup__category {
+  margin: 0 0 0.75rem;
+  color: var(--aiagency-wez-home-v1-accent);
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home-v1-project-popup__title {
+  margin: 0 0 1rem;
+  color: var(--aiagency-wez-home-v1-accent);
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(1.75rem, 2.2vw, 2.25rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.home-v1-project-popup__description {
+  margin: 0;
+  color: var(--aiagency-wez-home-v1-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
 }
 
 .home-v1-project-card__link:hover,
@@ -1702,6 +1808,54 @@
   gap: 1.25rem;
 }
 
+.home-v1-section--contact .home-v1-form-shell .aiagency-wez-contact-form__notice {
+  padding: 0.95rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.home-v1-section--contact
+  .home-v1-form-shell
+  .aiagency-wez-contact-form__notice--success {
+  border-color: rgba(34, 197, 94, 0.22);
+  background: rgba(34, 197, 94, 0.08);
+  color: #166534;
+}
+
+.home-v1-section--contact
+  .home-v1-form-shell
+  .aiagency-wez-contact-form__notice--error {
+  border-color: rgba(220, 38, 38, 0.18);
+  background: rgba(220, 38, 38, 0.06);
+  color: #991b1b;
+}
+
+.home-v1-section--contact .home-v1-form-shell .aiagency-wez-contact-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.home-v1-section--contact .home-v1-form-shell .aiagency-wez-contact-form__field {
+  min-width: 0;
+}
+
+.home-v1-section--contact .home-v1-form-shell .aiagency-wez-contact-form__actions {
+  display: flex;
+  justify-content: center;
+}
+
+.home-v1-section--contact .home-v1-form-shell .aiagency-wez-contact-form__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .home-v1-section--contact .home-v1-form-shell p {
   margin: 0;
 }
@@ -1750,7 +1904,8 @@
 }
 
 .home-v1-section--contact .home-v1-form-shell p:has(input[type="submit"]),
-.home-v1-section--contact .home-v1-form-shell p:has(button[type="submit"]) {
+.home-v1-section--contact .home-v1-form-shell p:has(button[type="submit"]),
+.home-v1-section--contact .home-v1-form-shell .aiagency-wez-contact-form__actions {
   display: flex;
   justify-content: center;
 }

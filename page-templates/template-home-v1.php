@@ -46,6 +46,7 @@ while ( have_posts() ) :
 	for ( $index = 1; $index <= 4; $index++ ) {
 		$category  = function_exists( 'get_field' ) ? get_field( 'home_v1_project_' . $index . '_category', $page_id ) : '';
 		$title     = function_exists( 'get_field' ) ? get_field( 'home_v1_project_' . $index . '_title', $page_id ) : '';
+		$description = function_exists( 'get_field' ) ? get_field( 'home_v1_project_' . $index . '_description', $page_id ) : '';
 		$image     = aiagency_wez_get_image_data( function_exists( 'get_field' ) ? get_field( 'home_v1_project_' . $index . '_image', $page_id ) : '' );
 		$link_text = function_exists( 'get_field' ) ? get_field( 'home_v1_project_' . $index . '_link_text', $page_id ) : '';
 		$link_url  = function_exists( 'get_field' ) ? get_field( 'home_v1_project_' . $index . '_link_url', $page_id ) : '';
@@ -54,6 +55,7 @@ while ( have_posts() ) :
 			$projects[] = array(
 				'category'  => $category,
 				'title'     => $title,
+				'description' => $description,
 				'image'     => $image,
 				'link_text' => $link_text,
 				'link_url'  => $link_url,

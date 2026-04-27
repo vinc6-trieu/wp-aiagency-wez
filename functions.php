@@ -319,6 +319,18 @@ function aiagency_wez_enqueue_home_v1_reveal() {
 			)
 		);
 	}
+
+	$projects_modal_path = get_template_directory() . '/assets/js/home-v1-projects-modal.js';
+	if ( is_readable( $projects_modal_path ) ) {
+		wp_enqueue_script(
+			'aiagency-wez-home-v1-projects-modal',
+			get_template_directory_uri() . '/assets/js/home-v1-projects-modal.js',
+			array(),
+			(string) filemtime( $projects_modal_path ),
+			true
+		);
+		wp_script_add_data( 'aiagency-wez-home-v1-projects-modal', 'strategy', 'defer' );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'aiagency_wez_enqueue_home_v1_reveal', 20 );
 
@@ -514,3 +526,200 @@ function aiagency_wez_home_v1_competency_default_icon_svg( $variant = 0 ) {
 
 	return $icons[ $variant % count( $icons ) ];
 }
+
+/**
+ * Returns feedback copy for the built-in Home V1 contact form.
+ *
+ * @return array<string, string>
+ */
+function aiagency_wez_contact_form_status_messages() {
+	return array(
+		'success'    => __( 'Thanks. Your message has been sent.', 'aiagency-wez' ),
+		'invalid'    => __( 'Please complete the required fields and try again.', 'aiagency-wez' ),
+		'mail_error' => __( 'The form could not be sent right now. Please try again later.', 'aiagency-wez' ),
+	);
+}
+
+/**
+ * Builds a safe return URL for Home V1 contact form submissions.
+ *
+ * @param string $status      Response state.
+ * @param string $redirect_to Optional redirect target from the form.
+ * @return string
+ */
+function aiagency_wez_get_contact_form_redirect_url( $status, $redirect_to = '' ) {
+	$fallback = aiagency_wez_get_home_v1_page_url( 'contact-us' );
+
+	if ( is_string( $redirect_to ) && '' !== $redirect_to ) {
+		$validated = wp_validate_redirect( $redirect_to, $fallback );
+	} else {
+		$validated = $fallback;
+	}
+
+	$validated = remove_query_arg( 'aiagency_wez_contact_status', $validated );
+	$validated = add_query_arg( 'aiagency_wez_contact_status', sanitize_key( $status ), $validated );
+
+	if ( false === strpos( $validated, '#contact-us' ) ) {
+		$validated .= '#contact-us';
+	}
+
+	return $validated;
+}
+
+/**
+ * Renders the built-in Home V1 contact form shortcode.
+ *
+ * @param array<string, string> $atts Shortcode attributes.
+ * @return string
+ */
+function aiagency_wez_contact_form_shortcode( $atts = array() ) {
+	$atts = shortcode_atts(
+		array(
+			'button_text' => __( 'Book a demo', 'aiagency-wez' ),
+		),
+		$atts,
+		'aiagency_wez_contact_form'
+	);
+
+	$messages = aiagency_wez_contact_form_status_messages();
+	$status   = isset( $_GET['aiagency_wez_contact_status'] ) ? sanitize_key( wp_unslash( $_GET['aiagency_wez_contact_status'] ) ) : '';
+	$notice   = isset( $messages[ $status ] ) ? $messages[ $status ] : '';
+	$is_error = '' !== $status && 'success' !== $status;
+	$form_id  = wp_unique_id( 'aiagency-wez-contact-form-' );
+
+	$redirect_to = '';
+	if ( is_singular() ) {
+		$redirect_to = get_permalink( get_queried_object_id() );
+	}
+	if ( ! is_string( $redirect_to ) || '' === $redirect_to ) {
+		$redirect_to = aiagency_wez_get_home_v1_page_url();
+	}
+	$redirect_to .= '#contact-us';
+
+	ob_start();
+	?>
+	<form class="aiagency-wez-contact-form" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
+		<input type="hidden" name="action" value="aiagency_wez_submit_contact_form">
+		<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect_to ); ?>">
+		<?php wp_nonce_field( 'aiagency_wez_submit_contact_form', 'aiagency_wez_contact_form_nonce' ); ?>
+
+		<?php if ( $notice ) : ?>
+			<div class="aiagency-wez-contact-form__notice <?php echo $is_error ? 'aiagency-wez-contact-form__notice--error' : 'aiagency-wez-contact-form__notice--success'; ?>" role="status">
+				<?php echo esc_html( $notice ); ?>
+			</div>
+		<?php endif; ?>
+
+		<div class="aiagency-wez-contact-form__row">
+			<div class="aiagency-wez-contact-form__field">
+				<label for="<?php echo esc_attr( $form_id . '-full-name' ); ?>"><?php esc_html_e( 'Full Name', 'aiagency-wez' ); ?></label>
+				<input id="<?php echo esc_attr( $form_id . '-full-name' ); ?>" type="text" name="full_name" autocomplete="name" required>
+			</div>
+
+			<div class="aiagency-wez-contact-form__field">
+				<label for="<?php echo esc_attr( $form_id . '-work-email' ); ?>"><?php esc_html_e( 'Work Email', 'aiagency-wez' ); ?></label>
+				<input id="<?php echo esc_attr( $form_id . '-work-email' ); ?>" type="email" name="work_email" autocomplete="email" required>
+			</div>
+		</div>
+
+		<div class="aiagency-wez-contact-form__row">
+			<div class="aiagency-wez-contact-form__field">
+				<label for="<?php echo esc_attr( $form_id . '-company' ); ?>"><?php esc_html_e( 'Company', 'aiagency-wez' ); ?></label>
+				<input id="<?php echo esc_attr( $form_id . '-company' ); ?>" type="text" name="company" autocomplete="organization">
+			</div>
+
+			<div class="aiagency-wez-contact-form__field">
+				<label for="<?php echo esc_attr( $form_id . '-phone-number' ); ?>"><?php esc_html_e( 'Phone Number', 'aiagency-wez' ); ?></label>
+				<input id="<?php echo esc_attr( $form_id . '-phone-number' ); ?>" type="tel" name="phone_number" autocomplete="tel">
+			</div>
+		</div>
+
+		<div class="aiagency-wez-contact-form__field aiagency-wez-contact-form__field--full">
+			<label for="<?php echo esc_attr( $form_id . '-message' ); ?>"><?php esc_html_e( 'Message', 'aiagency-wez' ); ?></label>
+			<textarea id="<?php echo esc_attr( $form_id . '-message' ); ?>" name="message" rows="6" required></textarea>
+		</div>
+
+		<div class="aiagency-wez-contact-form__honeypot" aria-hidden="true">
+			<label for="<?php echo esc_attr( $form_id . '-website' ); ?>"><?php esc_html_e( 'Website', 'aiagency-wez' ); ?></label>
+			<input id="<?php echo esc_attr( $form_id . '-website' ); ?>" type="text" name="website" tabindex="-1" autocomplete="off">
+		</div>
+
+		<div class="aiagency-wez-contact-form__actions">
+			<button type="submit"><?php echo esc_html( $atts['button_text'] ); ?></button>
+		</div>
+	</form>
+	<?php
+
+	return (string) ob_get_clean();
+}
+add_shortcode( 'aiagency_wez_contact_form', 'aiagency_wez_contact_form_shortcode' );
+
+/**
+ * Handles built-in Home V1 contact form submissions.
+ */
+function aiagency_wez_handle_contact_form_submit() {
+	$redirect_to = isset( $_POST['redirect_to'] ) ? esc_url_raw( wp_unslash( $_POST['redirect_to'] ) ) : '';
+
+	if (
+		! isset( $_POST['aiagency_wez_contact_form_nonce'] ) ||
+		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['aiagency_wez_contact_form_nonce'] ) ), 'aiagency_wez_submit_contact_form' )
+	) {
+		wp_safe_redirect( aiagency_wez_get_contact_form_redirect_url( 'invalid', $redirect_to ) );
+		exit;
+	}
+
+	$full_name = isset( $_POST['full_name'] ) ? sanitize_text_field( wp_unslash( $_POST['full_name'] ) ) : '';
+	$work_email = isset( $_POST['work_email'] ) ? sanitize_email( wp_unslash( $_POST['work_email'] ) ) : '';
+	$company = isset( $_POST['company'] ) ? sanitize_text_field( wp_unslash( $_POST['company'] ) ) : '';
+	$phone_number = isset( $_POST['phone_number'] ) ? sanitize_text_field( wp_unslash( $_POST['phone_number'] ) ) : '';
+	$message = isset( $_POST['message'] ) ? trim( sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) ) : '';
+	$website = isset( $_POST['website'] ) ? trim( (string) wp_unslash( $_POST['website'] ) ) : '';
+
+	if ( '' !== $website ) {
+		wp_safe_redirect( aiagency_wez_get_contact_form_redirect_url( 'success', $redirect_to ) );
+		exit;
+	}
+
+	if ( '' === $full_name || '' === $message || ! is_email( $work_email ) ) {
+		wp_safe_redirect( aiagency_wez_get_contact_form_redirect_url( 'invalid', $redirect_to ) );
+		exit;
+	}
+
+	$recipient = apply_filters( 'aiagency_wez_contact_form_recipient', get_option( 'admin_email' ) );
+	$subject   = apply_filters(
+		'aiagency_wez_contact_form_subject',
+		sprintf(
+			/* translators: %s: sender full name. */
+			__( 'New website inquiry from %s', 'aiagency-wez' ),
+			$full_name
+		),
+		$full_name,
+		$work_email
+	);
+
+	$body_lines = array(
+		sprintf( __( 'Full Name: %s', 'aiagency-wez' ), $full_name ),
+		sprintf( __( 'Work Email: %s', 'aiagency-wez' ), $work_email ),
+		sprintf( __( 'Company: %s', 'aiagency-wez' ), '' !== $company ? $company : __( 'Not provided', 'aiagency-wez' ) ),
+		sprintf( __( 'Phone Number: %s', 'aiagency-wez' ), '' !== $phone_number ? $phone_number : __( 'Not provided', 'aiagency-wez' ) ),
+		'',
+		__( 'Message:', 'aiagency-wez' ),
+		$message,
+	);
+
+	$headers = array( 'Content-Type: text/plain; charset=UTF-8' );
+	if ( $work_email ) {
+		$headers[] = 'Reply-To: ' . $full_name . ' <' . $work_email . '>';
+	}
+
+	$sent = wp_mail(
+		sanitize_email( (string) $recipient ),
+		wp_strip_all_tags( (string) $subject ),
+		implode( "\n", $body_lines ),
+		$headers
+	);
+
+	wp_safe_redirect( aiagency_wez_get_contact_form_redirect_url( $sent ? 'success' : 'mail_error', $redirect_to ) );
+	exit;
+}
+add_action( 'admin_post_nopriv_aiagency_wez_submit_contact_form', 'aiagency_wez_handle_contact_form_submit' );
+add_action( 'admin_post_aiagency_wez_submit_contact_form', 'aiagency_wez_handle_contact_form_submit' );
