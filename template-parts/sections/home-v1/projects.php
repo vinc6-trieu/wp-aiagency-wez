@@ -21,9 +21,30 @@ $args = wp_parse_args(
 );
 
 $section_title = isset( $args['title'] ) ? trim( (string) $args['title'] ) : '';
-if ( $section_title === '' || empty( $args['projects'] ) ) {
+$projects = array_values(
+	array_filter(
+		(array) $args['projects'],
+		static function ( $project ) {
+			if ( ! is_array( $project ) ) {
+				return false;
+			}
+
+			$project_title = isset( $project['title'] ) ? trim( (string) $project['title'] ) : '';
+			return $project_title !== '';
+		}
+	)
+);
+
+if ( $section_title === '' || empty( $projects ) ) {
 	return;
 }
+
+$projects_count      = count( $projects );
+$projects_grid_class = array(
+	'home-v1-projects-grid',
+	'home-v1-projects-grid--count-' . $projects_count,
+);
+$projects_grid_style = 'grid-template-columns: repeat(' . $projects_count . ', minmax(0, 1fr));';
 ?>
 
 <section id="our-projects" class="home-v1-section home-v1-section--projects">
@@ -50,8 +71,8 @@ if ( $section_title === '' || empty( $args['projects'] ) ) {
 			role="region"
 			aria-labelledby="home-v1-projects-scroll-hint"
 		>
-			<div class="home-v1-projects-grid">
-				<?php foreach ( $args['projects'] as $project_index => $project ) : ?>
+			<div class="<?php echo esc_attr( implode( ' ', $projects_grid_class ) ); ?>" style="<?php echo esc_attr( $projects_grid_style ); ?>">
+				<?php foreach ( $projects as $project_index => $project ) : ?>
 					<?php
 					$project_title       = ! empty( $project['title'] ) ? trim( (string) $project['title'] ) : '';
 					$project_category    = ! empty( $project['category'] ) ? trim( (string) $project['category'] ) : '';
